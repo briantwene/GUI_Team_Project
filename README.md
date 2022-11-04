@@ -1,4 +1,4 @@
-# Project Name: GUI Team Project
+## Project Name: GUI Team Project
 ## Project Subject: Car Dealership/Rental System
 ## Module: GUI Design and Database Connection
 ## Module Code: COMP4604
