@@ -1,0 +1,18 @@
+Some things that are left to do:
+
+
+- UML Diagram - (In Progress)
+- Figma Prototypes - (In Progress)
+- User Manual
+- Test Record
+
+
+
+The application should (minimal requirements):
+- Allow stock / inventory control to be maintained
+- Allow management to print lists of users and lists of stock
+- Allow the addition and removal of users
+- Allow management to check overdue accounts
+- Allow users to rent and purchase items/service
+- Allow users to return rented/purchased items
+To achieve a high score, extra functionality and features should be included as you think necessary for your program.
