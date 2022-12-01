@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.sdev</groupId>
-    <artifactId>GUI_Team_Project</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>Jason</groupId>
+    <artifactId>CarRental</artifactId>
+    <version>Jason</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -11,11 +11,18 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE150</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.sf.ucanaccess</groupId>
+            <artifactId>ucanaccess</artifactId>
+            <version>5.0.1</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>com.sdev.gui_team_project.GUI_Team_Project</exec.mainClass>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
+        <exec.mainClass>jason.carrental.CarRental</exec.mainClass>
     </properties>
 </project>
