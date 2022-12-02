@@ -168,6 +168,8 @@ public class RentalsView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1440, 918));
 
         jScrollPane1.setBorder(null);
+
+        wrapLayoutContainer1.setBackground(new java.awt.Color(242, 250, 249));
         jScrollPane1.setViewportView(wrapLayoutContainer1);
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
@@ -180,7 +182,7 @@ public class RentalsView extends javax.swing.JPanel {
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 974, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -198,9 +200,7 @@ public class RentalsView extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(filterBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(filterBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
