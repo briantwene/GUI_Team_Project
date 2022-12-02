@@ -4,6 +4,9 @@
  */
 package Views;
 
+import Controller.RouterController;
+import models.AppModel;
+
 /**
  *
  * @author twene
@@ -13,7 +16,7 @@ public class HomeView extends javax.swing.JPanel {
     /**
      * Creates new form HomeView
      */
-    public HomeView() {
+    public HomeView(AppModel appState, RouterController controller) {
         initComponents();
     }
 

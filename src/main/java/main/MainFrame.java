@@ -4,7 +4,6 @@
  */
 package main;
 
-import Components.VehicleItem;
 import Controller.RouterController;
 import Views.AccountView;
 import Views.CarInfoView;
@@ -14,6 +13,7 @@ import Views.RentalsView;
 import models.VehicleModel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import models.AppModel;
 
 /**
  *
@@ -25,6 +25,9 @@ public class MainFrame extends javax.swing.JFrame {
     private RentalsView rentalPage;
     
     final RouterController controller;
+    
+    public VehicleModel selectedItem;
+    private AppModel appState;
 
     /**
      * Creates new form customerView
@@ -35,34 +38,28 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout cardLayout = new CardLayout();
         content.setLayout(cardLayout);
 
+       appState = new AppModel();
        controller = new RouterController(content, cardLayout);
+       
 
-        controller.addView(new HomeView(), RouterController.HOME);
-        controller.addView(new RentalsView(), RouterController.RENT);
-        controller.addView(new PurchaseView(), RouterController.PURCHASE);
-        controller.addView(new AccountView(), RouterController.ACCOUNT);
-        controller.addView(new CarInfoView(), RouterController.INFO);
+        controller.addView(new HomeView(appState, controller), RouterController.HOME);
+        controller.addView(new RentalsView(appState, controller), RouterController.RENT);
+        controller.addView(new PurchaseView(appState, controller), RouterController.PURCHASE);
+        controller.addView(new AccountView(appState, controller), RouterController.ACCOUNT);
+        controller.addView(new CarInfoView(appState, controller), RouterController.INFO);
 
         controller.goHome();
 //        addComponents();
     }
 
     private void addComponents() {
-        rentalPage = new RentalsView();
+       
         content.setLayout(new BorderLayout());
         content.add(rentalPage);
 
     }
 
-    // for adding data to the object
-    public void addVehicleItem(VehicleModel modelData) {
-        System.out.println("in the function");
-        VehicleItem item = new VehicleItem();
-        item.fillData(modelData);
-        ;
-
-        // would bind the eventlistener here....
-    }
+    
 
 //    private void addTesting() {
 //

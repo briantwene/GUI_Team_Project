@@ -3,18 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Components;
+import Controller.RouterController;
+import models.AppModel;
 import models.VehicleModel;
-import javax.swing.ImageIcon;
 /**
  *
  * @author twene
  */
 public class VehicleItem extends javax.swing.JPanel {
 
+    RouterController controller;
+    AppModel appState;
     /**
      * Creates new form VheicleItem
      */
-    public VehicleItem() {
+    public VehicleItem(AppModel appState, RouterController controller) {
+        this.controller = controller;
+        this.appState = appState;
         initComponents();
     }
     
@@ -121,6 +126,11 @@ public class VehicleItem extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Rent");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout actionContainerLayout = new javax.swing.GroupLayout(actionContainer);
         actionContainer.setLayout(actionContainerLayout);
@@ -172,6 +182,13 @@ public class VehicleItem extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        appState.setSelectedVehicle(this.data);
+        controller.goInfoPage();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
  
     

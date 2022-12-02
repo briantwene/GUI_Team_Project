@@ -4,17 +4,40 @@
  */
 package Views;
 
+import Controller.RouterController;
+import Controller.updateInterface;
+import models.AppModel;
+import models.VehicleModel;
+
 /**
  *
  * @author twene
  */
-public class CarInfoView extends javax.swing.JPanel {
+public class CarInfoView extends javax.swing.JPanel implements updateInterface {
+
+    RouterController controller;
+    AppModel appState;
+    Runnable update = () -> this.updatePage();
 
     /**
      * Creates new form CarInfo
      */
-    public CarInfoView() {
+    public CarInfoView(AppModel appState, RouterController controller) {
+        this.controller = controller;
+        this.appState = appState;
+        
+        this.controller.attachUpdateFunc(update);
         initComponents();
+        updatePage();
+    }
+    
+    @Override
+    public void updatePage(){
+        VehicleModel selected = appState.getSelectedVehicle();
+        price.setText("€"+ selected.getPrice());
+        name.setText(selected.getName());
+        carType.setText(selected.getCategory());
+        imageContainer.setImage(selected.getImage());
     }
 
     /**

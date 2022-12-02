@@ -4,11 +4,13 @@
  */
 package Controller;
 
+import Views.CarInfoView;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,63 +27,72 @@ public class RouterController {
     public static final String PURCHASE = "purchase";
     public static final String ACCOUNT = "Account";
     public static final String INFO = "info";
+    Runnable updatePage;
 
     //variable for current page
-    private Component currentPage = null;
+    private JPanel currentPage = null;
 
     //variable for panel that will hold the container and cardLayout object
     private Container parent;
     private CardLayout cardLayout;
-    private ArrayList<Component> views;
-    private HashMap<Component, String> pageNames;
+    private ArrayList<JPanel> views;
+    private HashMap<String, JPanel> pageNames;
 
     //constructor
     public RouterController(Container parent, CardLayout cardLayout) {
         this.parent = parent;
         this.cardLayout = cardLayout;
-        views = new ArrayList<>(25);
+        this.views = new ArrayList<>(25);
         pageNames = new HashMap<>(25);
 
     }
 
+    public void attachUpdateFunc(Runnable func){
+        updatePage = func;
+    }
     //adding a view
-    public void addView(Component comp, String name) {
+    public void addView(JPanel comp, String name) {
         if (!HOME.equals(name)) {
             views.add(comp);
         }
-        pageNames.put(comp, name);
+        pageNames.put(name, comp);
         getParent().add(comp, name);
     }
 
-    public void removeView(Component comp, String name) {
+    public void removeView(JPanel comp, String name) {
         views.remove(comp);
-        pageNames.remove(comp);
+        pageNames.remove(name);
         getParent().remove(comp);
     }
 
     //go home
     public void goHome() {
-        currentPage = null;
+        currentPage = pageNames.get(HOME);
+        currentPage.revalidate();
         getCardLayout().show(getParent(), HOME);
     }
 
     public void goRentals() {
-        currentPage = null;
+        currentPage = pageNames.get(RENT);
+        currentPage.revalidate();
         getCardLayout().show(getParent(), RENT);
     }
 
     public void goPurchases() {
-        currentPage = null;
+        currentPage = pageNames.get(PURCHASE);
+        currentPage.revalidate();
         getCardLayout().show(getParent(), PURCHASE);
     }
 
     public void goAccountPage() {
-        currentPage = null;
+        currentPage = pageNames.get(ACCOUNT);
+        currentPage.revalidate();
         getCardLayout().show(getParent(), ACCOUNT);
     }
 
     public void goInfoPage() {
-        currentPage = null;
+        currentPage = pageNames.get(INFO);
+        updatePage.run();
         getCardLayout().show(getParent(), INFO);
     }
 

@@ -4,6 +4,9 @@
  */
 package Views;
 
+import Controller.RouterController;
+import models.AppModel;
+
 /**
  *
  * @author twene
@@ -13,7 +16,7 @@ public class PurchaseView extends javax.swing.JPanel {
     /**
      * Creates new form PurchaseView
      */
-    public PurchaseView() {
+    public PurchaseView(AppModel appState, RouterController controller) {
         initComponents();
     }
 
