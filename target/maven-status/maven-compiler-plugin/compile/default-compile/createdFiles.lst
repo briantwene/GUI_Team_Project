@@ -19,7 +19,9 @@ com\sdev\gui_team_project\ManageCustomers$12.class
 Components\WrapLayoutContainer.class
 com\sdev\gui_team_project\Login.class
 com\sdev\gui_team_project\RegisterAdmin$5.class
+Controller\updateInterface.class
 com\sdev\gui_team_project\ManageVehicles$9.class
+models\AppModel.class
 Views\RentalsView.class
 main\MainFrame.class
 com\sdev\gui_team_project\RegisterCustomer$2.class
@@ -47,7 +49,6 @@ com\sdev\gui_team_project\MainMenuCustomer$3.class
 com\sdev\gui_team_project\RegisterAdmin$3.class
 com\sdev\gui_team_project\RentVehicles$1.class
 com\sdev\gui_team_project\ManageVehicles$2.class
-.netbeans_automatic_build
 com\sdev\gui_team_project\RegisterCustomer$1.class
 com\sdev\gui_team_project\LoginCustomer$5.class
 Components\FilterBar$7.class
@@ -58,7 +59,6 @@ main\MainFrame$5.class
 Views\HomeView.class
 com\sdev\gui_team_project\ManageCustomers$10.class
 com\sdev\gui_team_project\ManageVehicles$1.class
-Views\PurchaseView$1.class
 AllYouViewBelongToMe$TestPane$1.class
 third_party\PictureBox.class
 com\sdev\gui_team_project\ManageVehicles.class
@@ -92,8 +92,10 @@ Views\CarInfoView$1.class
 com\sdev\gui_team_project\Login$1.class
 com\sdev\gui_team_project\RegisterCustomer$5.class
 AllYouViewBelongToMe$TestPane$3.class
+Components\VehicleItem$1.class
 models\VehicleModel.class
 com\sdev\gui_team_project\LoginCustomer$4.class
+Views\CarInfoView$2.class
 com\sdev\gui_team_project\RentVehicles$5.class
 com\sdev\gui_team_project\VehicleRental.class
 main\MainFrame$1.class
