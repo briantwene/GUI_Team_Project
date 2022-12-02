@@ -16,55 +16,61 @@ public class MainMenuAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        vehiclesButton = new javax.swing.JButton();
-        customersButton = new javax.swing.JButton();
-        loginButton = new javax.swing.JButton();
+        manageCustomers = new javax.swing.JButton();
+        manageVehicles = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 600));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(153, 0, 204));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("J&B's Vehicle Rental System");
-
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(153, 0, 204));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Admin Main Menu");
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\NetBeansProjects\\CarRental\\Main Car.png")); // NOI18N
-
-        vehiclesButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        vehiclesButton.setForeground(new java.awt.Color(153, 0, 204));
-        vehiclesButton.setText("Manage Vehicles");
-        vehiclesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vehiclesButtonActionPerformed(evt);
+        manageCustomers.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Manage Customers.png")); // NOI18N
+        manageCustomers.setBorder(null);
+        manageCustomers.setBorderPainted(false);
+        manageCustomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manageCustomers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageCustomersMouseClicked(evt);
             }
         });
 
-        customersButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        customersButton.setForeground(new java.awt.Color(153, 0, 204));
-        customersButton.setText("Manage Customers");
-        customersButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customersButtonActionPerformed(evt);
+        manageVehicles.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Manage Vehicles.png")); // NOI18N
+        manageVehicles.setBorder(null);
+        manageVehicles.setBorderPainted(false);
+        manageVehicles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manageVehicles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageVehiclesMouseClicked(evt);
             }
         });
 
-        loginButton.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        loginButton.setForeground(new java.awt.Color(153, 0, 204));
-        loginButton.setText("Login Page");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+        logoutButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Logout.png")); // NOI18N
+        logoutButton.setToolTipText("");
+        logoutButton.setBorder(null);
+        logoutButton.setBorderPainted(false);
+        logoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
+
+        exitButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Exit.png")); // NOI18N
+        exitButton.setBorder(null);
+        exitButton.setBorderPainted(false);
+        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonMouseClicked(evt);
             }
         });
 
@@ -73,68 +79,73 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(loginButton)
-                    .addComponent(customersButton)
-                    .addComponent(vehiclesButton)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(manageVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(vehiclesButton)
-                .addGap(10, 10, 10)
-                .addComponent(customersButton)
-                .addGap(10, 10, 10)
-                .addComponent(loginButton)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(manageVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void customersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersButtonActionPerformed
+    private void manageCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageCustomersMouseClicked
         // TODO add your handling code here:
         ManageCustomers mc = null;
         mc = new ManageCustomers();
         mc.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_customersButtonActionPerformed
+    }//GEN-LAST:event_manageCustomersMouseClicked
 
-    private void vehiclesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclesButtonActionPerformed
+    private void manageVehiclesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageVehiclesMouseClicked
         // TODO add your handling code here:
         ManageVehicles mv = null;
         mv = new ManageVehicles();
         mv.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_vehiclesButtonActionPerformed
+    }//GEN-LAST:event_manageVehiclesMouseClicked
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginButtonActionPerformed
+        Login l = null;
+        l = new Login();
+        l.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_logoutButtonMouseClicked
+
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -175,12 +186,10 @@ public class MainMenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton customersButton;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton exitButton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JButton vehiclesButton;
+    private javax.swing.JButton logoutButton;
+    private javax.swing.JButton manageCustomers;
+    private javax.swing.JButton manageVehicles;
     // End of variables declaration//GEN-END:variables
 }
