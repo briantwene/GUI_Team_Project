@@ -13,25 +13,58 @@ import java.util.ArrayList;
 public class FilterModel {
 
     public int price;
+    public int maxPrice;
+    public int minPrice;
+    public int step;
     public ArrayList<String> types;
     public ArrayList<String> carSize;
     public ArrayList<String> activeFilters;
 
-    public FilterModel() {
-        this.price = 300;
+    public FilterModel(int maxVal, int minVal, int step) {
+        this.price = maxVal;
+        this.maxPrice = maxVal;
+        this.minPrice = minVal;
+        this.step = step;
         this.types = new ArrayList<String>(4);
         this.carSize = new ArrayList<String>(3);
         this.activeFilters = new ArrayList<String>(2);
 
     }
-    
-    
-    public void reset(){
-        this.price = 300;
+
+    public int getStep() {
+        return step;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
+    }
+
+    public ArrayList<String> getActiveFilters() {
+        return activeFilters;
+    }
+
+    public int getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(int maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public int getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(int minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public void reset() {
+        this.price = maxPrice;
         this.types.clear();
         this.carSize.clear();
         this.activeFilters.clear();
-    
+
     }
 
     public int getPrice() {

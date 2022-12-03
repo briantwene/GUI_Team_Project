@@ -12,18 +12,18 @@ import javax.swing.ImageIcon;
  * @author twene
  */
 public class AppModel {
+
     VehicleModel selectedVehicle;
-    LocalDateTime reservedStartDate;
-    LocalDateTime reservedEndDate;
-    
-    
-   public AppModel(){
-       
-      this.selectedVehicle = new VehicleModel("", "", 1,  new ImageIcon(getClass().getResource("/images/car.png")), 1, "");
-      this.reservedStartDate = LocalDateTime.now();
-      this.reservedEndDate = LocalDateTime.now().plusDays(3);
-      
-   }
+    LocalDateTime pickupDate;
+    LocalDateTime returnDate;
+
+    public AppModel() {
+
+        this.selectedVehicle = new VehicleModel("", "", 1, new ImageIcon(getClass().getResource("/images/car.png")), 1, "");
+        this.pickupDate = LocalDateTime.now();
+        this.returnDate = LocalDateTime.now().plusDays(3);
+
+    }
 
     public VehicleModel getSelectedVehicle() {
         return selectedVehicle;
@@ -33,24 +33,20 @@ public class AppModel {
         this.selectedVehicle = selectedVehicle;
     }
 
-    public LocalDateTime getReservedStartDate() {
-        return reservedStartDate;
+    public LocalDateTime getPickupDate() {
+        return pickupDate;
     }
 
-    public void setReservedStartDate(LocalDateTime reservedStartDate) {
-        this.reservedStartDate = reservedStartDate;
+    public void setPickupDate(LocalDateTime pickupDate) {
+        this.pickupDate = pickupDate;
     }
 
-    public LocalDateTime getReservedEndDate() {
-        return reservedEndDate;
+    public LocalDateTime getReturnDate() {
+        return returnDate;
     }
 
-    public void setReservedEndDate(LocalDateTime reservedEndDate) {
-        this.reservedEndDate = reservedEndDate;
+    public void setReturnDate(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
     }
-   
-   
-            
-    
-    
+
 }

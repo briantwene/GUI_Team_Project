@@ -31,7 +31,7 @@
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="name" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="841" max="32767" attributes="0"/>
+                      <EmptySpace pref="829" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="imageContainer" min="-2" pref="620" max="-2" attributes="0"/>

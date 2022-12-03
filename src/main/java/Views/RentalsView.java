@@ -18,7 +18,7 @@ import models.VehicleModel;
  */
 public class RentalsView extends javax.swing.JPanel {
 
-    public FilterModel currentFilter = new FilterModel();
+    public FilterModel currentFilter = new FilterModel(300, 50, 20);
     private ArrayList<VehicleModel> vehicleList = new ArrayList<VehicleModel>();
     public ArrayList<VehicleModel> filteredVehicleList;
     RouterController controller;
@@ -164,33 +164,30 @@ public class RentalsView extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
+        filterBar1 = new Components.FilterBar();
         jScrollPane1 = new javax.swing.JScrollPane();
         wrapLayoutContainer1 = new Components.WrapLayoutContainer();
-        filterBar1 = new Components.FilterBar();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Car Type");
 
         setPreferredSize(new java.awt.Dimension(1440, 918));
 
-        jScrollPane1.setBorder(null);
-
-        wrapLayoutContainer1.setBackground(new java.awt.Color(242, 255, 255));
-        jScrollPane1.setViewportView(wrapLayoutContainer1);
-
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addGap(0, 918, Short.MAX_VALUE)
         );
+
+        jScrollPane1.setBorder(null);
+
+        wrapLayoutContainer1.setBackground(new java.awt.Color(242, 255, 255));
+        jScrollPane1.setViewportView(wrapLayoutContainer1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -200,6 +197,8 @@ public class RentalsView extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(filterBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
@@ -207,6 +206,7 @@ public class RentalsView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(filterBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

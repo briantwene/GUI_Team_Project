@@ -124,7 +124,7 @@ public class CarInfoView extends javax.swing.JPanel implements updateInterface {
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(name))
-                        .addContainerGap(841, Short.MAX_VALUE))
+                        .addContainerGap(829, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(imageContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

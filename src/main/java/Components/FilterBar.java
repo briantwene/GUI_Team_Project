@@ -41,6 +41,9 @@ public class FilterBar extends javax.swing.JPanel {
         medium.setSelected(false);
         standard.setSelected(false);
         suv.setSelected(false);
+        priceSlider.setMaximum(currentFilter.getMaxPrice());
+        priceSlider.setMinimum(currentFilter.getMinPrice());
+        priceSlider.setMinorTickSpacing(currentFilter.getStep());
         priceSlider.setValue(currentFilter.getPrice());
         priceLabel.setText("€" + currentFilter.getPrice());
 
@@ -70,9 +73,9 @@ public class FilterBar extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         priceFilter = new javax.swing.JPanel();
         priceSlider = new javax.swing.JSlider();
-        priceLabel = new javax.swing.JLabel();
         formReset = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(372, 918));
@@ -206,6 +209,9 @@ public class FilterBar extends javax.swing.JPanel {
 
         priceSlider.setMaximum(300);
         priceSlider.setMinimum(50);
+        priceSlider.setPaintLabels(true);
+        priceSlider.setPaintTicks(true);
+        priceSlider.setSnapToTicks(true);
         priceSlider.setValue(0);
         priceSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -213,26 +219,20 @@ public class FilterBar extends javax.swing.JPanel {
             }
         });
 
-        priceLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
         javax.swing.GroupLayout priceFilterLayout = new javax.swing.GroupLayout(priceFilter);
         priceFilter.setLayout(priceFilterLayout);
         priceFilterLayout.setHorizontalGroup(
             priceFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(priceFilterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(priceLabel)
-                .addGap(15, 15, 15))
+                .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         priceFilterLayout.setVerticalGroup(
             priceFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(priceFilterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(priceFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceLabel))
+                .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -249,6 +249,8 @@ public class FilterBar extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Vehicle Size");
 
+        priceLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -260,16 +262,17 @@ public class FilterBar extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel7)
-                            .addComponent(formReset))
-                        .addGap(0, 273, Short.MAX_VALUE))
+                            .addComponent(formReset)
+                            .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(priceFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(capacityFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(priceFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(carTypeFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(23, Short.MAX_VALUE))))
+                        .addContainerGap(38, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +291,9 @@ public class FilterBar extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(priceFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(11, 11, 11)
+                .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formReset)
                 .addGap(307, 307, 307))
         );
