@@ -11,10 +11,16 @@ public class RentModel {
     private int vehicleId;
     private int userId;
 
-    public RentModel(int rentId, Date rentStarDateTime, Date rentReturnDateTime, int rentNoOfDays,
-            int vehicleId, int userId) {
-
+    public RentModel(int rentId, Date rentStartDate, Date rentReturnDate, int rentNoOfDays, int vehicleId, int userId) {
+        this.rentId = rentId;
+        this.rentStartDate = rentStartDate;
+        this.rentReturnDate = rentReturnDate;
+        this.rentNoOfDays = rentNoOfDays;
+        this.vehicleId = vehicleId;
+        this.userId = userId;
     }
+
+   
 
     public int getRentId() {
         return rentId;

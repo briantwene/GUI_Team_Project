@@ -24,7 +24,7 @@ public class Database {
     String msAccDB = "Rent.accdb"; // path to the DB file
     String dbURL = "jdbc:ucanaccess://" + msAccDB;
 
-    //constructor for the instance
+    // constructor for the instance
     public Database() {
 
         try {
@@ -46,7 +46,7 @@ public class Database {
 
     }
 
-    //function for executing the query and returning the 
+    // function for executing the query and returning the
     public ResultSet executeQuery(String query) {
 
         Statement statement = null;
@@ -58,28 +58,39 @@ public class Database {
             statement = connection.createStatement();
 
             // Step 2.C: Executing SQL &amp; retrieve data into ResultSet
-            resultSet = statement.executeQuery("SELECT * FROM Vehicle");
-            
-     
-           
+            resultSet = statement.executeQuery(query);
 
         } catch (SQLException sqlex) {
             System.err.println(sqlex.getMessage());
         } finally {
             return resultSet;
-
         }
+
+    }
+
+    // function for executing the query and returning the
+    public int executeUpdateQuery(String query) {
+
+        Statement statement = null;
+
+        int result = 0;
+        try {
+
+            // Step 2.B: Creating JDBC Statement
+            statement = connection.createStatement();
+
+            // Step 2.C: Executing SQL &amp; retrieve data into ResultSet
+            result = statement.executeUpdate(query);
+
+        } catch (SQLException sqlex) {
+            System.err.println(sqlex.getMessage());
+        }
+        return result;
 
     }
 
     public static void main(String[] args) {
-        ResultSet result = new Database().executeQuery("reee");
-        try {
-            System.out.println(result.getString(1));
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
 } // End of Class
-

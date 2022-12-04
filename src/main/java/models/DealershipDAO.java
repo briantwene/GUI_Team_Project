@@ -2,8 +2,6 @@ package models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,12 +32,8 @@ public class DealershipDAO {
                 String vehicleModel = results.getString("vehicleModel");
                 String vehicleType = results.getString("VehicleType");
 
-                System.out.println(rentStartDate);
-                System.out.println(rentReturnDate);
-                System.out.println(rentNoOfDays);
-
-                Object[] row = { rentStartDate, rentReturnDate, rentNoOfDays, vehicleMake, vehicleModel,
-                        vehicleType };
+                Object[] row = {rentStartDate, rentReturnDate, rentNoOfDays, vehicleMake, vehicleModel,
+                    vehicleType};
                 tableMap.add(row);
             }
         } catch (SQLException e) {
@@ -51,25 +45,32 @@ public class DealershipDAO {
 
     }
 
-    public CurrentRentalModel getCurrentRental() {
-        String query = "Select Rent.RentStartDate, Rent.RentReturnDate, Rent.RentNoOfDays, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehicleType, Vehicle.VehicleRarity, Vehicle.VehiclePassengers from Rent LEFT JOIN Vehicle on Rent.VehicleID = Vehicle.VehicleID where RentReturnDate > NOW() and UserID = 1";
+    public CurrentRentalModel getCurrentRental(int userId) {
+        String query = String.format(
+                "Select Rent.RentID, Rent.RentStartDate, Rent.RentReturnDate, Rent.RentNoOfDays, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehicleImage Vehicle.VehicleType, Vehicle.VehicleRarity, Vehicle.VehiclePassengers, Vehicle.VehicleAvailability FROM Vehicle LEFT JOIN Rent on Rent.VehicleID = Vehicle.VehicleID where Rent.RentReturnDate > NOW() and Rent.UserID = %s",
+                userId);
 
         CurrentRentalModel currentRent = null;
         ResultSet results = db.executeQuery(query);
 
         try {
-            results.first();
+            while (results.next()) {
+                int rentId = results.getInt("RentID");
+                Date rentStarDate = results.getDate("RentStartDate");
+                Date rentReturnDate = results.getDate("RentReturnDate");
+                int rentNoOfDays = results.getInt("RentNoOfDays");
+                String vehicleMake = results.getString("VehicleMake");
+                String vehicleModel = results.getString("VehicleModel");
+                String vehicleType = results.getString("VehicleType");
+                int vehiclePassengers = results.getInt("VehiclePassengers");
+                Boolean vehicleAvailability = results.getBoolean("VehicleAvailability");
+                String vehicleImage = results.getString("VehicleImage");
+                currentRent = new CurrentRentalModel(rentStarDate, rentReturnDate,
+                        rentNoOfDays, vehicleMake,
+                        vehicleModel,
+                        vehicleType, vehicleType, vehiclePassengers, vehicleAvailability, vehicleImage, rentId);
+            }
 
-            Date rentStarDate = results.getDate("RentStartDate");
-            Date rentReturnDate = results.getDate("RentReturnDate");
-            int rentNoOfDays = results.getInt("RentNoOfDays");
-            String vehicleMake = results.getString("VehicleMake");
-            String vehicleModel = results.getString("vehicleModel");
-            String vehicleType = results.getString("VehicleType");
-            int VehiclePassengers = results.getInt("VehiclePassengers");
-
-            currentRent = new CurrentRentalModel(rentStarDate, rentReturnDate, rentNoOfDays, vehicleMake, vehicleModel,
-                    vehicleType, vehicleType, VehiclePassengers);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -80,7 +81,7 @@ public class DealershipDAO {
 
     public ArrayList<Object[]> getPurchases() {
 
-        String query = "SELECT Purchase.PurchaseID, Vehicle.VehicleMake, Vehicle.VehicleModel FROM Purchase LEFT JOIN Vehicle ON Purchase.VehicleID = Vehicle.VehicleID WHERE Purchase.UserID = 5;";
+        String query = "SELECT Purchase.PurchaseID, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehiclePrice FROM Purchase LEFT JOIN Vehicle ON Purchase.VehicleID = Vehicle.VehicleID WHERE Purchase.UserID = 5;";
         ArrayList<Object[]> tableMap = new ArrayList<>();
         ResultSet results = db.executeQuery(query);
 
@@ -92,7 +93,7 @@ public class DealershipDAO {
                 String vehicleModel = results.getString("VehicleModel");
                 int vehiclePrice = results.getInt("VehiclePrice");
 
-                Object[] row = { purchaseId, vehicleMake, vehicleModel, vehiclePrice };
+                Object[] row = {purchaseId, vehicleMake, vehicleModel, vehiclePrice};
                 tableMap.add(row);
             }
         } catch (SQLException e) {
@@ -107,14 +108,15 @@ public class DealershipDAO {
     public void addPurchase(PurchaseModel purchase) {
 
         String query = String.format(
-                "insert into Purchase ( UserID, VehicleID, VehiclePrice) VALUES ( %s, %s, %s)",
-                purchase.getUserId(), purchase.getVehicleId(), purchase.getVehiclePrice());
+                "insert into Purchase ( UserID, VehicleID, VehiclePrice) VALUES ( %s, %s, %s); update Vehicle SET VehicleAvailability = %s WHERE VehicleID = %s;",
+                purchase.getUserId(), purchase.getVehicleId(), purchase.getVehiclePrice(), false,
+                purchase.getVehicleId());
 
         ResultSet results = db.executeQuery(query);
 
         try {
             if (results.next()) {
-                JOptionPane.showMessageDialog(null, "Purchase has been Created");
+                JOptionPane.showMessageDialog(null, "Purchase has been made");
 
             }
         } catch (SQLException e) {
@@ -127,61 +129,43 @@ public class DealershipDAO {
     public void addRental(RentModel rental) {
 
         String query = String.format(
-                "insert into Rent (RentStartDate, RentReturnDate, RentNoOfDays, VehicleID, UserID) VALUES ('%s', '%s', %s, %s, %s)",
-                rental.getRentStartDate(), rental.getRentReturnDate(), rental.getRentNoOfDays(), rental.getUserId());
+                "insert into Rent (RentStartDate, RentReturnDate, RentNoOfDays, VehicleID, UserID) VALUES ('%s', '%s', %s, %s, %s); update Vehicle SET VehicleAvailability = %s WHERE VehicleID = %s;",
+                rental.getRentStartDate(), rental.getRentReturnDate(), rental.getRentNoOfDays(), rental.getVehicleId(),
+                rental.getUserId(), false, rental.getVehicleId());
 
-        ResultSet results = db.executeQuery(query);
+        int results = db.executeUpdateQuery(query);
 
-        try {
-            if (results.next()) {
-                JOptionPane.showMessageDialog(null, "Purchase has been Created");
-
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        if (results > 0) {
+            JOptionPane.showMessageDialog(null, "Car Rented successfully");
+        } // TODO Auto-generated catch block
 
     }
 
-    // public void updatePurchase(PurchaseModel purchase) {
+    public void updateProfile(UserModel user) {
 
-    // String query = String.format(
-    // "insert into Rent (RentStartDate, RentReturnDate, RentNoOfDays, VehicleID,
-    // UserID) VALUES ('%s', '%s', %s, %s, %s)",
-    // rental.getRentStartDate(), rental.getRentReturnDate(),
-    // rental.getRentNoOfDays(), rental.getUserId());
+        String query = String.format(
+                "update User SET Username = %s, FirstName = %s, LastName = %s WHERE UserID = %s",
+                user.getUsername(), user.getFirstname(), user.getLastname(), user.getUserId());
 
-    // ResultSet results = db.executeQuery(query);
+        int results = db.executeUpdateQuery(query);
 
-    // try {
-    // if (results.next()) {
-    // JOptionPane.showMessageDialog(null, "Purchase has been Created");
+        if (results > 0) {
+            JOptionPane.showMessageDialog(null, "Profile Updated successfully");
+        } // TODO Auto-generated catch block
 
-    // }
-    // } catch (SQLException e) {
-    // // TODO Auto-generated catch block
-    // e.printStackTrace();
-    // }
-
-    // }
+    }
 
     public void updateRental(RentModel rental) {
         String query = String.format(
-                "update Rent SET RentReturnDate = '%s' WHERE UserID = %s AND Vehicle = %s",
-                rental.getRentReturnDate(), rental.getUserId(), rental.getVehicleId());
+                "update Rent SET RentReturnDate = '%s', RentNoOfDays = %s WHERE UserID = %s AND Vehicle = %s",
+                rental.getRentReturnDate(), rental.getRentNoOfDays(), rental.getUserId(), rental.getVehicleId());
 
-        ResultSet results = db.executeQuery(query);
+        int results = db.executeUpdateQuery(query);
 
-        try {
-            if (results.next()) {
-                JOptionPane.showMessageDialog(null, "Purchase has been Created");
+        if (results > 0) {
+            JOptionPane.showMessageDialog(null, "Car has been successfully Returned");
+        } // TODO Auto-generated catch block
 
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 
 }

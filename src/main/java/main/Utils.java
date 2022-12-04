@@ -4,7 +4,11 @@
  */
 package main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 import models.FilterModel;
 import models.VehicleModel;
 
@@ -13,18 +17,73 @@ import models.VehicleModel;
  * @author twene
  */
 public class Utils {
-    
-    
-    public static ArrayList<VehicleModel> filterVehicleData(FilterModel currentFilter, ArrayList<VehicleModel> vehicleList) {
 
-        //create new array to populate
+    public static Date convertToDateViaSqlDate(LocalDate dateToConvert) {
+        return java.sql.Date.valueOf(dateToConvert);
+    }
+
+    public static long countDaysBetween(LocalDate start, LocalDate end) {
+
+        Date pickupDateConverted = convertToDateViaSqlDate(start);
+        Date returnDateConverted = convertToDateViaSqlDate(end);
+
+        long pickupDateNum = pickupDateConverted.getTime();
+        long returnDateNum = returnDateConverted.getTime();
+        long daysBetween = TimeUnit.DAYS.convert(Math.abs(pickupDateNum - returnDateNum),
+                TimeUnit.MILLISECONDS);
+
+        return daysBetween;
+    }
+
+    public static HashMap<String, ArrayList<String>> mapFilterOptions(ArrayList<VehicleModel> vehicleList) {
+
+        // loop over the array
+        HashMap<String, ArrayList<String>> filterMap = new HashMap<>();
+
+        filterMap.put("color", new ArrayList<>());
+        filterMap.put("make", new ArrayList<>());
+        filterMap.put("year", new ArrayList<>());
+
+        // check if each value for each item is available in the array already if not
+        // then add it
+        for (int i = 0; i < vehicleList.size(); i++) {
+
+            VehicleModel vehicle = vehicleList.get(i);
+
+            String year = Integer.toString(vehicle.getVehicleYear());
+            String make = vehicle.getVehicleMake();
+            String color = vehicle.getVehicleColor();
+
+            if (!filterMap.get("color").contains(color)) {
+                filterMap.get("color").add(color);
+            }
+
+            if (!filterMap.get("make").contains(make)) {
+                filterMap.get("make").add(make);
+            }
+
+            if (!filterMap.get("year").contains(year)) {
+                filterMap.get("year").add(year);
+            }
+
+        }
+
+        return filterMap;
+
+    }
+
+    public static ArrayList<VehicleModel> filterVehicleData(FilterModel currentFilter,
+            ArrayList<VehicleModel> vehicleList, String mode) {
+
+        // create new array to populate
         ArrayList<VehicleModel> newList = new ArrayList<VehicleModel>();
         System.out.println(currentFilter);
 
         ArrayList<String> type = currentFilter.getTypes();
         ArrayList<String> sizes = currentFilter.getCarSize();
 
-        //then check the criteria based off this
+        // then check the criteria based off this
+
         // filter based on criteria
         for (int i = 0; i < vehicleList.size(); i++) {
 
@@ -32,10 +91,11 @@ public class Utils {
 
             int maxPrice = currentFilter.getPrice();
 
-            //check what parts of the filters are active
+            // check what parts of the filters are active
             if (currentFilter.activeFilters.contains("type") && currentFilter.activeFilters.contains("size")) {
 
-                if (type.contains(vehicle.getVehicleRarity()) && sizes.contains(vehicle.getVehicleType()) && vehicle.getVehiclePrice() <= maxPrice) {
+                if (type.contains(vehicle.getVehicleRarity()) && sizes.contains(vehicle.getVehicleType())
+                        && vehicle.getVehiclePrice() <= maxPrice) {
 
                     newList.add(vehicle);
                 }
@@ -65,5 +125,5 @@ public class Utils {
 
         return newList;
     }
-    
+
 }

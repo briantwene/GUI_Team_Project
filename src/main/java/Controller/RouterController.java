@@ -87,14 +87,14 @@ public class RouterController {
 
     public void goAccountPage() {
         currentPage = pageNames.get(ACCOUNT);
-        // currentPage.revalidate();
+        currentPage.updatePage();
         getCardLayout().show(getParent(), ACCOUNT);
     }
 
     public void goInfoPage() {
         currentPage = pageNames.get(INFO);
         currentPage.updatePage();
-       
+
         getCardLayout().show(getParent(), INFO);
     }
 

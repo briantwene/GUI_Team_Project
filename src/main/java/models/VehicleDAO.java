@@ -48,24 +48,23 @@ public class VehicleDAO {
                 boolean vehicleAvailability = results.getBoolean("VehicleAvailability");
 
                 int vehiclePrice = results.getInt("VehiclePrice");
-//                boolean forSale = results.getBoolean("forSale");
-                boolean forSale = true;
+                boolean forSale = results.getBoolean("isVehicleRentable");
+
                 String vehicleType = results.getString("VehicleType");
-                Icon image = new ImageIcon(getClass().getResource("/images/car.png"));
+                String vehicleImage = results.getString("VehicleImage");
                 int vehiclePassengers = results.getInt("VehiclePassengers");
-                String vehicleRarity = "ultra";
+                String vehicleRarity = results.getString("VehicleRarity");
 
                 // and add it to the list
                 vehicleList.add(new VehicleModel(vehicleId, vehicleMake, vehicleModel, vehicleYear, vehicleColor,
-                        vehicleAvailability, vehiclePrice, forSale, vehicleType, image, vehiclePassengers,
+                        vehicleAvailability, vehiclePrice, forSale, vehicleType, vehicleImage, vehiclePassengers,
                         vehicleRarity));
 
             }
         } catch (SQLException ex) {
             Logger.getLogger(VehicleDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        System.out.println(vehicleList);
+
         return vehicleList;
     }
 

@@ -65,7 +65,6 @@ com\sdev\gui_team_project\RegisterAdmin$3.class
 com\sdev\gui_team_project\ResetPassword$2.class
 com\sdev\gui_team_project\RentVehicles$1.class
 com\sdev\gui_team_project\ManageVehicles$2.class
-.netbeans_automatic_build
 com\sdev\gui_team_project\RegisterCustomer$1.class
 com\sdev\gui_team_project\LoginCustomer$5.class
 Controller\UpdateInterface.class

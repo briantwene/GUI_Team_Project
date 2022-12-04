@@ -38,7 +38,7 @@ public class AccountView extends javax.swing.JPanel implements UpdateInterface {
                                 AccountRouterController.DETAILS);
                 nestedRouter.addView(new AccountHistoryView(appState, controller, nestedRouter, dealershipDao),
                                 AccountRouterController.HISTORY);
-                nestedRouter.addView(new AccountCurrent(), AccountRouterController.CURRENT);
+                nestedRouter.addView(new AccountCurrent(appState, controller, nestedRouter, dealershipDao), AccountRouterController.CURRENT);
 
                 historySelectPanel.addMouseListener(new MouseAdapter() {
 
@@ -71,7 +71,7 @@ public class AccountView extends javax.swing.JPanel implements UpdateInterface {
 
         @Override
         public void updatePage() {
-
+               nestedRouter.goDetail();
         }
 
         /**

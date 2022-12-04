@@ -29,6 +29,11 @@ public class AccountDetailView extends javax.swing.JPanel implements UpdateInter
         initComponents();
         this.appState = appState;
         nestedRouter.attachUpdateFunc(reload);
+        
+        firstname.setEnabled(false);
+        lastname.setEnabled(false);
+        username.setEnabled(false);
+        
     }
 
     @Override

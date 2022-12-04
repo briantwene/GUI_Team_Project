@@ -100,25 +100,28 @@ public class FilterModel {
 
     public void setActiveFilters() {
 
-        //check what filters are active
+        // if type array is empty
         if (types.size() != 0) {
 
+            // check if type is not there
+            // then add
             if (!activeFilters.contains("type")) {
                 activeFilters.add("type");
             }
 
         } else {
 
+            // if it
             if (activeFilters.contains("type")) {
                 activeFilters.remove(activeFilters.indexOf("type"));
             }
         }
 
         if (carSize.size() != 0) {
-            if (activeFilters.contains("size")) {
+            if (!activeFilters.contains("size")) {
                 activeFilters.add("size");
             }
-            activeFilters.add("size");
+
         } else {
             if (activeFilters.contains("size")) {
                 activeFilters.remove(activeFilters.indexOf("size"));
@@ -142,7 +145,8 @@ public class FilterModel {
 
     @Override
     public String toString() {
-        return String.format("FilterStatus\n\n Filters active: %s \n\n Types: %s \n\n Capacity: %s\n\n price: %s", this.activeFilters, this.types, this.carSize, this.price);
+        return String.format("FilterStatus\n\n Filters active: %s \n\n Types: %s \n\n Capacity: %s\n\n price: %s",
+                this.activeFilters, this.types, this.carSize, this.price);
     }
 
 }

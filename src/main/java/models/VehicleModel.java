@@ -4,7 +4,15 @@
  */
 package models;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -24,11 +32,16 @@ public class VehicleModel {
     private boolean forSale;
 
     private String vehicleType;
-    private Icon image;
+    private String image;
     private int vehiclePassengers;
     private String vehicleRarity;
+    private String rarityColor;
 
-    public VehicleModel(int vehicleId, String vehicleMake, String vehicleModel, int vehicleYear, String vehicleColor, boolean vehicleAvailability, int vehiclePrice, boolean forSale, String vehicleType, Icon image, int vehiclePassengers, String vehicleRarity) {
+    private Icon vehicleImage;
+
+    public VehicleModel(int vehicleId, String vehicleMake, String vehicleModel, int vehicleYear, String vehicleColor,
+            boolean vehicleAvailability, int vehiclePrice, boolean forSale, String vehicleType, String image,
+            int vehiclePassengers, String vehicleRarity) {
         this.vehicleId = vehicleId;
         this.vehicleMake = vehicleMake;
         this.vehicleModel = vehicleModel;
@@ -41,8 +54,65 @@ public class VehicleModel {
         this.image = image;
         this.vehiclePassengers = vehiclePassengers;
         this.vehicleRarity = vehicleRarity;
+        this.setRarityColor(this.getVehicleRarity());
+        this.vehicleImage = this.createImage();
     }
 
+    public Icon createImage() {
+
+        try {
+            URL url = new URL(this.getImage());
+            BufferedImage image;
+            image = ImageIO.read(url);
+
+            return new ImageIcon(image);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(VehicleModel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(VehicleModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ImageIcon(getClass().getResource("/image/car.png"));
+
+    }
+
+    public boolean isForSale() {
+        return forSale;
+    }
+
+    public void setForSale(boolean forSale) {
+        this.forSale = forSale;
+    }
+
+    public Icon getVehicleImage() {
+        return vehicleImage;
+    }
+
+    public void setVehicleImage(Icon vehicleImage) {
+        this.vehicleImage = vehicleImage;
+    }
+
+    public void setRarityColor(String rarity) {
+        switch (rarity) {
+            case "Luxury":
+                this.rarityColor = "#ff8000";
+                break;
+            case "Budget":
+                this.rarityColor = "#1eff00";
+                break;
+            case "Premium":
+                this.rarityColor = "#ff0000";
+                break;
+
+            case "Standard":
+                this.rarityColor = "#0070dd";
+                break;
+
+        }
+    }
+
+    public String getRarityColor() {
+        return this.rarityColor;
+    }
 
     public int getVehicleId() {
         return vehicleId;
@@ -100,11 +170,11 @@ public class VehicleModel {
         this.vehiclePrice = vehiclePrice;
     }
 
-    public boolean isForSale() {
+    public boolean isForRent() {
         return forSale;
     }
 
-    public void setForSale(boolean forSale) {
+    public void setForRent(boolean forRent) {
         this.forSale = forSale;
     }
 
@@ -116,11 +186,11 @@ public class VehicleModel {
         this.vehicleType = vehicleType;
     }
 
-    public Icon getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Icon image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -139,8 +209,6 @@ public class VehicleModel {
     public void setVehicleRarity(String vehicleRarity) {
         this.vehicleRarity = vehicleRarity;
     }
-    
-    
 
     @Override
     public String toString() {

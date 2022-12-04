@@ -64,6 +64,9 @@ public class FilterBar extends javax.swing.JPanel {
         sedan = new javax.swing.JCheckBox();
         compact = new javax.swing.JCheckBox();
         supercheck = new javax.swing.JCheckBox();
+        electric = new javax.swing.JCheckBox();
+        hyper = new javax.swing.JCheckBox();
+        suv = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         capacityFilter = new javax.swing.JPanel();
         budget = new javax.swing.JCheckBox();
@@ -115,6 +118,30 @@ public class FilterBar extends javax.swing.JPanel {
             }
         });
 
+        electric.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        electric.setText("Electric");
+        electric.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                electricActionPerformed(evt);
+            }
+        });
+
+        hyper.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        hyper.setText("Hyper");
+        hyper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hyperActionPerformed(evt);
+            }
+        });
+
+        suv.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        suv.setText("SUV");
+        suv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suvActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout carTypeFilterLayout = new javax.swing.GroupLayout(carTypeFilter);
         carTypeFilter.setLayout(carTypeFilterLayout);
         carTypeFilterLayout.setHorizontalGroup(
@@ -126,7 +153,12 @@ public class FilterBar extends javax.swing.JPanel {
                     .addComponent(sedan)
                     .addComponent(compact)
                     .addComponent(supercheck))
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addGap(83, 83, 83)
+                .addGroup(carTypeFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(hyper)
+                    .addComponent(electric)
+                    .addComponent(suv))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         carTypeFilterLayout.setVerticalGroup(
             carTypeFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +171,15 @@ public class FilterBar extends javax.swing.JPanel {
                 .addComponent(compact)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(supercheck)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, carTypeFilterLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(electric)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(suv)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hyper)
+                .addGap(50, 50, 50))
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -170,7 +210,7 @@ public class FilterBar extends javax.swing.JPanel {
         });
 
         Ultra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Ultra.setText("Ultra");
+        Ultra.setText("Luxury");
         Ultra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UltraActionPerformed(evt);
@@ -193,13 +233,13 @@ public class FilterBar extends javax.swing.JPanel {
         capacityFilterLayout.setVerticalGroup(
             capacityFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(capacityFilterLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(11, 11, 11)
                 .addComponent(budget)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(standard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(premium)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Ultra)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -226,7 +266,7 @@ public class FilterBar extends javax.swing.JPanel {
             .addGroup(priceFilterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(priceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         priceFilterLayout.setVerticalGroup(
             priceFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,19 +323,19 @@ public class FilterBar extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(carTypeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(capacityFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(priceFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGap(23, 23, 23)
                 .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formReset)
-                .addGap(307, 307, 307))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -364,6 +404,24 @@ public class FilterBar extends javax.swing.JPanel {
         filter.run();
     }//GEN-LAST:event_UltraActionPerformed
 
+    private void electricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_electricActionPerformed
+        // TODO add your handling code here:
+          currentFilter.setCarSize("Electric");
+           filter.run();
+    }//GEN-LAST:event_electricActionPerformed
+
+    private void hyperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hyperActionPerformed
+        // TODO add your handling code here:
+         currentFilter.setCarSize("Hyper");
+          filter.run();
+    }//GEN-LAST:event_hyperActionPerformed
+
+    private void suvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suvActionPerformed
+        // TODO add your handling code here:
+         currentFilter.setCarSize("SUV");
+          filter.run();
+    }//GEN-LAST:event_suvActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox Ultra;
@@ -371,7 +429,9 @@ public class FilterBar extends javax.swing.JPanel {
     private javax.swing.JPanel capacityFilter;
     private javax.swing.JPanel carTypeFilter;
     private javax.swing.JCheckBox compact;
+    private javax.swing.JCheckBox electric;
     private javax.swing.JButton formReset;
+    private javax.swing.JCheckBox hyper;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -384,5 +444,6 @@ public class FilterBar extends javax.swing.JPanel {
     private javax.swing.JCheckBox sport;
     private javax.swing.JCheckBox standard;
     private javax.swing.JCheckBox supercheck;
+    private javax.swing.JCheckBox suv;
     // End of variables declaration//GEN-END:variables
 }
