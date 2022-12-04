@@ -6,6 +6,6 @@
 ## Course Group: Group A/B
 ## Student Names: Jason Leonard & Brian Twene
 ## Student IDs: C19500766 & C19344543
-## Submission Date: 03/12/2022
+## Submission Date: 04/12/2022
 
-## Project Description: An Inventory System for a Car Dealership. It will keep track vehicles that are in stock have been purchased and are currently being rented out. Users will be tracked by what they have purchased or rented.
+## Project Description: An Inventory System for a Car Dealership which allows users to buy and rent vehicles. Additionally, it will keep track of vehicles that are in stock, purchased and keep track of vehicles currently being rented out. Users will be tracked by what they have purchased or rented. Furthermore, a management system that the Admin can use has also been made, this system allows the management of both customers and vehicles, allowing the ability to add, edit, or remove variables within both the customers and vehicles tables within the database.
