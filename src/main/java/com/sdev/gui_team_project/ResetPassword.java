@@ -24,24 +24,21 @@ public class ResetPassword extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         signupButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtUsername = new javax.swing.JTextField();
         txtOldPassword = new javax.swing.JPasswordField();
         usernameIcon = new javax.swing.JLabel();
         passwordIcon = new javax.swing.JLabel();
         resetButton = new javax.swing.JButton();
-        exitProgram = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         oldPassword = new javax.swing.JLabel();
         passwordIcon1 = new javax.swing.JLabel();
         txtNewPassword = new javax.swing.JPasswordField();
         newPassword = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
+        exitProgram = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -58,15 +55,9 @@ public class ResetPassword extends javax.swing.JFrame {
         jPanel2.setMaximumSize(new java.awt.Dimension(500, 600));
         jPanel2.setMinimumSize(new java.awt.Dimension(500, 600));
         jPanel2.setPreferredSize(new java.awt.Dimension(500, 600));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("J&B's Vehicle Rental System");
-
-        loginButton.setBackground(new java.awt.Color(102, 0, 204));
         loginButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Login Page");
         loginButton.setBorder(null);
         loginButton.setBorderPainted(false);
@@ -75,10 +66,9 @@ public class ResetPassword extends javax.swing.JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
+        jPanel2.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 160, 40));
 
-        signupButton.setBackground(new java.awt.Color(102, 0, 204));
         signupButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        signupButton.setForeground(new java.awt.Color(255, 255, 255));
         signupButton.setText("Register Page");
         signupButton.setBorder(null);
         signupButton.setBorderPainted(false);
@@ -87,46 +77,21 @@ public class ResetPassword extends javax.swing.JFrame {
                 signupButtonActionPerformed(evt);
             }
         });
+        jPanel2.add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 520, 160, 40));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Camry Smaller.png")); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6)
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(signupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(signupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\J&B's Vehicle Rental System.png")); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setMaximumSize(new java.awt.Dimension(500, 600));
         jPanel3.setMinimumSize(new java.awt.Dimension(500, 600));
         jPanel3.setName(""); // NOI18N
         jPanel3.setPreferredSize(new java.awt.Dimension(500, 600));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUsername.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtUsername.setText("Username");
-        txtUsername.setBorder(null);
+        txtUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUsernameFocusGained(evt);
@@ -137,10 +102,11 @@ public class ResetPassword extends javax.swing.JFrame {
                 txtUsernameActionPerformed(evt);
             }
         });
+        jPanel3.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 300, 50));
 
         txtOldPassword.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtOldPassword.setText("Password");
-        txtOldPassword.setBorder(null);
+        txtOldPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtOldPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtOldPasswordFocusGained(evt);
@@ -151,13 +117,11 @@ public class ResetPassword extends javax.swing.JFrame {
                 txtOldPasswordActionPerformed(evt);
             }
         });
-
-        usernameIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\User.png")); // NOI18N
-
-        passwordIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Open Lock.png")); // NOI18N
+        jPanel3.add(txtOldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 300, 50));
+        jPanel3.add(usernameIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, 50));
+        jPanel3.add(passwordIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, 20));
 
         resetButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        resetButton.setForeground(new java.awt.Color(102, 0, 204));
         resetButton.setText("Reset");
         resetButton.setBorder(null);
         resetButton.addActionListener(new java.awt.event.ActionListener() {
@@ -165,24 +129,16 @@ public class ResetPassword extends javax.swing.JFrame {
                 resetButtonActionPerformed(evt);
             }
         });
-
-        exitProgram.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        exitProgram.setForeground(new java.awt.Color(255, 0, 0));
-        exitProgram.setText("X");
-        exitProgram.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitProgramMouseClicked(evt);
-            }
-        });
+        jPanel3.add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 160, 40));
 
         oldPassword.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         oldPassword.setText("(Old Password)");
-
-        passwordIcon1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Lock.png")); // NOI18N
+        jPanel3.add(oldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, -1));
+        jPanel3.add(passwordIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, 68));
 
         txtNewPassword.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         txtNewPassword.setText("Password");
-        txtNewPassword.setBorder(null);
+        txtNewPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNewPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNewPasswordFocusGained(evt);
@@ -193,77 +149,25 @@ public class ResetPassword extends javax.swing.JFrame {
                 txtNewPasswordActionPerformed(evt);
             }
         });
+        jPanel3.add(txtNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 300, 50));
 
         newPassword.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         newPassword.setText("(New Password)");
+        jPanel3.add(newPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exitProgram)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(passwordIcon1)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newPassword)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNewPassword)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernameIcon, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(passwordIcon, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(oldPassword)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtOldPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(79, 79, 79))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(exitProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                    .addComponent(usernameIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwordIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtOldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(oldPassword)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwordIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(newPassword)
-                .addGap(51, 51, 51)
-                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
-        );
+        exitProgram.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        exitProgram.setForeground(new java.awt.Color(255, 0, 0));
+        exitProgram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitProgram.setText("X");
+        exitProgram.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitProgramMouseClicked(evt);
+            }
+        });
+        jPanel3.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 0, 20, 30));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Reset.png")); // NOI18N
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -278,9 +182,10 @@ public class ResetPassword extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -351,11 +256,6 @@ public class ResetPassword extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitProgramMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_exitProgramMouseClicked
-
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
         // TODO add your handling code here:
         txtUsername.setText("");
@@ -374,6 +274,11 @@ public class ResetPassword extends javax.swing.JFrame {
     private void txtNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNewPasswordActionPerformed
+
+    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitProgramMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitProgramMouseClicked
 
     /**
      * @param args the command line arguments
@@ -443,14 +348,11 @@ public class ResetPassword extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel exitProgram;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel newPassword;
     private javax.swing.JLabel oldPassword;

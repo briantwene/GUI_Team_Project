@@ -16,17 +16,19 @@ public class ManageCustomers extends javax.swing.JFrame {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             Connection con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
             Statement st = con.createStatement();
-            String SQL = "SELECT * FROM Customer";
+            String SQL = "SELECT * FROM Users WHERE Role='Customer'";
             ResultSet rs = st.executeQuery(SQL);
             while(rs.next()){
-                String cid = String.valueOf(rs.getInt("CustomerID"));
-                String cuser = rs.getString("CustomerUsername");
-                String cpass = rs.getString("CustomerPassword");
-                String cfname = rs.getString("CustomerFirstName");
-                String clname = rs.getString("CustomerLastName");
-                String cgender = rs.getString("CustomerGender");
-                String tbData[] = {cid, cuser, cpass, cfname, clname, cgender};
-                    DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
+                String cid = String.valueOf(rs.getInt("ID"));
+                String cuser = rs.getString("Username");
+                String cpass = rs.getString("Password");
+                String cfname = rs.getString("FirstName");
+                String clname = rs.getString("LastName");
+                String cgender = rs.getString("Gender");
+                String crole = rs.getString("Role");
+                String crent = String.valueOf(rs.getInt("RentID"));
+                String tbData[] = {cid, cuser, "******", cfname, clname, cgender, crent};
+                    DefaultTableModel tblModel = (DefaultTableModel)customersTable.getModel();
                     tblModel.addRow(tbData);
             }
         }
@@ -45,118 +47,133 @@ public class ManageCustomers extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtCustomerID = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         txtFirstName = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        mainMenuButton = new javax.swing.JButton();
+        customersTable = new javax.swing.JTable();
         txtGender = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
+        exitProgram = new javax.swing.JLabel();
+        manageVehicles = new javax.swing.JButton();
+        mainMenu = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(700, 400));
-        setMinimumSize(new java.awt.Dimension(700, 400));
+        setMaximumSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(700, 400));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(700, 400));
-        jPanel1.setMinimumSize(new java.awt.Dimension(700, 400));
-        jPanel1.setPreferredSize(new java.awt.Dimension(700, 400));
-
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 0, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Manage Customers");
+        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtCustomerID.setText("Customer ID");
+        txtCustomerID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCustomerID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCustomerIDFocusGained(evt);
+            }
+        });
         txtCustomerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCustomerIDActionPerformed(evt);
             }
         });
+        jPanel1.add(txtCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 92, 30));
 
         txtUsername.setText("Username");
+        txtUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsernameFocusGained(evt);
+            }
+        });
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
             }
         });
-
-        txtPassword.setText("Password");
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
+        jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 92, 30));
 
         txtFirstName.setText("First Name");
+        txtFirstName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtFirstName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFirstNameFocusGained(evt);
+            }
+        });
         txtFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFirstNameActionPerformed(evt);
             }
         });
+        jPanel1.add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 92, 30));
 
         txtLastName.setText("Last Name");
+        txtLastName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtLastName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtLastNameFocusGained(evt);
+            }
+        });
         txtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLastNameActionPerformed(evt);
             }
         });
+        jPanel1.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 92, 30));
 
-        addButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        addButton.setForeground(new java.awt.Color(102, 0, 204));
+        addButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         addButton.setText("Add");
+        addButton.setBorder(null);
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 120, 43));
 
-        editButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        editButton.setForeground(new java.awt.Color(102, 0, 204));
+        editButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         editButton.setText("Edit");
+        editButton.setBorder(null);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 120, 43));
 
-        deleteButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(102, 0, 204));
+        deleteButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         deleteButton.setText("Delete");
+        deleteButton.setBorder(null);
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, 120, 43));
 
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(102, 0, 204));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Customers List");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        customersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Customer ID", "Username", "Password", "First Name", "Last Name", "Gender"
+                "Customer ID", "Username", "Password", "First Name", "Last Name", "Gender", "Rent ID"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -167,99 +184,80 @@ public class ManageCustomers extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(customersTable);
 
-        mainMenuButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        mainMenuButton.setForeground(new java.awt.Color(102, 0, 204));
-        mainMenuButton.setText("Main Menu");
-        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainMenuButtonActionPerformed(evt);
-            }
-        });
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 976, 165));
 
         txtGender.setText("Gender");
+        txtGender.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtGender.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtGenderFocusGained(evt);
+            }
+        });
         txtGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGenderActionPerformed(evt);
             }
         });
+        jPanel1.add(txtGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, 92, 30));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(342, 342, 342)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel15))
-                .addGap(0, 62, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(302, 302, 302)
-                .addComponent(mainMenuButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel15)
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainMenuButton)
-                .addContainerGap())
-        );
+        txtPassword.setText("Password");
+        txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusGained(evt);
+            }
+        });
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 92, 30));
+
+        exitProgram.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        exitProgram.setForeground(new java.awt.Color(255, 0, 0));
+        exitProgram.setText("X");
+        exitProgram.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitProgramMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(972, 13, -1, 20));
+
+        manageVehicles.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        manageVehicles.setText("Manage Vehicles");
+        manageVehicles.setBorder(null);
+        manageVehicles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageVehiclesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(manageVehicles, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 540, 190, 40));
+
+        mainMenu.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        mainMenu.setText("Main Menu");
+        mainMenu.setBorder(null);
+        mainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainMenuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 190, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Customers Menu.png")); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -282,7 +280,7 @@ public class ManageCustomers extends javax.swing.JFrame {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
             Statement st = con.createStatement();
-            String SQL = "INSERT INTO Customer(CustomerID, CustomerUsername, CustomerPassword, CustomerFirstName, CustomerLastName, CustomerGender) VALUES('"+customerid+"','"+customeruser+"', '"+customerpass+"', '"+customerfname+"', '"+customerlname+"', '"+customergender+"')";
+            String SQL = "INSERT INTO Users(ID, Username, Password, FirstName, LastName, Gender) VALUES('"+customerid+"','"+customeruser+"', '"+customerpass+"', '"+customerfname+"', '"+customerlname+"', '"+customergender+"')";
             st = con.createStatement();
             st.executeUpdate(SQL);
             JOptionPane.showMessageDialog(null, "Added Customer Details to the Database!");
@@ -297,49 +295,136 @@ public class ManageCustomers extends javax.swing.JFrame {
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
+        Connection con = null;
+        String customerid=null, customeruser, customerpass, customerfname, customerlname, customergender;
+        customerid = txtCustomerID.getText();
+        customeruser = txtUsername.getText();
+        customerpass = txtPassword.getText();
+        customerfname = txtFirstName.getText();
+        customerlname = txtLastName.getText();
+        customergender = txtGender.getText();
+        try{
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Users WHERE Role='Customer'");
+            if(rs.next()){
+                st.executeUpdate("UPDATE Users SET Username='"+customeruser+"', Password='"+customerpass+"', FirstName='"+customerfname+"', LastName='"+customerlname+"', Gender='"+customergender+"' WHERE ID='"+customerid+"'");
+                JOptionPane.showMessageDialog(null, "Updating Customer Information to the Database!");
+            } 
+           else{
+                JOptionPane.showMessageDialog(null, "An Error Occured, Please Try Again!");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        Connection con = null;
+        String customerid=null, customeruser, customerpass, customerfname, customerlname, customergender;
+        customerid = txtCustomerID.getText();
+        customeruser = txtUsername.getText();
+        customerpass = txtPassword.getText();
+        customerfname = txtFirstName.getText();
+        customerlname = txtLastName.getText();
+        customergender = txtGender.getText();
+        try{
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Users");
+            if(rs.next()){
+                String userInput;
+                userInput = JOptionPane.showInputDialog("Enter the ID of the User You Want Removed");
+                st.executeUpdate("DELETE FROM Users WHERE UserID='"+userInput+"'");
+                JOptionPane.showMessageDialog(null, "Removing User from the Database!");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "An Error Occured, Please Try Again!");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
-        // TODO add your handling code here:
-        MainMenuAdmin mm = null;
-        mm = new MainMenuAdmin();
-        mm.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     private void txtCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIDActionPerformed
         // TODO add your handling code here:
-        txtCustomerID.setText("");
     }//GEN-LAST:event_txtCustomerIDActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
-        txtUsername.setText("");
     }//GEN-LAST:event_txtUsernameActionPerformed
-
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-        txtPassword.setText("");
-    }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
         // TODO add your handling code here:
-        txtFirstName.setText("");
     }//GEN-LAST:event_txtFirstNameActionPerformed
 
     private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
         // TODO add your handling code here:
-        txtLastName.setText("");
     }//GEN-LAST:event_txtLastNameActionPerformed
 
     private void txtGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGenderActionPerformed
         // TODO add your handling code here:
-        txtGender.setText("");
     }//GEN-LAST:event_txtGenderActionPerformed
+
+    private void txtCustomerIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCustomerIDFocusGained
+        // TODO add your handling code here:
+        txtCustomerID.setText("");
+    }//GEN-LAST:event_txtCustomerIDFocusGained
+
+    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
+        // TODO add your handling code here:
+        txtUsername.setText("");
+    }//GEN-LAST:event_txtUsernameFocusGained
+
+    private void txtFirstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusGained
+        // TODO add your handling code here:
+        txtFirstName.setText("");
+    }//GEN-LAST:event_txtFirstNameFocusGained
+
+    private void txtLastNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusGained
+        // TODO add your handling code here:
+        txtLastName.setText("");
+    }//GEN-LAST:event_txtLastNameFocusGained
+
+    private void txtGenderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGenderFocusGained
+        // TODO add your handling code here:
+        txtGender.setText("");
+    }//GEN-LAST:event_txtGenderFocusGained
+
+    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
+        // TODO add your handling code here:
+        txtPassword.setText("");
+    }//GEN-LAST:event_txtPasswordFocusGained
+
+    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitProgramMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitProgramMouseClicked
+
+    private void manageVehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVehiclesActionPerformed
+        // TODO add your handling code here:
+        ManageVehicles mv = null;
+        mv = new ManageVehicles();
+        mv.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_manageVehiclesActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void mainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuActionPerformed
+        // TODO add your handling code here:
+        MainMenuAdmin mma = null;
+        mma = new MainMenuAdmin();
+        mma.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mainMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,19 +466,20 @@ public class ManageCustomers extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JTable customersTable;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel exitProgram;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton mainMenuButton;
+    private javax.swing.JButton mainMenu;
+    private javax.swing.JButton manageVehicles;
     private javax.swing.JTextField txtCustomerID;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtLastName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

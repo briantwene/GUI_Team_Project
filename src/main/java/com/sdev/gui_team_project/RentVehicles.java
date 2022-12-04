@@ -16,16 +16,16 @@ public class RentVehicles extends javax.swing.JFrame {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             Connection con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
             Statement st = con.createStatement();
-            String SQL = "SELECT * FROM Vehicle";
+            String SQL = "SELECT * FROM Rent";
             ResultSet rs = st.executeQuery(SQL);
             while(rs.next()){
-                String vid = String.valueOf(rs.getInt("VehicleID"));
-                String vmake = rs.getString("VehicleMake");
-                String vmodel = rs.getString("VehicleModel");
-                String vyear = rs.getString("VehicleYear");
-                String vcolour = rs.getString("VehicleColour");
-                String vavailability = rs.getString("VehicleAvailability");
-                String tbData[] = {vid, vmake, vmodel, vyear, vcolour, vavailability};
+                String rid = String.valueOf(rs.getInt("RentID"));
+                String rsd = rs.getString("RentStartDate");
+                String rrd = rs.getString("RentReturnDate");
+                String rnod = rs.getString("RentNoOfDays");
+                String vid = rs.getString("VehicleID");
+                String uid = rs.getString("UserID");
+                String tbData[] = {rid, rsd, rrd, rnod, vid, uid};
                     DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
                     tblModel.addRow(tbData);
             }
@@ -46,37 +46,42 @@ public class RentVehicles extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtRegistration = new javax.swing.JTextField();
+        txtUserID = new javax.swing.JTextField();
         rentButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         mainMenuButton = new javax.swing.JButton();
+        txtRegistration = new javax.swing.JTextField();
+        txtDuration = new javax.swing.JTextField();
+        exitProgram = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(700, 400));
         setMinimumSize(new java.awt.Dimension(700, 400));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(700, 400));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(700, 400));
         jPanel1.setMinimumSize(new java.awt.Dimension(700, 400));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 400));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Rent Vehicles");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 28, -1, -1));
 
-        txtRegistration.setText("Vehicle ID");
-        txtRegistration.addActionListener(new java.awt.event.ActionListener() {
+        txtUserID.setText("User ID");
+        txtUserID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRegistrationActionPerformed(evt);
+                txtUserIDActionPerformed(evt);
             }
         });
+        jPanel1.add(txtUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 92, -1));
 
         rentButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         rentButton.setForeground(new java.awt.Color(102, 0, 204));
@@ -86,18 +91,20 @@ public class RentVehicles extends javax.swing.JFrame {
                 rentButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(rentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 120, 43));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(102, 0, 204));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Vehicles List");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 172, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Vehicle ID", "Make", "Model", "Year", "Colour", "Availability"
+                "Rent ID", "Start Date", "Return Date", "Duration (Days)", "Vehicle ID", "User ID"
             }
         ) {
             Class[] types = new Class [] {
@@ -117,6 +124,8 @@ public class RentVehicles extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 201, 988, 165));
+
         mainMenuButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         mainMenuButton.setForeground(new java.awt.Color(102, 0, 204));
         mainMenuButton.setText("Main Menu");
@@ -125,52 +134,43 @@ public class RentVehicles extends javax.swing.JFrame {
                 mainMenuButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(mainMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 402, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(rentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel15)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                    .addComponent(mainMenuButton))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(rentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainMenuButton)
-                .addContainerGap())
-        );
+        txtRegistration.setText("Vehicle ID");
+        txtRegistration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRegistrationActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 92, -1));
+
+        txtDuration.setText("Duration");
+        txtDuration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDurationActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtDuration, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 92, -1));
+
+        exitProgram.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        exitProgram.setForeground(new java.awt.Color(255, 0, 0));
+        exitProgram.setText("X");
+        exitProgram.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitProgramMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(978, 6, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
 
         pack();
@@ -187,12 +187,54 @@ public class RentVehicles extends javax.swing.JFrame {
 
     private void rentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentButtonActionPerformed
         // TODO add your handling code here:
+        Connection con = null;
+        /*PreparedStatement pst = null;
+        ResultSet rs = null;*/
+        String vehicleid=null, rentduration, userid;
+        vehicleid = txtUserID.getText();
+        rentduration = txtDuration.getText();
+        userid = txtUserID.getText();
+        try{
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            Statement st = con.createStatement();
+            String SQL = "INSERT INTO Rent(RentID, RentStartDate, RentReturnDate, RentNoOfDays, VehicleID, UserID) VALUES('0','2022-11-30', '2022-12-14', '"+rentduration+"', '"+vehicleid+"', '"+userid+"')";
+            st.executeUpdate(SQL);
+            JOptionPane.showMessageDialog(null, "Thank You For Renting Out a Vehicle!");
+            /*pst = con.prepareStatement(SQL);
+            rs = pst.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Registration Successful, Please LoginAdmin!");
+                LoginAdmin l = new LoginAdmin();
+                l.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Registration Failed, Please Try Again!");
+            }*/
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_rentButtonActionPerformed
+
+    private void txtUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserIDActionPerformed
+        // TODO add your handling code here:
+        txtUserID.setText("");
+    }//GEN-LAST:event_txtUserIDActionPerformed
+
+    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitProgramMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitProgramMouseClicked
 
     private void txtRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegistrationActionPerformed
         // TODO add your handling code here:
-        txtRegistration.setText("");
     }//GEN-LAST:event_txtRegistrationActionPerformed
+
+    private void txtDurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDurationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDurationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,6 +276,7 @@ public class RentVehicles extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel exitProgram;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JPanel jPanel1;
@@ -241,6 +284,8 @@ public class RentVehicles extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton mainMenuButton;
     private javax.swing.JButton rentButton;
+    private javax.swing.JTextField txtDuration;
     private javax.swing.JTextField txtRegistration;
+    private javax.swing.JTextField txtUserID;
     // End of variables declaration//GEN-END:variables
 }

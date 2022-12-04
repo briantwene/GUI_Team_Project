@@ -25,8 +25,12 @@ public class ManageVehicles extends javax.swing.JFrame {
                 String vyear = rs.getString("VehicleYear");
                 String vcolour = rs.getString("VehicleColour");
                 String vavailability = rs.getString("VehicleAvailability");
-                String tbData[] = {vid, vmake, vmodel, vyear, vcolour, vavailability};
-                    DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
+                String vprice = rs.getString("VehiclePrice");
+                String vtype = rs.getString("VehicleType");
+                String vrarity = rs.getString("VehicleRarity");
+                String vpassengers = rs.getString("VehiclePassengers");
+                String tbData[] = {vid, vmake, vmodel, vyear, vcolour, vavailability, vprice, vtype, vrarity, vpassengers};
+                    DefaultTableModel tblModel = (DefaultTableModel)vehiclesTable.getModel();
                     tblModel.addRow(tbData);
             }
         }
@@ -45,7 +49,6 @@ public class ManageVehicles extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtRegistration = new javax.swing.JTextField();
         txtMake = new javax.swing.JTextField();
         txtModel = new javax.swing.JTextField();
@@ -55,117 +58,153 @@ public class ManageVehicles extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        mainMenuButton = new javax.swing.JButton();
+        vehiclesTable = new javax.swing.JTable();
+        txtPrice = new javax.swing.JTextField();
+        txtType = new javax.swing.JTextField();
+        txtRarity = new javax.swing.JTextField();
+        txtPassengers = new javax.swing.JTextField();
+        manageCustomers = new javax.swing.JButton();
+        mainMenu = new javax.swing.JButton();
+        exitProgram = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(700, 400));
-        setMinimumSize(new java.awt.Dimension(700, 400));
+        setMaximumSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(700, 400));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(700, 400));
-        jPanel1.setMinimumSize(new java.awt.Dimension(700, 400));
-        jPanel1.setPreferredSize(new java.awt.Dimension(700, 400));
-
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 0, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Manage Vehicles");
+        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtRegistration.setText("Vehicle ID");
+        txtRegistration.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtRegistration.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRegistrationFocusGained(evt);
+            }
+        });
         txtRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRegistrationActionPerformed(evt);
             }
         });
+        jPanel1.add(txtRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 92, -1));
 
         txtMake.setText("Make");
+        txtMake.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtMake.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMakeFocusGained(evt);
+            }
+        });
         txtMake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMakeActionPerformed(evt);
             }
         });
+        jPanel1.add(txtMake, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 92, -1));
 
         txtModel.setText("Model");
+        txtModel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtModel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtModelFocusGained(evt);
+            }
+        });
         txtModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtModelActionPerformed(evt);
             }
         });
+        jPanel1.add(txtModel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 92, -1));
 
         txtYear.setText("Year");
+        txtYear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtYear.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtYearFocusGained(evt);
+            }
+        });
         txtYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtYearActionPerformed(evt);
             }
         });
+        jPanel1.add(txtYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, 92, -1));
 
         txtColour.setText("Colour");
+        txtColour.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtColour.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtColourFocusGained(evt);
+            }
+        });
         txtColour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtColourActionPerformed(evt);
             }
         });
+        jPanel1.add(txtColour, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 92, -1));
 
         comboAvailability.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         comboAvailability.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Booked", "Available" }));
+        comboAvailability.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         comboAvailability.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboAvailabilityActionPerformed(evt);
             }
         });
+        jPanel1.add(comboAvailability, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, 20));
 
-        addButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        addButton.setForeground(new java.awt.Color(102, 0, 204));
+        addButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         addButton.setText("Add");
+        addButton.setBorder(null);
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 110, 43));
 
-        editButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        editButton.setForeground(new java.awt.Color(102, 0, 204));
+        editButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         editButton.setText("Edit");
+        editButton.setBorder(null);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 110, 43));
 
-        deleteButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(102, 0, 204));
+        deleteButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         deleteButton.setText("Delete");
+        deleteButton.setBorder(null);
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 270, 110, 43));
 
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(102, 0, 204));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Vehicles List");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        vehiclesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Vehicle ID", "Make", "Model", "Year", "Colour", "Availability"
+                "Vehicle ID", "Make", "Model", "Year", "Colour", "Price", "Type", "Availability", "Passengers", "Rarity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -176,76 +215,98 @@ public class ManageVehicles extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(vehiclesTable);
 
-        mainMenuButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        mainMenuButton.setForeground(new java.awt.Color(102, 0, 204));
-        mainMenuButton.setText("Main Menu");
-        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainMenuButtonActionPerformed(evt);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 980, 165));
+
+        txtPrice.setText("Price");
+        txtPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPrice.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPriceFocusGained(evt);
             }
         });
+        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPriceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 92, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMake, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtColour, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainMenuButton)
-                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtColour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainMenuButton)
-                .addContainerGap())
-        );
+        txtType.setText("Type");
+        txtType.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtType.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTypeFocusGained(evt);
+            }
+        });
+        txtType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTypeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtType, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 92, -1));
+
+        txtRarity.setText("Rarity");
+        txtRarity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtRarity.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRarityFocusGained(evt);
+            }
+        });
+        txtRarity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRarityActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtRarity, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, 92, -1));
+
+        txtPassengers.setText("Passengers");
+        txtPassengers.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPassengers.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPassengersFocusGained(evt);
+            }
+        });
+        txtPassengers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassengersActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtPassengers, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, 92, -1));
+
+        manageCustomers.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        manageCustomers.setText("Manage Customers");
+        manageCustomers.setBorder(null);
+        manageCustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageCustomersActionPerformed(evt);
+            }
+        });
+        jPanel1.add(manageCustomers, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 540, 190, 40));
+
+        mainMenu.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        mainMenu.setText("Main Menu");
+        mainMenu.setBorder(null);
+        mainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainMenuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 190, 40));
+
+        exitProgram.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        exitProgram.setForeground(new java.awt.Color(255, 0, 0));
+        exitProgram.setText("X");
+        exitProgram.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitProgramMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(972, 13, -1, 20));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles Menu.png")); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,50 +316,100 @@ public class ManageVehicles extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
-        // TODO add your handling code here:
-        MainMenuAdmin mm = null;
-        mm = new MainMenuAdmin();
-        mm.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_mainMenuButtonActionPerformed
-
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editButtonActionPerformed
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
         Connection con = null;
-        /*PreparedStatement pst = null;
-        ResultSet rs = null;*/
-        String vehicleid, vehiclmake, vehiclemodel, vehicleyear, vehiclecolour;
+        String vehicleid=null, vehiclemake, vehiclemodel, vehicleyear, vehiclecolour, vehicleprice, vehicletype, vehiclesize, vehiclepassengers;
         vehicleid = txtRegistration.getText();
-        vehiclmake = txtMake.getText();
+        vehiclemake = txtMake.getText();
         vehiclemodel = txtModel.getText();
         vehicleyear = txtYear.getText();
         vehiclecolour = txtColour.getText();
         String vehicleavailability = comboAvailability.getSelectedItem().toString();
+        vehicleprice = txtPrice.getText();
+        vehicletype = txtType.getText();
+        vehiclesize = txtRarity.getText();
+        vehiclepassengers = txtPassengers.getText();
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
             Statement st = con.createStatement();
-            String SQL = "INSERT INTO Vehicle(VehicleID, VehicleMake, VehicleModel, VehicleYear, VehicleColour, VehicleAvailability) VALUES('"+vehicleid+"','"+vehiclmake+"', '"+vehiclemodel+"', '"+vehicleyear+"', '"+vehiclecolour+"', '"+vehicleavailability+"')";
+            ResultSet rs = st.executeQuery("SELECT * FROM Vehicle");
+            if(rs.next()){
+                String userInput;
+                userInput = JOptionPane.showInputDialog("Enter the ID of the Vehicle You Want Removed");
+                st.executeUpdate("DELETE FROM Vehicle WHERE VehicleID='"+userInput+"'");
+                JOptionPane.showMessageDialog(null, "Removing Vehicle from the Database!");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "An Error Occured, Please Try Again!");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+        Connection con = null;
+        String vehicleid=null, vehiclemake, vehiclemodel, vehicleyear, vehiclecolour, vehicleprice, vehicletype, vehiclesize, vehiclepassengers;
+        vehicleid = txtRegistration.getText();
+        vehiclemake = txtMake.getText();
+        vehiclemodel = txtModel.getText();
+        vehicleyear = txtYear.getText();
+        vehiclecolour = txtColour.getText();
+        String vehicleavailability = comboAvailability.getSelectedItem().toString();
+        vehicleprice = txtPrice.getText();
+        vehicletype = txtType.getText();
+        vehiclesize = txtRarity.getText();
+        vehiclepassengers = txtPassengers.getText();
+        try{
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Vehicle");
+            if(rs.next()){
+                st.executeUpdate("UPDATE Vehicle SET VehicleMake='"+vehiclemake+"', VehicleModel='"+vehiclemodel+"', VehicleYear='"+vehicleyear+"', VehicleColour='"+vehiclecolour+"', VehicleAvailability='"+vehicleavailability+"', VehiclePrice='"+vehicleprice+"', VehicleType='"+vehicletype+"', VehicleSize='"+vehiclesize+"', VehiclePassengers='"+vehiclepassengers+"', WHERE VehicleID='"+vehicleid+"'");
+                JOptionPane.showMessageDialog(null, "Updating Vehicle Information to the Database!");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "An Error Occured, Please Try Again!");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        Connection con = null;
+        /*PreparedStatement pst = null;
+        ResultSet rs = null;*/
+        String vehicleid=null, vehiclemake, vehiclemodel, vehicleyear, vehiclecolour, vehicleprice, vehicletype, vehiclerarity, vehiclepassengers;
+        vehicleid = txtRegistration.getText();
+        vehiclemake = txtMake.getText();
+        vehiclemodel = txtModel.getText();
+        vehicleyear = txtYear.getText();
+        vehiclecolour = txtColour.getText();
+        String vehicleavailability = comboAvailability.getSelectedItem().toString();
+        vehicleprice = txtPrice.getText();
+        vehicletype = txtType.getText();
+        vehiclerarity = txtRarity.getText();
+        vehiclepassengers = txtPassengers.getText();
+        try{
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            Statement st = con.createStatement();
+            String SQL = "INSERT INTO Vehicle(VehicleID, VehicleMake, VehicleModel, VehicleYear, VehicleColour, VehicleAvailability, VehiclePrice, VehicleType, VehicleRarity, VehiclePassengers) VALUES('"+vehicleid+"','"+vehiclemake+"', '"+vehiclemodel+"', '"+vehicleyear+"', '"+vehiclecolour+"', '"+vehicleavailability+"', '"+vehicleprice+"', '"+vehicletype+"', '"+vehiclerarity+"', '"+vehiclepassengers+"')";
             st = con.createStatement();
             st.executeUpdate(SQL);
             JOptionPane.showMessageDialog(null, "Vehicle Successfully Added to the Database!");
@@ -325,28 +436,105 @@ public class ManageVehicles extends javax.swing.JFrame {
 
     private void txtColourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColourActionPerformed
         // TODO add your handling code here:
-        txtColour.setText("");
     }//GEN-LAST:event_txtColourActionPerformed
 
     private void txtYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtYearActionPerformed
         // TODO add your handling code here:
-        txtYear.setText("");
     }//GEN-LAST:event_txtYearActionPerformed
 
     private void txtModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModelActionPerformed
         // TODO add your handling code here:
-        txtModel.setText("");
     }//GEN-LAST:event_txtModelActionPerformed
 
     private void txtMakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMakeActionPerformed
         // TODO add your handling code here:
-        txtMake.setText("");
     }//GEN-LAST:event_txtMakeActionPerformed
 
     private void txtRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegistrationActionPerformed
         // TODO add your handling code here:
-        txtRegistration.setText("");
     }//GEN-LAST:event_txtRegistrationActionPerformed
+
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
+
+    private void txtTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTypeActionPerformed
+
+    private void txtRarityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRarityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRarityActionPerformed
+
+    private void txtPassengersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassengersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassengersActionPerformed
+
+    private void txtRegistrationFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegistrationFocusGained
+        // TODO add your handling code here:
+        txtRegistration.setText("");
+    }//GEN-LAST:event_txtRegistrationFocusGained
+
+    private void txtMakeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMakeFocusGained
+        // TODO add your handling code here:
+        txtMake.setText("");
+    }//GEN-LAST:event_txtMakeFocusGained
+
+    private void txtModelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtModelFocusGained
+        // TODO add your handling code here:
+        txtModel.setText("");
+    }//GEN-LAST:event_txtModelFocusGained
+
+    private void txtYearFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtYearFocusGained
+        // TODO add your handling code here:
+        txtYear.setText("");
+    }//GEN-LAST:event_txtYearFocusGained
+
+    private void txtColourFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtColourFocusGained
+        // TODO add your handling code here:
+        txtColour.setText("");
+    }//GEN-LAST:event_txtColourFocusGained
+
+    private void txtPriceFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPriceFocusGained
+        // TODO add your handling code here:
+        txtPrice.setText("");
+    }//GEN-LAST:event_txtPriceFocusGained
+
+    private void txtTypeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTypeFocusGained
+        // TODO add your handling code here:
+        txtType.setText("");
+    }//GEN-LAST:event_txtTypeFocusGained
+
+    private void txtRarityFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRarityFocusGained
+        // TODO add your handling code here:
+        txtRarity.setText("");
+    }//GEN-LAST:event_txtRarityFocusGained
+
+    private void txtPassengersFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassengersFocusGained
+        // TODO add your handling code here:
+        txtPassengers.setText("");
+    }//GEN-LAST:event_txtPassengersFocusGained
+
+    private void manageCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomersActionPerformed
+        // TODO add your handling code here:
+        ManageCustomers mc = null;
+        mc = new ManageCustomers();
+        mc.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_manageCustomersActionPerformed
+
+    private void mainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuActionPerformed
+        // TODO add your handling code here:
+        MainMenuAdmin mma = null;
+        mma = new MainMenuAdmin();
+        mma.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mainMenuActionPerformed
+
+    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitProgramMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitProgramMouseClicked
 
     /**
      * @param args the command line arguments
@@ -390,16 +578,21 @@ public class ManageVehicles extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboAvailability;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel exitProgram;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton mainMenuButton;
+    private javax.swing.JButton mainMenu;
+    private javax.swing.JButton manageCustomers;
     private javax.swing.JTextField txtColour;
     private javax.swing.JTextField txtMake;
     private javax.swing.JTextField txtModel;
+    private javax.swing.JTextField txtPassengers;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtRarity;
     private javax.swing.JTextField txtRegistration;
+    private javax.swing.JTextField txtType;
     private javax.swing.JTextField txtYear;
+    private javax.swing.JTable vehiclesTable;
     // End of variables declaration//GEN-END:variables
 }

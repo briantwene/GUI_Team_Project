@@ -16,10 +16,11 @@ public class MainMenuAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        manageCustomers = new javax.swing.JButton();
-        manageVehicles = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        exitProgram = new javax.swing.JLabel();
+        manageVehicles = new javax.swing.JLabel();
+        manageUsers = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -32,76 +33,66 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 600));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 600));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageCustomers.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Manage Customers.png")); // NOI18N
-        manageCustomers.setBorder(null);
-        manageCustomers.setBorderPainted(false);
-        manageCustomers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        manageCustomers.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                manageCustomersMouseClicked(evt);
-            }
-        });
-
-        manageVehicles.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Manage Vehicles.png")); // NOI18N
-        manageVehicles.setBorder(null);
-        manageVehicles.setBorderPainted(false);
-        manageVehicles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        manageVehicles.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                manageVehiclesMouseClicked(evt);
-            }
-        });
-
-        logoutButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Logout.png")); // NOI18N
-        logoutButton.setToolTipText("");
+        logoutButton.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        logoutButton.setText("Logout");
         logoutButton.setBorder(null);
         logoutButton.setBorderPainted(false);
-        logoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoutButtonMouseClicked(evt);
+        logoutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 470, 50));
 
-        exitButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Exit.png")); // NOI18N
+        exitButton.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        exitButton.setText("Exit Program");
         exitButton.setBorder(null);
         exitButton.setBorderPainted(false);
-        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitButtonMouseClicked(evt);
             }
         });
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 540, 460, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(manageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(manageVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(6, 6, 6))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(manageVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(manageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        exitProgram.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        exitProgram.setForeground(new java.awt.Color(255, 255, 255));
+        exitProgram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitProgram.setText("X");
+        exitProgram.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitProgramMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 30, 30));
+
+        manageVehicles.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles.png")); // NOI18N
+        manageVehicles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageVehiclesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                manageVehiclesMouseEntered(evt);
+            }
+        });
+        jPanel1.add(manageVehicles, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 490, 600));
+
+        manageUsers.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Customers.png")); // NOI18N
+        manageUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageUsersMouseClicked(evt);
+            }
+        });
+        jPanel1.add(manageUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,13 +109,27 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void manageCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageCustomersMouseClicked
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-        ManageCustomers mc = null;
-        mc = new ManageCustomers();
-        mc.setVisible(true);
+        Login l = null;
+        l = new Login();
+        l.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_manageCustomersMouseClicked
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitButtonMouseClicked
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitProgramMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitProgramMouseClicked
 
     private void manageVehiclesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageVehiclesMouseClicked
         // TODO add your handling code here:
@@ -134,18 +139,17 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_manageVehiclesMouseClicked
 
-    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+    private void manageUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUsersMouseClicked
         // TODO add your handling code here:
-        Login l = null;
-        l = new Login();
-        l.setVisible(true);
+        ManageCustomers mc = null;
+        mc = new ManageCustomers();
+        mc.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_logoutButtonMouseClicked
+    }//GEN-LAST:event_manageUsersMouseClicked
 
-    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+    private void manageVehiclesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageVehiclesMouseEntered
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_exitButtonMouseClicked
+    }//GEN-LAST:event_manageVehiclesMouseEntered
 
     /**
      * @param args the command line arguments
@@ -187,9 +191,10 @@ public class MainMenuAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
+    private javax.swing.JLabel exitProgram;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton logoutButton;
-    private javax.swing.JButton manageCustomers;
-    private javax.swing.JButton manageVehicles;
+    private javax.swing.JLabel manageUsers;
+    private javax.swing.JLabel manageVehicles;
     // End of variables declaration//GEN-END:variables
 }
