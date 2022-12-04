@@ -32,8 +32,8 @@ public class VehicleItem extends javax.swing.JPanel {
       
       // adding the items from the model to the object itself
       pictureBox1.setImage(data.getImage());
-      rentalClass.setText(data.getCategory());
-      price.setText("€" + data.getPrice());
+      rentalClass.setText(data.getVehicleRarity());
+      price.setText("€" + data.getVehiclePrice());
     
   }
 

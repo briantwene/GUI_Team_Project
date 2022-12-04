@@ -31,23 +31,23 @@ import javax.swing.JPanel;
  */
 public class AccountRouterController {
 
-    //string for homepage
+    // string for homepage
     public static final String DETAILS = "details";
     public static final String HISTORY = "history";
     public static final String CURRENT = "current";
 
     Runnable updatePage;
 
-    //variable for current page
-    private JPanel currentPage = null;
+    // variable for current page
+    private UpdateInterface currentPage = null;
 
-    //variable for panel that will hold the container and cardLayout object
+    // variable for panel that will hold the container and cardLayout object
     private Container parent;
     private CardLayout cardLayout;
-    private ArrayList<JPanel> views;
-    private HashMap<String, JPanel> pageNames;
+    private ArrayList<UpdateInterface> views;
+    private HashMap<String, UpdateInterface> pageNames;
 
-    //constructor
+    // constructor
     public AccountRouterController(Container parent, CardLayout cardLayout) {
         this.parent = parent;
         this.cardLayout = cardLayout;
@@ -60,13 +60,13 @@ public class AccountRouterController {
         updatePage = func;
     }
 
-    //adding a view
-    public void addView(JPanel comp, String name) {
+    // adding a view
+    public void addView(UpdateInterface comp, String name) {
         if (!DETAILS.equals(name)) {
             views.add(comp);
         }
         pageNames.put(name, comp);
-        getParent().add(comp, name);
+        getParent().add((Component) comp, name);
     }
 
     public void removeView(JPanel comp, String name) {
@@ -75,21 +75,24 @@ public class AccountRouterController {
         getParent().remove(comp);
     }
 
-    //go home
+    // go home
     public void goDetail() {
 
+        currentPage = pageNames.get(DETAILS);
+        currentPage.updatePage();
         getCardLayout().show(getParent(), DETAILS);
     }
 
     public void goHistory() {
 
-        //updatePage.run();
+        currentPage = pageNames.get(HISTORY);
+        currentPage.updatePage();
         getCardLayout().show(getParent(), HISTORY);
     }
 
     public void goCurrent() {
-
-        //updatePage.run();
+        currentPage = pageNames.get(CURRENT);
+        currentPage.updatePage();
         getCardLayout().show(getParent(), CURRENT);
     }
 

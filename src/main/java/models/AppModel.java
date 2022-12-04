@@ -4,8 +4,8 @@
  */
 package models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -13,15 +13,16 @@ import javax.swing.ImageIcon;
  */
 public class AppModel {
 
+    public UserModel currentUser;
     VehicleModel selectedVehicle;
-    LocalDateTime pickupDate;
-    LocalDateTime returnDate;
+    public LocalDate pickupDate;
+    public LocalDate returnDate;
 
     public AppModel() {
-
-        this.selectedVehicle = new VehicleModel("", "", 1, new ImageIcon(getClass().getResource("/images/car.png")), 1, "");
-        this.pickupDate = LocalDateTime.now();
-        this.returnDate = LocalDateTime.now().plusDays(3);
+        this.currentUser = null;
+        this.selectedVehicle = null;
+        this.pickupDate = LocalDate.now();
+        this.returnDate = LocalDate.now().plusDays(3);
 
     }
 
@@ -29,23 +30,31 @@ public class AppModel {
         return selectedVehicle;
     }
 
+    public UserModel getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(UserModel currentUser) {
+        this.currentUser = currentUser;
+    }
+
     public void setSelectedVehicle(VehicleModel selectedVehicle) {
         this.selectedVehicle = selectedVehicle;
     }
 
-    public LocalDateTime getPickupDate() {
+    public LocalDate getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(LocalDateTime pickupDate) {
+    public void setPickupDate(LocalDate pickupDate) {
         this.pickupDate = pickupDate;
     }
 
-    public LocalDateTime getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDateTime returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 

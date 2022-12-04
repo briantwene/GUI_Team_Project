@@ -14,6 +14,9 @@ import models.VehicleModel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import models.AppModel;
+import models.DealershipDAO;
+import models.UserModel;
+import models.VehicleDAO;
 
 /**
  *
@@ -23,9 +26,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     // some variables for components
     private RentalsView rentalPage;
-    
+
     final RouterController controller;
-    
+    public VehicleDAO vehicleDao;
+    public DealershipDAO dealershipDao;
     public VehicleModel selectedItem;
     private AppModel appState;
 
@@ -37,44 +41,52 @@ public class MainFrame extends javax.swing.JFrame {
 
         CardLayout cardLayout = new CardLayout();
         content.setLayout(cardLayout);
+        vehicleDao = new VehicleDAO();
+        dealershipDao = new DealershipDAO();
 
-       appState = new AppModel();
-       controller = new RouterController(content, cardLayout);
-       
+        appState = new AppModel();
+        controller = new RouterController(content, cardLayout);
+        
+        
+        accountButton.setText("Login");
 
         controller.addView(new HomeView(appState, controller), RouterController.HOME);
-        controller.addView(new RentalsView(appState, controller), RouterController.RENT);
-        controller.addView(new PurchaseView(appState, controller), RouterController.PURCHASE);
-        controller.addView(new AccountView(appState, controller), RouterController.ACCOUNT);
-        controller.addView(new CarInfoView(appState, controller), RouterController.INFO);
+        controller.addView(new RentalsView(appState, controller, vehicleDao), RouterController.RENT);
+        controller.addView(new PurchaseView(appState, controller, vehicleDao), RouterController.PURCHASE);
+        controller.addView(new AccountView(appState, controller, dealershipDao), RouterController.ACCOUNT);
+        controller.addView(new CarInfoView(appState, controller, dealershipDao), RouterController.INFO);
 
         controller.goHome();
-//        addComponents();
+        // addComponents();
+    }
+    
+    public void updateLogin(){
+           accountButton.setText("Hi " + appState.currentUser.getUsername());
+//           header.revalidate();
+//           header.repaint();
     }
 
     private void addComponents() {
-       
+
         content.setLayout(new BorderLayout());
         content.add(rentalPage);
 
     }
 
-    
-
-//    private void addTesting() {
-//
-//        for (int i = 0; i < 5; i++) {
-//            rentalPage.addItems(new VehicleModel("Land Rover Discovery", "Ultra", 120,
-//                    new ImageIcon(getClass().getResource("/images/car.png"))));
-//            rentalPage.addItems(new VehicleModel("Kia Picanto", "Standard", 85,
-//                    new ImageIcon(getClass().getResource("/images/kia.jpg"))));
-//            rentalPage.addItems(new VehicleModel("Ford Focus", "Premium", 99,
-//                    new ImageIcon(getClass().getResource("/images/ford.jpg"))));
-//            rentalPage.addItems(new VehicleModel("Toyota Corrola", "Budget", 60,
-//                    new ImageIcon(getClass().getResource("/images/toyota.png"))));
-//        }
-//
-//    }
+    // private void addTesting() {
+    //
+    // for (int i = 0; i < 5; i++) {
+    // rentalPage.addItems(new VehicleModel("Land Rover Discovery", "Ultra", 120,
+    // new ImageIcon(getClass().getResource("/images/car.png"))));
+    // rentalPage.addItems(new VehicleModel("Kia Picanto", "Standard", 85,
+    // new ImageIcon(getClass().getResource("/images/kia.jpg"))));
+    // rentalPage.addItems(new VehicleModel("Ford Focus", "Premium", 99,
+    // new ImageIcon(getClass().getResource("/images/ford.jpg"))));
+    // rentalPage.addItems(new VehicleModel("Toyota Corrola", "Budget", 60,
+    // new ImageIcon(getClass().getResource("/images/toyota.png"))));
+    // }
+    //
+    // }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,7 +95,8 @@ public class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
@@ -151,30 +164,36 @@ public class MainFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 471, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(179, 179, 179)
-                .addComponent(accountButton)
-                .addGap(84, 84, 84))
-        );
+                headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(headerLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 471,
+                                        Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(179, 179, 179)
+                                .addComponent(accountButton)
+                                .addGap(84, 84, 84)));
         headerLayout.setVerticalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addContainerGap()))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                        .addComponent(accountButton)
-                        .addContainerGap())))
-        );
+                headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(headerLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(headerLayout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        headerLayout.createSequentialGroup()
+                                                                .addComponent(jLabel1)
+                                                                .addContainerGap()))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                headerLayout.createSequentialGroup()
+                                                        .addComponent(accountButton)
+                                                        .addContainerGap()))));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
         content.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -183,63 +202,70 @@ public class MainFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+                contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE));
         contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 974, Short.MAX_VALUE)
-        );
+                contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 974, Short.MAX_VALUE));
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
-            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         BackgroundLayout.setVerticalGroup(
-            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
+                BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rentalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentalsButtonActionPerformed
+    private void rentalsButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rentalsButtonActionPerformed
         // TODO add your handling code here:
         controller.goRentals();
-    }//GEN-LAST:event_rentalsButtonActionPerformed
+    }// GEN-LAST:event_rentalsButtonActionPerformed
 
-    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
+    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_accountButtonActionPerformed
         // TODO add your handling code here:
-        controller.goAccountPage();
-    }//GEN-LAST:event_accountButtonActionPerformed
+        if(appState.getCurrentUser() == null){
+            //send them to the login page
+            appState.currentUser = new UserModel(1, "JasonLeonard", "Jason", "Leonard", "Male", "Admin", 1);
+            this.updateLogin();
+        }else{
+           controller.goAccountPage();
+        }
+     
+    }// GEN-LAST:event_accountButtonActionPerformed
 
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
         controller.goHome();
-    }//GEN-LAST:event_homeButtonActionPerformed
+    }// GEN-LAST:event_homeButtonActionPerformed
 
-    private void purchaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseButtonActionPerformed
+    private void purchaseButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_purchaseButtonActionPerformed
         // TODO add your handling code here:
         controller.goPurchases();
-    }//GEN-LAST:event_purchaseButtonActionPerformed
+    }// GEN-LAST:event_purchaseButtonActionPerformed
 
     /**
      * @param args the command line arguments

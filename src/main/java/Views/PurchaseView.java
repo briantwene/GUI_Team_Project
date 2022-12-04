@@ -6,38 +6,46 @@ package Views;
 
 import Components.VehicleItem;
 import Controller.RouterController;
+import Controller.UpdateInterface;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
+import main.Utils;
 import models.AppModel;
 import models.FilterModel;
+import models.VehicleDAO;
 import models.VehicleModel;
 
 /**
  *
  * @author twene
  */
-public class PurchaseView extends javax.swing.JPanel {
+public class PurchaseView extends javax.swing.JPanel implements UpdateInterface {
 
-   public FilterModel currentFilter = new FilterModel(300000, 5000, 10000);
-    private ArrayList<VehicleModel> vehicleList = new ArrayList<VehicleModel>();
+    public FilterModel currentFilter = new FilterModel(300000, 5000, 10000);
+    private ArrayList<VehicleModel> vehicleList;
     public ArrayList<VehicleModel> filteredVehicleList;
     RouterController controller;
+    public Utils utilityClass;
     AppModel appState;
+    VehicleDAO vehicleDao;
     Runnable filterVehicles = () -> this.filter();
 
     /**
      * Creates new form Purchases
      */
-    public PurchaseView(AppModel appState, RouterController controller) {
+    public PurchaseView(AppModel appState, RouterController controller, VehicleDAO vehicleDao) {
         this.controller = controller;
         this.appState = appState;
+        this.vehicleDao = vehicleDao;
+        this.utilityClass = new Utils();
+
         //create components
         initComponents();
         getDataFromDB();
+        System.out.println(vehicleList);
 
         //get vehicles
         filteredVehicleList = vehicleList;
-   
+
         this.add();
 
         filterBar1.attachFilterFunc(filterVehicles);
@@ -45,9 +53,9 @@ public class PurchaseView extends javax.swing.JPanel {
         filterBar1.attachFilterModel(currentFilter);
 
     }
-    
-    public void initFilter(){
-    filterBar1.attachFilterFunc(filterVehicles);
+
+    public void initFilter() {
+        filterBar1.attachFilterFunc(filterVehicles);
         //attach filter model to the filter form
         filterBar1.attachFilterModel(currentFilter);
     }
@@ -57,16 +65,15 @@ public class PurchaseView extends javax.swing.JPanel {
         VehicleItem item = new VehicleItem(appState, controller);
 
         item.fillData(data);
-       
 
-        wrapLayoutContainer3.add(item);
-        wrapLayoutContainer3.revalidate();
+        wrapLayoutContainer1.add(item);
+        wrapLayoutContainer1.revalidate();
 
     }
 
     public void remove() {
-        wrapLayoutContainer3.removeAll();
-        wrapLayoutContainer3.repaint();
+        wrapLayoutContainer1.removeAll();
+        wrapLayoutContainer1.repaint();
     }
 
     public void add() {
@@ -80,75 +87,72 @@ public class PurchaseView extends javax.swing.JPanel {
 
     public void getDataFromDB() {
 
-        vehicleList.add(new VehicleModel("Land Rover Discovery 2022", "Ultra", 120000,
-                new ImageIcon(getClass().getResource("/images/car.png")), 7, "large"));
-        vehicleList.add(new VehicleModel("Kia Picanto 2020", "Budget", 15090,
-                new ImageIcon(getClass().getResource("/images/kia.jpg")), 5, "small"));
-        vehicleList.add(new VehicleModel("Ford Focus 2021", "Premium", 55697,
-                new ImageIcon(getClass().getResource("/images/ford.jpg")), 5, "medium"));
-        vehicleList.add(new VehicleModel("Toyota Corrola 2018", "Standard", 16880,
-                new ImageIcon(getClass().getResource("/images/toyota.png")), 5, "medium"));
+        vehicleList = vehicleDao.getAll();
 
     }
 
     public void filter() {
-        filteredVehicleList = filterVehicleData();
+        filteredVehicleList = utilityClass.filterVehicleData(currentFilter, vehicleList);
         this.remove();
         this.add();
 
     }
-
-    public ArrayList<VehicleModel> filterVehicleData() {
-
-        //create new array to populate
-        ArrayList<VehicleModel> newList = new ArrayList<VehicleModel>();
-        System.out.println(currentFilter);
-
-        ArrayList<String> type = currentFilter.getTypes();
-        ArrayList<String> sizes = currentFilter.getCarSize();
-
-        //then check the criteria based off this
-        // filter based on criteria
-        for (int i = 0; i < vehicleList.size(); i++) {
-
-            VehicleModel vehicle = vehicleList.get(i);
-
-            int maxPrice = currentFilter.getPrice();
-
-            //check what parts of the filters are active
-            if (currentFilter.activeFilters.contains("type") && currentFilter.activeFilters.contains("size")) {
-
-                if (type.contains(vehicle.getCategory()) && sizes.contains(vehicle.getSize()) && vehicle.getPrice() <= maxPrice) {
-
-                    newList.add(vehicle);
-                }
-
-            } else if (currentFilter.activeFilters.contains("type")) {
-
-                if (type.contains(vehicle.getCategory()) && vehicle.getPrice() <= maxPrice) {
-
-                    newList.add(vehicle);
-                }
-
-            } else if (currentFilter.activeFilters.contains("size")) {
-
-                if (sizes.contains(vehicle.getSize()) && vehicle.getPrice() <= maxPrice) {
-
-                    newList.add(vehicle);
-                }
-
-            } else {
-                if (vehicle.getPrice() <= maxPrice) {
-
-                    newList.add(vehicle);
-                }
-            }
-
-        }
-
-        return newList;
+    
+    @Override
+    public void updatePage(){
+        
     }
 
+//    public ArrayList<VehicleModel> filterVehicleData() {
+//
+//        //create new array to populate
+//        ArrayList<VehicleModel> newList = new ArrayList<VehicleModel>();
+//        System.out.println(currentFilter);
+//
+//        ArrayList<String> type = currentFilter.getTypes();
+//        ArrayList<String> sizes = currentFilter.getCarSize();
+//
+//        //then check the criteria based off this
+//        // filter based on criteria
+//        for (int i = 0; i < vehicleList.size(); i++) {
+//
+//            VehicleModel vehicle = vehicleList.get(i);
+//
+//            int maxPrice = currentFilter.getPrice();
+//
+//            //check what parts of the filters are active
+//            if (currentFilter.activeFilters.contains("type") && currentFilter.activeFilters.contains("size")) {
+//
+//                if (type.contains(vehicle.getCategory()) && sizes.contains(vehicle.getSize()) && vehicle.getPrice() <= maxPrice) {
+//
+//                    newList.add(vehicle);
+//                }
+//
+//            } else if (currentFilter.activeFilters.contains("type")) {
+//
+//                if (type.contains(vehicle.getCategory()) && vehicle.getPrice() <= maxPrice) {
+//
+//                    newList.add(vehicle);
+//                }
+//
+//            } else if (currentFilter.activeFilters.contains("size")) {
+//
+//                if (sizes.contains(vehicle.getSize()) && vehicle.getPrice() <= maxPrice) {
+//
+//                    newList.add(vehicle);
+//                }
+//
+//            } else {
+//                if (vehicle.getPrice() <= maxPrice) {
+//
+//                    newList.add(vehicle);
+//                }
+//            }
+//
+//        }
+//
+//        return newList;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -160,50 +164,40 @@ public class PurchaseView extends javax.swing.JPanel {
     private void initComponents() {
 
         filterBar1 = new Components.FilterBar();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        wrapLayoutContainer3 = new Components.WrapLayoutContainer();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        wrapLayoutContainer1 = new Components.WrapLayoutContainer();
 
-        jScrollPane3.setViewportView(wrapLayoutContainer3);
+        setPreferredSize(new java.awt.Dimension(1440, 918));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane3)
-                .addGap(0, 0, 0))
-        );
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setViewportView(wrapLayoutContainer1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(filterBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(filterBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1053, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(filterBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filterBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Components.FilterBar filterBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private Components.WrapLayoutContainer wrapLayoutContainer3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private Components.WrapLayoutContainer wrapLayoutContainer1;
     // End of variables declaration//GEN-END:variables
 }

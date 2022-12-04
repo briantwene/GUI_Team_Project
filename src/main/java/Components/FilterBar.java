@@ -34,17 +34,17 @@ public class FilterBar extends javax.swing.JPanel {
 
     //initalise the filter
     public void initFilter() {
-        large.setSelected(false);
-        small.setSelected(false);
+        compact.setSelected(false);
+        sport.setSelected(false);
         premium.setSelected(false);
         budget.setSelected(false);
-        medium.setSelected(false);
+        sedan.setSelected(false);
         standard.setSelected(false);
-        suv.setSelected(false);
+        supercheck.setSelected(false);
         priceSlider.setMaximum(currentFilter.getMaxPrice());
         priceSlider.setMinimum(currentFilter.getMinPrice());
         priceSlider.setMinorTickSpacing(currentFilter.getStep());
-        priceSlider.setValue(currentFilter.getPrice());
+        priceSlider.setValue(currentFilter.getMaxPrice());
         priceLabel.setText("€" + currentFilter.getPrice());
 
     }
@@ -60,10 +60,10 @@ public class FilterBar extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         carTypeFilter = new javax.swing.JPanel();
-        small = new javax.swing.JCheckBox();
-        medium = new javax.swing.JCheckBox();
-        large = new javax.swing.JCheckBox();
-        suv = new javax.swing.JCheckBox();
+        sport = new javax.swing.JCheckBox();
+        sedan = new javax.swing.JCheckBox();
+        compact = new javax.swing.JCheckBox();
+        supercheck = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         capacityFilter = new javax.swing.JPanel();
         budget = new javax.swing.JCheckBox();
@@ -83,35 +83,35 @@ public class FilterBar extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Filter By");
 
-        small.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        small.setText("Small");
-        small.addActionListener(new java.awt.event.ActionListener() {
+        sport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sport.setText("Sport");
+        sport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                smallActionPerformed(evt);
+                sportActionPerformed(evt);
             }
         });
 
-        medium.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        medium.setText("Meduim");
-        medium.addActionListener(new java.awt.event.ActionListener() {
+        sedan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sedan.setText("Sedan");
+        sedan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mediumActionPerformed(evt);
+                sedanActionPerformed(evt);
             }
         });
 
-        large.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        large.setText("Large");
-        large.addActionListener(new java.awt.event.ActionListener() {
+        compact.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        compact.setText("Compact");
+        compact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                largeActionPerformed(evt);
+                compactActionPerformed(evt);
             }
         });
 
-        suv.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        suv.setText("SUV");
-        suv.addActionListener(new java.awt.event.ActionListener() {
+        supercheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        supercheck.setText("Super");
+        supercheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                suvActionPerformed(evt);
+                supercheckActionPerformed(evt);
             }
         });
 
@@ -122,23 +122,23 @@ public class FilterBar extends javax.swing.JPanel {
             .addGroup(carTypeFilterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(carTypeFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(small)
-                    .addComponent(medium)
-                    .addComponent(large)
-                    .addComponent(suv))
-                .addContainerGap(243, Short.MAX_VALUE))
+                    .addComponent(sport)
+                    .addComponent(sedan)
+                    .addComponent(compact)
+                    .addComponent(supercheck))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         carTypeFilterLayout.setVerticalGroup(
             carTypeFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(carTypeFilterLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(small)
+                .addComponent(sport)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(medium)
+                .addComponent(sedan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(large)
+                .addComponent(compact)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(suv)
+                .addComponent(supercheck)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -267,12 +267,12 @@ public class FilterBar extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(priceFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(priceFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(capacityFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(carTypeFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(38, Short.MAX_VALUE))))
+                        .addContainerGap(19, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,19 +299,19 @@ public class FilterBar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void smallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallActionPerformed
+    private void sportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sportActionPerformed
         // TODO add your handling code here:
 
-        currentFilter.setCarSize("small");
+        currentFilter.setCarSize("Sport");
         filter.run();
-    }//GEN-LAST:event_smallActionPerformed
+    }//GEN-LAST:event_sportActionPerformed
 
-    private void largeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_largeActionPerformed
+    private void compactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compactActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("large");
+        currentFilter.setCarSize("Compact");
 
         filter.run();
-    }//GEN-LAST:event_largeActionPerformed
+    }//GEN-LAST:event_compactActionPerformed
 
     private void budgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetActionPerformed
         // TODO add your handling code here:
@@ -339,17 +339,17 @@ public class FilterBar extends javax.swing.JPanel {
         filter.run();
     }//GEN-LAST:event_formResetActionPerformed
 
-    private void suvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suvActionPerformed
+    private void supercheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supercheckActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("suv");
+        currentFilter.setCarSize("Super");
         filter.run();
-    }//GEN-LAST:event_suvActionPerformed
+    }//GEN-LAST:event_supercheckActionPerformed
 
-    private void mediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumActionPerformed
+    private void sedanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedanActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("medium");
+        currentFilter.setCarSize("Sedan");
         filter.run();
-    }//GEN-LAST:event_mediumActionPerformed
+    }//GEN-LAST:event_sedanActionPerformed
 
     private void priceSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_priceSliderStateChanged
         // TODO add your handling code here:
@@ -370,19 +370,19 @@ public class FilterBar extends javax.swing.JPanel {
     private javax.swing.JCheckBox budget;
     private javax.swing.JPanel capacityFilter;
     private javax.swing.JPanel carTypeFilter;
+    private javax.swing.JCheckBox compact;
     private javax.swing.JButton formReset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JCheckBox large;
-    private javax.swing.JCheckBox medium;
     private javax.swing.JCheckBox premium;
     private javax.swing.JPanel priceFilter;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JSlider priceSlider;
-    private javax.swing.JCheckBox small;
+    private javax.swing.JCheckBox sedan;
+    private javax.swing.JCheckBox sport;
     private javax.swing.JCheckBox standard;
-    private javax.swing.JCheckBox suv;
+    private javax.swing.JCheckBox supercheck;
     // End of variables declaration//GEN-END:variables
 }

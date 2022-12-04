@@ -8,8 +8,8 @@ package Controller;
  *
  * @author twene
  */
-public interface updateInterface {
+public interface someAppState {
     
-    public void updatePage();
+
     
 }

@@ -4,17 +4,25 @@
  */
 package Views;
 
+import Controller.UpdateInterface;
+import models.VehicleModel;
+
 /**
  *
  * @author twene
  */
-public class AccountCurrent extends javax.swing.JPanel {
+public class AccountCurrent extends javax.swing.JPanel implements UpdateInterface {
 
     /**
      * Creates new form AccountCurrent
      */
     public AccountCurrent() {
         initComponents();
+    }
+    
+    @Override
+    public void updatePage() {
+       
     }
 
     /**

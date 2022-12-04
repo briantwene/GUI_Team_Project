@@ -7,9 +7,10 @@ package Views;
 import Components.beforeThisTimePolicy;
 import Components.beforeTodayVetoPolicy;
 import Controller.RouterController;
+import Controller.UpdateInterface;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.github.lgooddatepicker.components.TimePickerSettings;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import models.AppModel;
 
@@ -17,10 +18,10 @@ import models.AppModel;
  *
  * @author twene
  */
-public class HomeView extends javax.swing.JPanel {
+public class HomeView extends javax.swing.JPanel implements UpdateInterface {
 
     DatePickerSettings dateSettings1, dateSettings2;
-    TimePickerSettings timeSettings1, timeSettings2;
+
     AppModel appState;
     RouterController controller;
 
@@ -31,15 +32,16 @@ public class HomeView extends javax.swing.JPanel {
         this.appState = appState;
         this.controller = controller;
         dateSettings1 = new DatePickerSettings();
-        timeSettings1 = new TimePickerSettings();
         dateSettings2 = new DatePickerSettings();
-        timeSettings2 = new TimePickerSettings();
 
         initComponents();
         dateSettings1.setVetoPolicy(new beforeTodayVetoPolicy());
-        timeSettings1.setVetoPolicy(new beforeThisTimePolicy());
         dateSettings2.setVetoPolicy(new beforeTodayVetoPolicy());
-        timeSettings2.setVetoPolicy(new beforeThisTimePolicy());
+
+    }
+
+    @Override
+    public void updatePage() {
 
     }
 
@@ -61,61 +63,59 @@ public class HomeView extends javax.swing.JPanel {
         goButton = new javax.swing.JButton();
         pickupLabel = new javax.swing.JLabel();
         returnLabel = new javax.swing.JLabel();
-        pickupPicker = new com.github.lgooddatepicker.components.DateTimePicker(dateSettings1, timeSettings1);
-        returnPicker = new com.github.lgooddatepicker.components.DateTimePicker(dateSettings2, timeSettings2);
         locationLabel = new javax.swing.JLabel();
         locationbox = new javax.swing.JLabel();
+        pickupPicker = new com.github.lgooddatepicker.components.DatePicker(dateSettings1);
+        returnPicker = new com.github.lgooddatepicker.components.DatePicker(dateSettings2);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         pictureBox1.setImage(new javax.swing.ImageIcon(getClass().getResource("/images/chr.png"))); // NOI18N
 
+        jLabel1.setText("Car Rental ");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 255));
-        jLabel1.setText("Car Rental ");
         jLabel1.setMaximumSize(new java.awt.Dimension(400, 64));
         jLabel1.setMinimumSize(new java.awt.Dimension(400, 64));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel2.setText("Purchase");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(400, 64));
         jLabel2.setMinimumSize(new java.awt.Dimension(400, 64));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setText("Awesome price.");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(400, 64));
         jLabel3.setMinimumSize(new java.awt.Dimension(400, 64));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel4.setText("&");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
 
         searchContainer.setBackground(new java.awt.Color(240, 240, 240));
 
+        goButton.setText("GO");
         goButton.setBackground(new java.awt.Color(204, 0, 255));
         goButton.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         goButton.setForeground(new java.awt.Color(255, 255, 255));
-        goButton.setText("GO");
         goButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goButtonActionPerformed(evt);
             }
         });
 
-        pickupLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         pickupLabel.setText("Pickup Date ");
+        pickupLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
 
-        returnLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         returnLabel.setText("Return Date");
+        returnLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
 
-        pickupPicker.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-
-        locationLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         locationLabel.setText("Location");
+        locationLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
 
-        locationbox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         locationbox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         locationbox.setText("J&B Dealership, Dublin");
         locationbox.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
+        locationbox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout searchContainerLayout = new javax.swing.GroupLayout(searchContainer);
         searchContainer.setLayout(searchContainerLayout);
@@ -129,12 +129,12 @@ public class HomeView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(searchContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pickupLabel)
-                    .addComponent(pickupPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                    .addComponent(pickupPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
                 .addGroup(searchContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchContainerLayout.createSequentialGroup()
-                        .addComponent(returnPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
+                        .addComponent(returnPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
                         .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(returnLabel))
                 .addGap(49, 49, 49))
@@ -149,11 +149,13 @@ public class HomeView extends javax.swing.JPanel {
                     .addComponent(returnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(locationbox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(returnPicker, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                    .addComponent(pickupPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(searchContainerLayout.createSequentialGroup()
+                        .addGroup(searchContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(locationbox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pickupPicker, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(returnPicker, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
         );
 
@@ -184,8 +186,7 @@ public class HomeView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))
+                        .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,8 +195,8 @@ public class HomeView extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(92, 92, 92)
                 .addComponent(searchContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(294, Short.MAX_VALUE))
         );
@@ -205,15 +206,15 @@ public class HomeView extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         // get pickup date and return date and add them to the appstate
-        LocalDateTime pickupDate = pickupPicker.getDateTimeStrict();
-        LocalDateTime returnDate = returnPicker.getDateTimeStrict();
-        
-        if(pickupDate == null || returnDate == null ){
+        LocalDate pickupDate = pickupPicker.getDate();
+        LocalDate returnDate = returnPicker.getDate();
+
+        if (pickupDate == null || returnDate == null) {
             JOptionPane.showMessageDialog(null, "Please enter the pickup and return date");
-        }else {
-        appState.setPickupDate(pickupDate);
-        appState.setReturnDate(returnDate);
-        controller.goRentals();
+        } else {
+            appState.setPickupDate(pickupDate);
+            appState.setReturnDate(returnDate);
+            controller.goRentals();
         }
 
         //then move to the next page...
@@ -229,10 +230,10 @@ public class HomeView extends javax.swing.JPanel {
     private javax.swing.JLabel locationLabel;
     private javax.swing.JLabel locationbox;
     private javax.swing.JLabel pickupLabel;
-    private com.github.lgooddatepicker.components.DateTimePicker pickupPicker;
+    private com.github.lgooddatepicker.components.DatePicker pickupPicker;
     private third_party.PictureBox pictureBox1;
     private javax.swing.JLabel returnLabel;
-    private com.github.lgooddatepicker.components.DateTimePicker returnPicker;
+    private com.github.lgooddatepicker.components.DatePicker returnPicker;
     private javax.swing.JPanel searchContainer;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,13 +38,13 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="priceFilter" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="priceFilter" alignment="0" max="32767" attributes="0"/>
                           <Component id="capacityFilter" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="carTypeFilter" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -93,12 +93,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="small" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="medium" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="large" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="suv" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="sport" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="sedan" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="compact" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="supercheck" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="243" max="32767" attributes="0"/>
+                  <EmptySpace pref="257" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,61 +106,61 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Component id="small" min="-2" max="-2" attributes="0"/>
+                  <Component id="sport" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="medium" min="-2" max="-2" attributes="0"/>
+                  <Component id="sedan" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="large" min="-2" max="-2" attributes="0"/>
+                  <Component id="compact" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="suv" min="-2" max="-2" attributes="0"/>
+                  <Component id="supercheck" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JCheckBox" name="small">
+        <Component class="javax.swing.JCheckBox" name="sport">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Small"/>
+            <Property name="text" type="java.lang.String" value="Sport"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smallActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sportActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="medium">
+        <Component class="javax.swing.JCheckBox" name="sedan">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Meduim"/>
+            <Property name="text" type="java.lang.String" value="Sedan"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mediumActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sedanActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="large">
+        <Component class="javax.swing.JCheckBox" name="compact">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Large"/>
+            <Property name="text" type="java.lang.String" value="Compact"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="largeActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="compactActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="suv">
+        <Component class="javax.swing.JCheckBox" name="supercheck">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SUV"/>
+            <Property name="text" type="java.lang.String" value="Super"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suvActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supercheckActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

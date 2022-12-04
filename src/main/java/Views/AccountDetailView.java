@@ -6,19 +6,37 @@ package Views;
 
 import Controller.AccountRouterController;
 import Controller.RouterController;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.border.MatteBorder;
 import models.AppModel;
+import Controller.UpdateInterface;
+import models.DealershipDAO;
 
 /**
  *
  * @author twene
  */
-public class AccountDetailView extends javax.swing.JPanel {
+public class AccountDetailView extends javax.swing.JPanel implements UpdateInterface {
+
+    Runnable reload = () -> this.updatePage();
+    AppModel appState;
 
     /**
      * Creates new form AccountDetailView
      */
-    public AccountDetailView(AppModel appState, RouterController controller, AccountRouterController nestedRouter) {
+    public AccountDetailView(AppModel appState, RouterController controller, AccountRouterController nestedRouter, DealershipDAO dealershipDao) {
         initComponents();
+        this.appState = appState;
+        nestedRouter.attachUpdateFunc(reload);
+    }
+
+    @Override
+    public void updatePage() {
+        firstname.setText(appState.currentUser.getFirstname());
+        lastname.setText(appState.currentUser.getLastname());
+        username.setText(appState.currentUser.getUsername());
+
     }
 
     /**
@@ -34,7 +52,7 @@ public class AccountDetailView extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         firstnameLabel = new javax.swing.JLabel();
         lastname = new javax.swing.JTextField();
-        firstname1 = new javax.swing.JTextField();
+        firstname = new javax.swing.JTextField();
         lastnameLabel = new javax.swing.JLabel();
         usernameLabel = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
@@ -58,12 +76,17 @@ public class AccountDetailView extends javax.swing.JPanel {
 
         lastname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lastname.setText("jTextField1");
-
-        firstname1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        firstname1.setText("jTextField1");
-        firstname1.addActionListener(new java.awt.event.ActionListener() {
+        lastname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstname1ActionPerformed(evt);
+                lastnameActionPerformed(evt);
+            }
+        });
+
+        firstname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        firstname.setText("jTextField1");
+        firstname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstnameActionPerformed(evt);
             }
         });
 
@@ -90,6 +113,11 @@ public class AccountDetailView extends javax.swing.JPanel {
         SaveButton.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         SaveButton.setForeground(new java.awt.Color(255, 255, 255));
         SaveButton.setText("Save");
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
 
         passwordText.setForeground(new java.awt.Color(102, 102, 102));
         passwordText.setText("Click the button below to change your password");
@@ -114,7 +142,7 @@ public class AccountDetailView extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(firstname1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(firstnameLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +178,7 @@ public class AccountDetailView extends javax.swing.JPanel {
                     .addComponent(lastnameLabel))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstname1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addComponent(usernameLabel)
@@ -195,18 +223,58 @@ public class AccountDetailView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void firstname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstname1ActionPerformed
+    private void firstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_firstname1ActionPerformed
+
+        //when the user is entering in the password if it is less than a certain amout then highlight as red
+        System.out.println(evt);
+        int strLen = firstname.getText().trim().length();
+
+        if (strLen < 3) {
+            firstname.setBorder(new MatteBorder(1, 1, 1, 1, Color.red));
+        } else {
+            firstname.setBorder(new MatteBorder(1, 1, 1, 1, Color.gray));
+        }
+    }//GEN-LAST:event_firstnameActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameActionPerformed
 
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+        // TODO add your handling code here:
+        String fname = firstname.getText().trim();
+        String lname = lastname.getText().trim();
+        String uname = username.getText().trim();
+
+        System.out.println(fname);
+        System.out.println(lname);
+        System.out.println(uname);
+
+        if (fname.isEmpty() || lname.isEmpty() || lname.isEmpty()) {
+            System.out.println("empty");
+
+            JOptionPane.showMessageDialog(null, "all fields must be full");
+
+            //then full all the fields with the previous values...
+        } else {
+            JOptionPane.showMessageDialog(null, "added to the db");
+        }
+
+        //will have to compare what values are the same and if they are the same
+        //then add it to the database
+        //or just update the whole thing in the database
+
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void lastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastnameActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SaveButton;
-    private javax.swing.JTextField firstname1;
+    private javax.swing.JTextField firstname;
     private javax.swing.JLabel firstnameLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
