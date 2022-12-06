@@ -1,14 +1,16 @@
-package com.sdev.gui_team_project;
+package com.sdev.gui_team_project;  // Incorporates the Java Package Com.SDEV.GUI_Team_Project to the Program.
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+import java.sql.Connection;         // Imports the java.sql.Connection Class.
+import java.sql.DriverManager;      // Imports the java.sql.DriverManager Class.
+import java.sql.PreparedStatement;  // Imports the java.sql.PreparedStatement Class.
+import java.sql.ResultSet;          // Imports the java.sql.ResultSet Class.
+import java.sql.Statement;          // Imports the java.sql.Statement Class.
+import javax.swing.JOptionPane;     // Imports the javax.swing.JOptionPane Class.
 
+// RegisterCustomer class
 public class RegisterCustomer extends javax.swing.JFrame {
 
+        // Registers the customer.
     public RegisterCustomer() {
         initComponents();
     }
@@ -20,7 +22,7 @@ public class RegisterCustomer extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -81,8 +83,7 @@ public class RegisterCustomer extends javax.swing.JFrame {
         });
         jPanel2.add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 520, 160, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\J&B's Vehicle Rental System.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\J&B's Vehicle Rental System.png")); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -191,89 +192,97 @@ public class RegisterCustomer extends javax.swing.JFrame {
         });
         jPanel3.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 160, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\Register.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Register.png")); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 500,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+        // txt customer id focus gained
     private void txtCustomerIDFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtCustomerIDFocusGained
         // TODO add your handling code here:
         txtCustomerID.setText("");
     }// GEN-LAST:event_txtCustomerIDFocusGained
 
+        // txtCustomerIDActionPerformed event handler
     private void txtCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtCustomerIDActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtCustomerIDActionPerformed
 
+        // Focus gon on the password.
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtPasswordFocusGained
         // TODO add your handling code here:
         txtPassword.setText("");
     }// GEN-LAST:event_txtPasswordFocusGained
 
+        // This method is called when the txt password action has been processed.
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtPasswordActionPerformed
 
+        // Focus the username.
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtUsernameFocusGained
         // TODO add your handling code here:
         txtUsername.setText("");
     }// GEN-LAST:event_txtUsernameFocusGained
 
+        // txtUsernameActionPerformed event.
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtUsernameActionPerformed
 
+        // Focus the first name with a gon.
     private void txtFirstNameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtFirstNameFocusGained
         // TODO add your handling code here:
         txtFirstName.setText("");
     }// GEN-LAST:event_txtFirstNameFocusGained
 
+        // txtFirstNameActionPerformed event.
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtFirstNameActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtFirstNameActionPerformed
 
+        // Focus the last name in gained format.
     private void txtLastNameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtLastNameFocusGained
         // TODO add your handling code here:
         txtLastName.setText("");
     }// GEN-LAST:event_txtLastNameFocusGained
 
+        // This method is called when the last txt name action has been processed.
     private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtLastNameActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtLastNameActionPerformed
 
+        // Called when the login page action has been processed.
     private void loginPageActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loginPageActionPerformed
         // TODO add your handling code here:
         Login l = null;
@@ -284,36 +293,40 @@ public class RegisterCustomer extends javax.swing.JFrame {
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
+        // Sets the connection to null.
         Connection con = null;
+        // Creates a customer id userpass customerpass and customerlname.
         String customerid, customeruser, customerpass, customerfname, customerlname;
-        customerid = txtCustomerID.getText();
-        customeruser = txtUsername.getText();
-        customerpass = txtPassword.getText();
-        customerfname = txtFirstName.getText();
-        customerlname = txtLastName.getText();
+        customerid = txtCustomerID.getText();   // Creates new variable for customer id.
+        customeruser = txtUsername.getText();   // Creates new variable for customer user.
+        customerpass = txtPassword.getText();   // Creates new variable for customer pass.
+        customerfname = txtFirstName.getText(); // Creates new variable for customer fname.
+        customerlname = txtLastName.getText();  // Creates new variable for customer lname.
         try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
-            Statement st = con.createStatement();
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");          // Creates class for UCanAccess Driver.
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");  // Connects to database file.
+            Statement st = con.createStatement();   // Creates new statement with connection.
             String SQL = "INSERT INTO Users(ID, Username, Password, FirstName, LastName, Gender, Role) VALUES('"
                     + customerid + "','" + customeruser + "', '" + customerpass + "', '" + customerfname + "', '"
-                    + customerlname + "', 'Male', 'Customer')";
-            st = con.createStatement();
-            st.executeUpdate(SQL);
-            JOptionPane.showMessageDialog(null, "Customer Registration Successful, Please Login!");
-            Login l = new Login(null);
-            l.setVisible(true);
-            this.setVisible(false);
-        } catch (Exception e) {
-            System.out.println(e);
+                    + customerlname + "', 'Male', 'Customer')"; // Inserts info to database.
+            st = con.createStatement(); // Creates new statement.
+            st.executeUpdate(SQL);      // Executes SQL update.
+            JOptionPane.showMessageDialog(null, "Customer Registration Successful, Please Login!"); // Dialog to state successful registration.
+            Login l = new Login(null);  // Switches to the Login Frame.
+            l.setVisible(true);     // Sets login window to visible.
+            this.setVisible(false); // Sets current window to invisible.
+        } catch (Exception e) {     // Catches exception.
+            System.out.println(e);  // Prints out exception.
         }
     }// GEN-LAST:event_registerButtonActionPerformed
 
+        // Exit the program when the user clicks the mouse.
     private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitProgramMouseClicked
         // TODO add your handling code here:
         System.exit(0);
     }// GEN-LAST:event_exitProgramMouseClicked
 
+        // Called when the reset button action has been processed.
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
         ResetPassword rp = null;

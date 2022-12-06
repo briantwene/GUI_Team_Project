@@ -1,7 +1,8 @@
-package com.sdev.gui_team_project;
+package com.sdev.gui_team_project;  // Incorporates the Java Package Com.SDEV.GUI_Team_Project to the Program.
 
-public class MainMenuAdmin extends javax.swing.JFrame {
+public class MainMenuAdmin extends javax.swing.JFrame { // Creates a Public Class Called Login Which Extends Onto JavaX.Swing.JFrame.
 
+    // Initializes the main menu admin.
     public MainMenuAdmin() {
         initComponents();
     }
@@ -13,7 +14,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -75,21 +76,18 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         });
         jPanel1.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 30, 30));
 
-        manageVehicles.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles.png")); // NOI18N
+        manageVehicles.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles.png")); // NOI18N
         manageVehicles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 manageVehiclesMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 manageVehiclesMouseEntered(evt);
             }
         });
         jPanel1.add(manageVehicles, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 490, 600));
 
-        manageUsers.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\Manage Customers.png")); // NOI18N
+        manageUsers.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Customers.png")); // NOI18N
         manageUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 manageUsersMouseClicked(evt);
@@ -100,59 +98,59 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
+    // This method is called when the login button is clicked and it redirects the user to the Login Page.
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         Login l = null;
         l = new Login(null);
         l.setVisible(true);
         this.setVisible(false);
-    }// GEN-LAST:event_logoutButtonActionPerformed
+    }
 
-    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitButtonMouseClicked
-        // TODO add your handling code here:
+    // This method is called when the user clicks the mouse on the button at the bottom of the page.
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
-    }// GEN-LAST:event_exitButtonMouseClicked
+    }
 
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exitButtonActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_exitButtonActionPerformed
+    // Notification that the exit button action has been processed.
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    }
 
-    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitProgramMouseClicked
-        // TODO add your handling code here:
+    // Exits the program when the user clicks the mouse button on the X icon on top right of the window.
+    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
-    }// GEN-LAST:event_exitProgramMouseClicked
+    }
 
-    private void manageVehiclesMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_manageVehiclesMouseClicked
-        // TODO add your handling code here:
+    // Redirects the user to the Manave Vehicles file when the mouse is clicked on the Manage Vehicles button.
+    private void manageVehiclesMouseClicked(java.awt.event.MouseEvent evt) {
         ManageVehicles mv = null;
         mv = new ManageVehicles();
         mv.setVisible(true);
         this.setVisible(false);
-    }// GEN-LAST:event_manageVehiclesMouseClicked
+    }
 
-    private void manageUsersMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_manageUsersMouseClicked
-        // TODO add your handling code here:
+    // Redirects the user to the Manave Customers file when the mouse is clicked on the Manage Customers button.
+    private void manageUsersMouseClicked(java.awt.event.MouseEvent evt) {
         ManageCustomers mc = null;
         mc = new ManageCustomers();
         mc.setVisible(true);
         this.setVisible(false);
-    }// GEN-LAST:event_manageUsersMouseClicked
+    }
 
-    private void manageVehiclesMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_manageVehiclesMouseEntered
-        // TODO add your handling code here:
-    }// GEN-LAST:event_manageVehiclesMouseEntered
+    // manageVehiclesMouseEntered Method.
+    private void manageVehiclesMouseEntered(java.awt.event.MouseEvent evt) {
+    }
 
     /**
      * @param args the command line arguments
@@ -167,6 +165,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
          * For details see
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
+        // Sets up the UIManager look and feel info.
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

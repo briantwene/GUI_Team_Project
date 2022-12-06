@@ -1,27 +1,27 @@
-package com.sdev.gui_team_project;
+package com.sdev.gui_team_project;  // Incorporates the Java Package Com.SDEV.GUI_Team_Project to the Program.
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-import models.AppModel;
-import models.UserModel;
+import java.sql.Connection;         // Imports the Java.SQL.Connection Class.
+import java.sql.DriverManager;      // Imports the Java.SQL.DriverManager Class.
+import java.sql.PreparedStatement;  // Imports the Java.SQL.PreparedStatement Class.
+import java.sql.ResultSet;          // Imports the Java.SQL.ResultSet Class.
+import javax.swing.JOptionPane;     // Imports the JavaX.Swing.JOptionPane Class.
+import models.AppModel;             // Imports the Models.AppModel Class.
+import models.UserModel;            // Imports the Models.UserModel Class.
 
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame { // Creates a Public Class Called Login Which Extends Onto JavaX.Swing.JFrame.
 
-    public AppModel appState;
-    static Runnable switchFrame;
+    public AppModel appState;       // Returns the current app state.
+    static Runnable switchFrame;    // Switches to the current frame.
 
+    // Initializes the components of this Login.
     public Login(Runnable switchFrame) {
         Login.switchFrame = switchFrame;
         initComponents();
-
     }
 
+    // Sets the application state.
     public void setAppState(AppModel appState) {
         this.appState = appState;
-
     }
 
     /**
@@ -31,7 +31,7 @@ public class Login extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -92,8 +92,7 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 520, 160, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\J&B's Vehicle Rental System.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\J&B's Vehicle Rental System.png")); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -170,136 +169,134 @@ public class Login extends javax.swing.JFrame {
         oldPassword.setText("(Current Password)");
         jPanel3.add(oldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\Login.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Login.png")); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setSize(new java.awt.Dimension(1000, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_resetButtonActionPerformed
-        // TODO add your handling code here:
+    // Called when the reset button action has been performed and redirects the user to the Reset Password Page.
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {
         ResetPassword rp = null;
         rp = new ResetPassword();
         rp.setVisible(true);
         this.setVisible(false);
-    }// GEN-LAST:event_resetButtonActionPerformed
+    }
 
-    private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_signupButtonActionPerformed
-        // TODO add your handling code here:
+    // Called when the sign up button action has been performed and redirects the user to the Register Customer Page.
+    private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {
         RegisterCustomer rc = null;
         rc = new RegisterCustomer();
         rc.setVisible(true);
         this.setVisible(false);
-    }// GEN-LAST:event_signupButtonActionPerformed
+    }
 
-    private void comboRoleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboRoleActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_comboRoleActionPerformed
+    // Called when the comboRole action has been processed.
+    private void comboRoleActionPerformed(java.awt.event.ActionEvent evt) {
+    }
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        PreparedStatement psti = null;
-        ResultSet rsi = null;
+    /// Called when the login button action has been performed and runs through a series of checks to see if information entered is valid with a series of checks. 
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Connection con = null;          // Creates the object Connection to be renamed as con and it's equal to null.
+        PreparedStatement pst = null;   // Creates the object PreparedStatement to be renamed as pst and it's equal to null.
+        ResultSet rs = null;            // Creates the object ResultSet to be renamed as rs and it's equal to null.
+        PreparedStatement psti = null;  // Creates the object PreparedStatement to be renamed as psti and it's equal to null.
+        ResultSet rsi = null;           // Creates the object ResultSet to be renamed as rsi and it's equal to null.
         try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");          // Creates a class for the UCanAccess dependency.
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");    // Initiliases the variable con to connect to the database file.
             String SQL = "SELECT * FROM Users WHERE Username='" + txtUsername.getText() + "' and Password='"
                     + String.valueOf(txtPassword.getPassword()) + "' and Role='"
-                    + comboRole.getSelectedItem().toString() + "' ";
-            pst = con.prepareStatement(SQL);
-            rs = pst.executeQuery();
-            psti = con.prepareStatement(SQL);
-            rsi = psti.executeQuery();
-            String role = comboRole.getSelectedItem().toString();
-            if (rs.next() && role.equals("Admin")) {
-                JOptionPane.showMessageDialog(null, "Login Successful, Re-Directing to the Admin Main Menu!");
-                MainMenuAdmin mma = new MainMenuAdmin();
-                mma.setVisible(true);
-                this.setVisible(false);
-            } else if (rsi.next() && role.equals("Customer")) {
-                int userId = rsi.getInt("ID");
-                String username = rsi.getString("Username");
-                String firstname = rsi.getString("FirstName");
-                String lastname = rsi.getString("LastName");
-                String gender = rsi.getString("Gender");
-                String roleName = rsi.getString("Role");
-                int rentId = rsi.getInt("RentID");
+                    + comboRole.getSelectedItem().toString() + "' ";    // Creates a new string called SQL which selects all information from the users table where certain objects equal text entered by user input.
+            pst = con.prepareStatement(SQL);    // Initiliases the variable pst to prepare a statement from the string SQL.
+            rs = pst.executeQuery();            // Initiliases the variable rs to execute a query.
+            psti = con.prepareStatement(SQL);   // Initiliases the variable psti to prepare a statement from the string SQL.
+            rsi = psti.executeQuery();          // Initiliases the variable rsi to execute a query.
+            String role = comboRole.getSelectedItem().toString();   // Returns a string representation of the selected combo item.
+            if (rs.next() && role.equals("Admin")) {       // If statement for when the user input is accurate to data in the database and if the role they entered is Admin and also adds up to what is in the database.
+                JOptionPane.showMessageDialog(null, "Login Successful, Re-Directing to the Admin Main Menu!");  // Displays a dialog stating a redirection will be made to the main menu.
+                MainMenuAdmin mma = new MainMenuAdmin();    // Goes to the Admin main menu.
+                mma.setVisible(true);                   // Creates the next window (MainMenuAdmin.java) to visible.
+                this.setVisible(false);                 // Creates the current window (Login.java) to invisible.
+            } else if (rsi.next() && role.equals("Customer")) {     // If statement for when the user input is accurate to data in the database and if the role they entered is Customer and also adds up to what is in the database.
+                int userId = rsi.getInt("ID");                  // Creates an int called userId which is equal to ID in the database.
+                String username = rsi.getString("Username");    // Creates a String called username which is equal to Username in the database.
+                String firstname = rsi.getString("FirstName");  // Creates a String called firstname which is equal to FirstName in the database.
+                String lastname = rsi.getString("LastName");    // Creates a String called lastname which is equal to LastName in the database.
+                String gender = rsi.getString("Gender");        // Creates a String called gender which is equal to Gender in the database.
+                String roleName = rsi.getString("Role");        // Creates a String called roleName which is equal to Role in the database.
+                int rentId = rsi.getInt("RentID");              // Creates an int called rentId which is equal to RoleID in the database.
 
+                // Sets the current user.
                 appState.setCurrentUser(new UserModel(userId, username, firstname, lastname, gender, roleName, rentId));
 
-                JOptionPane.showMessageDialog(null, "Login Successful, Re-Directing to the Customer Main Menu!");
-                MainMenuCustomer mmc = new MainMenuCustomer(switchFrame);
-                mmc.setVisible(true);
-                this.setVisible(false);
+                // Shows a dialog to login Successfully Re - Directioning to the Customer Main Menu
+                JOptionPane.showMessageDialog(null, "Login Successful, Re-Directing to the Customer Main Menu!");   // User Input was Customer so redirects the user to the Customer main menu.
+                MainMenuCustomer mmc = new MainMenuCustomer(switchFrame);   // Switches to the Customer's main menu.
+                mmc.setVisible(true);   // Creates the next window (MainMenuAdmin.java) to visible.
+                this.setVisible(false); // Creates the current window (Login.java) to invisible.
             } else {
-                JOptionPane.showMessageDialog(null, "Login Failed, Please Try Again!");
+                JOptionPane.showMessageDialog(null, "Login Failed, Please Try Again!"); // If user input is incorrect it'll show that the login failed.
             }
+        // Prints the exception to stdout to use in the try catch statement.
         } catch (Exception e) {
             System.out.println(e);
         }
-    }// GEN-LAST:event_loginButtonActionPerformed
+    }
 
-    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitProgramMouseClicked
-        // TODO add your handling code here:
+    // Exits the program when the user clicks the mouse button on the X symbol in the top right of the window.
+    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
-    }// GEN-LAST:event_exitProgramMouseClicked
+    }
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtPasswordActionPerformed
+    // This method is called when the txt password action has been processed.
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {
+    }
 
-    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtPasswordFocusGained
-        // TODO add your handling code here:
+    // When focus is gained on the password form, the original "Password" text is deleted to allow for user input.
+    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {
         txtPassword.setText("");
-    }// GEN-LAST:event_txtPasswordFocusGained
+    }
 
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtUsernameActionPerformed
+    // txtUsernameActionPerformed event.
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {
+    }
 
-    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtUsernameFocusGained
-        // TODO add your handling code here:
+        // When focus is gained on the username form, the original "Username" text is deleted to allow for user input.
+    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {
         txtUsername.setText("");
-    }// GEN-LAST:event_txtUsernameFocusGained
+    }
 
     /**
      * @param args the command line arguments
