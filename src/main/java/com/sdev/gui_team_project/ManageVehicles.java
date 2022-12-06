@@ -14,7 +14,7 @@ public class ManageVehicles extends javax.swing.JFrame {
         initComponents();
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            Connection con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            Connection con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
             Statement st = con.createStatement();
             String SQL = "SELECT * FROM Vehicle";
             ResultSet rs = st.executeQuery(SQL);
@@ -71,7 +71,6 @@ public class ManageVehicles extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setUndecorated(true);
         setResizable(false);
@@ -305,7 +304,7 @@ public class ManageVehicles extends javax.swing.JFrame {
         });
         jPanel1.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(972, 13, -1, 20));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles Menu.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles Menu.png")); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,7 +338,7 @@ public class ManageVehicles extends javax.swing.JFrame {
         vehiclepassengers = txtPassengers.getText();
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Vehicle");
             if(rs.next()){
@@ -373,7 +372,7 @@ public class ManageVehicles extends javax.swing.JFrame {
         vehiclepassengers = txtPassengers.getText();
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Vehicle");
             if(rs.next()){
@@ -407,7 +406,7 @@ public class ManageVehicles extends javax.swing.JFrame {
         vehiclepassengers = txtPassengers.getText();
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
             Statement st = con.createStatement();
             String SQL = "INSERT INTO Vehicle(VehicleID, VehicleMake, VehicleModel, VehicleYear, VehicleColour, VehicleAvailability, VehiclePrice, VehicleType, VehicleRarity, VehiclePassengers) VALUES('"+vehicleid+"','"+vehiclemake+"', '"+vehiclemodel+"', '"+vehicleyear+"', '"+vehiclecolour+"', '"+vehicleavailability+"', '"+vehicleprice+"', '"+vehicletype+"', '"+vehiclerarity+"', '"+vehiclepassengers+"')";
             st = con.createStatement();

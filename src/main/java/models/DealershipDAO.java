@@ -17,8 +17,9 @@ public class DealershipDAO {
 
     }
 
-    public ArrayList<Object[]> getRentals() {
-        String query = "Select Rent.RentStartDate, Rent.RentReturnDate, Rent.RentNoOfDays, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehicleType from Vehicle LEFT JOIN Rent on Rent.VehicleID = Vehicle.VehicleID where Rent.RentReturnDate > NOW() and UserID = 1";
+    public ArrayList<Object[]> getRentals(int userId) {
+        String query = "Select Rent.RentStartDate, Rent.RentReturnDate, Rent.RentNoOfDays, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehicleType from Vehicle LEFT JOIN Rent on Rent.VehicleID = Vehicle.VehicleID where Rent.RentReturnDate > NOW() and UserID ="
+                + userId;
         ArrayList<Object[]> tableMap = new ArrayList<>();
         ResultSet results = db.executeQuery(query);
 
@@ -32,8 +33,8 @@ public class DealershipDAO {
                 String vehicleModel = results.getString("vehicleModel");
                 String vehicleType = results.getString("VehicleType");
 
-                Object[] row = {rentStartDate, rentReturnDate, rentNoOfDays, vehicleMake, vehicleModel,
-                    vehicleType};
+                Object[] row = { rentStartDate, rentReturnDate, rentNoOfDays, vehicleMake, vehicleModel,
+                        vehicleType };
                 tableMap.add(row);
             }
         } catch (SQLException e) {
@@ -79,26 +80,32 @@ public class DealershipDAO {
         return currentRent;
     }
 
-    public ArrayList<Object[]> getPurchases() {
+    public ArrayList<Object[]> getPurchases(int userId) {
 
-        String query = "SELECT Purchase.PurchaseID, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehiclePrice FROM Purchase LEFT JOIN Vehicle ON Purchase.VehicleID = Vehicle.VehicleID WHERE Purchase.UserID = 5;";
+        String query = "SELECT Purchase.PurchaseID, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehiclePrice FROM Purchase LEFT JOIN Vehicle ON Purchase.VehicleID = Vehicle.VehicleID WHERE Purchase.UserID "
+                + userId;
+        ;
         ArrayList<Object[]> tableMap = new ArrayList<>();
         ResultSet results = db.executeQuery(query);
 
-        try {
-            while (results.next()) {
+        if (results == null) {
 
-                int purchaseId = results.getInt(1);
-                String vehicleMake = results.getString("VehicleMake");
-                String vehicleModel = results.getString("VehicleModel");
-                int vehiclePrice = results.getInt("VehiclePrice");
+        } else {
+            try {
+                while (results.next()) {
 
-                Object[] row = {purchaseId, vehicleMake, vehicleModel, vehiclePrice};
-                tableMap.add(row);
+                    int purchaseId = results.getInt(1);
+                    String vehicleMake = results.getString("VehicleMake");
+                    String vehicleModel = results.getString("VehicleModel");
+                    int vehiclePrice = results.getInt("VehiclePrice");
+
+                    Object[] row = { purchaseId, vehicleMake, vehicleModel, vehiclePrice };
+                    tableMap.add(row);
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
 
         return tableMap;

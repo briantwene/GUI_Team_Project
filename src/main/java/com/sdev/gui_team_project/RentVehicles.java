@@ -14,7 +14,7 @@ public class RentVehicles extends javax.swing.JFrame {
         initComponents();
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            Connection con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            Connection con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
             Statement st = con.createStatement();
             String SQL = "SELECT * FROM Rent";
             ResultSet rs = st.executeQuery(SQL);
@@ -196,7 +196,7 @@ public class RentVehicles extends javax.swing.JFrame {
         userid = txtUserID.getText();
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\Rent.accdb");
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
             Statement st = con.createStatement();
             String SQL = "INSERT INTO Rent(RentID, RentStartDate, RentReturnDate, RentNoOfDays, VehicleID, UserID) VALUES('0','2022-11-30', '2022-12-14', '"+rentduration+"', '"+vehicleid+"', '"+userid+"')";
             st.executeUpdate(SQL);

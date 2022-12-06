@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 import models.AppModel;
 import Controller.UpdateInterface;
+import com.sdev.gui_team_project.ResetPassword;
 import models.DealershipDAO;
 
 /**
@@ -131,6 +132,11 @@ public class AccountDetailView extends javax.swing.JPanel implements UpdateInter
         passwordButton.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         passwordButton.setForeground(new java.awt.Color(255, 255, 255));
         passwordButton.setText("Change Password");
+        passwordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -275,6 +281,14 @@ public class AccountDetailView extends javax.swing.JPanel implements UpdateInter
     private void lastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lastnameActionPerformed
+
+    private void passwordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordButtonActionPerformed
+        // TODO add your handling code here:
+        ResetPassword rv = null;
+        rv = new ResetPassword();
+        rv.setVisible(true);
+//        this.setVisible(false);
+    }//GEN-LAST:event_passwordButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

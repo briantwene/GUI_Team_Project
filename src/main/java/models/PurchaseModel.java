@@ -6,8 +6,8 @@ public class PurchaseModel {
     private int vehicleId;
     private int vehiclePrice;
 
-    public PurchaseModel(int purchaseId, int userId, int vehicleId, int vehiclePrice) {
-        this.purchaseId = purchaseId;
+    public PurchaseModel(Object object, int userId, int vehicleId, int vehiclePrice) {
+        this.purchaseId = (int) object;
         this.vehicleId = vehicleId;
         this.userId = userId;
         this.vehiclePrice = vehiclePrice;

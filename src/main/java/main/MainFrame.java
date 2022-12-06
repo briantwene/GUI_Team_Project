@@ -31,12 +31,12 @@ public class MainFrame extends javax.swing.JFrame {
     public VehicleDAO vehicleDao;
     public DealershipDAO dealershipDao;
     public VehicleModel selectedItem;
-    private AppModel appState;
+    private static AppModel appState;
 
     /**
      * Creates new form customerView
      */
-    public MainFrame() {
+    public MainFrame(AppModel appState) {
         initComponents();
 
         CardLayout cardLayout = new CardLayout();
@@ -44,10 +44,8 @@ public class MainFrame extends javax.swing.JFrame {
         vehicleDao = new VehicleDAO();
         dealershipDao = new DealershipDAO();
 
-        appState = new AppModel();
         controller = new RouterController(content, cardLayout);
-        
-        
+
         accountButton.setText("Login");
 
         controller.addView(new HomeView(appState, controller), RouterController.HOME);
@@ -59,11 +57,16 @@ public class MainFrame extends javax.swing.JFrame {
         controller.goHome();
         // addComponents();
     }
-    
-    public void updateLogin(){
-           accountButton.setText("Hi " + appState.currentUser.getUsername());
-//           header.revalidate();
-//           header.repaint();
+
+    public void setAppState(AppModel appState) {
+
+        this.appState = appState;
+    }
+
+    public void updateLogin() {
+        accountButton.setText("Hi " + appState.currentUser.getUsername());
+        // header.revalidate();
+        // header.repaint();
     }
 
     private void addComponents() {
@@ -247,14 +250,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_accountButtonActionPerformed
         // TODO add your handling code here:
-        if(appState.getCurrentUser() == null){
-            //send them to the login page
+        if (appState.getCurrentUser() == null) {
+            // send them to the login page
             appState.currentUser = new UserModel(1, "JasonLeonard", "Jason", "Leonard", "Male", "Admin", 1);
+        } else {
             this.updateLogin();
-        }else{
-           controller.goAccountPage();
+            controller.goAccountPage();
         }
-     
+
     }// GEN-LAST:event_accountButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_homeButtonActionPerformed
@@ -302,7 +305,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new MainFrame(appState).setVisible(true);
             }
         });
     }
