@@ -5,20 +5,23 @@
 package models;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  *
  * @author twene
  */
+
+// model for holding application state
 public class AppModel {
 
-    public UserModel currentUser;
-    VehicleModel selectedVehicle;
-    public LocalDate pickupDate;
-    public LocalDate returnDate;
+    public UserModel currentUser; // holding current user logged in
+    VehicleModel selectedVehicle; // selected car at checkout
+    public LocalDate pickupDate; // rent pick update
+    public LocalDate returnDate; // rent return date
 
+    //
     public AppModel() {
+        // initalise variables
         this.currentUser = null;
         this.selectedVehicle = null;
         this.pickupDate = LocalDate.now();
@@ -26,6 +29,7 @@ public class AppModel {
 
     }
 
+    // getter and setter methods
     public VehicleModel getSelectedVehicle() {
         return selectedVehicle;
     }

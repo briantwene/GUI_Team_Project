@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
  *
  * @author twene
  */
-// model for applicaton
+// model for vheicles
 public class VehicleModel {
 
     private int vehicleId;
@@ -58,13 +58,16 @@ public class VehicleModel {
         this.vehicleImage = this.createImage();
     }
 
+    // function for creating an image icon for the car
     public Icon createImage() {
 
         try {
+            // get the image from the url of the car
             URL url = new URL(this.getImage());
             BufferedImage image;
             image = ImageIO.read(url);
 
+            // create an image icon from it
             return new ImageIcon(image);
         } catch (MalformedURLException ex) {
             Logger.getLogger(VehicleModel.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,6 +78,7 @@ public class VehicleModel {
 
     }
 
+    // other getter and setter functions
     public boolean isForSale() {
         return forSale;
     }
@@ -91,6 +95,8 @@ public class VehicleModel {
         this.vehicleImage = vehicleImage;
     }
 
+    // setter function for mapping a color code based on the Car Rarity
+    // can help as a visual aid for users
     public void setRarityColor(String rarity) {
         switch (rarity) {
             case "Luxury":

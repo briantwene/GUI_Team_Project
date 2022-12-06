@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import models.AppModel;
 import models.CurrentRentalModel;
 import models.DealershipDAO;
+import java.awt.Color;
 
 /**
  *
@@ -36,14 +37,19 @@ public class AccountCurrent extends javax.swing.JPanel implements UpdateInterfac
                 initComponents();
         }
 
+        // override updatePage interface function and update the page accordingly
         @Override
         public void updatePage() {
+                // get the current rental from databse
                 currentRentalData = dealershipDao.getCurrentRental(this.appState.getCurrentUser().getUserId());
 
+                // check if there is
                 if (currentRentalData == null) {
+                        // if not then set certain areas invisible
                         returnContainer.setVisible(false);
                         dayLeftContainer.setVisible(false);
                 } else {
+                        // other wise calculate the days left
                         long diffInMillies = Math.abs(
                                         currentRentalData.getRentReturnDate().getTime()
                                                         - currentRentalData.getRentStartDate().getTime());
@@ -52,9 +58,17 @@ public class AccountCurrent extends javax.swing.JPanel implements UpdateInterfac
                         carName.setText(
                                         String.format("%s - %s", currentRentalData.getVehicleMake(),
                                                         currentRentalData.getVehicleModel()));
+
+                        // set panels to visible
                         returnContainer.setVisible(true);
                         dayLeftContainer.setVisible(true);
+                        // add the days left to a label
                         daysLeft.setText("" + diff);
+
+                        // the amount of days is left is 3 or less give a visual aid to the user
+                        if (diff >= 3) {
+                                daysLeft.setForeground(Color.decode("#ff0000"));
+                        }
                 }
 
         }
@@ -263,11 +277,15 @@ public class AccountCurrent extends javax.swing.JPanel implements UpdateInterfac
 
         private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_returnButtonActionPerformed
                 // TODO add your handling code here:
+
+                // when user clicks the return car ensure that that is what they want ot do
                 int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to return this car",
                                 "Return Vehicle", JOptionPane.YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
                         JOptionPane.showMessageDialog(null, "Done");
 
+                        // send them home if they return the car in the end
+                        // to ensure the view can be updated properly
                         controller.goHome();
                 } else {
 

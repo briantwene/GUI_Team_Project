@@ -10,10 +10,14 @@ import models.FilterModel;
  *
  * @author twene
  */
+// filterBar class
 public class FilterBar extends javax.swing.JPanel {
 
-    FilterModel currentFilter;
-    Runnable filter;
+    // instance variables for holding the filter setting and function for running
+    // the
+    // filtering
+    private FilterModel filterSettings;
+    private Runnable filter;
 
     /**
      * Creates new form FilterBar
@@ -23,17 +27,21 @@ public class FilterBar extends javax.swing.JPanel {
 
     }
 
-    public void attachFilterModel(FilterModel filter) {
-        currentFilter = filter;
+    // setter method for the filter settings
+    public void attachfilterSettings(FilterModel filter) {
+        filterSettings = filter;
         initFilter();
     }
 
+    // setter method for the filter function
     public void attachFilterFunc(Runnable filterFunc) {
         filter = filterFunc;
     }
 
     // initalise the filter
     public void initFilter() {
+
+        // set all check fields to empty
         compact.setSelected(false);
         sport.setSelected(false);
         premium.setSelected(false);
@@ -41,11 +49,13 @@ public class FilterBar extends javax.swing.JPanel {
         sedan.setSelected(false);
         standard.setSelected(false);
         supercheck.setSelected(false);
-        priceSlider.setMaximum(currentFilter.getMaxPrice());
-        priceSlider.setMinimum(currentFilter.getMinPrice());
-        priceSlider.setMinorTickSpacing(currentFilter.getStep());
-        priceSlider.setValue(currentFilter.getMaxPrice());
-        priceLabel.setText("€" + currentFilter.getPrice());
+
+        // set the price slider to the default max price from the filter settings
+        priceSlider.setMaximum(filterSettings.getMaxPrice());
+        priceSlider.setMinimum(filterSettings.getMinPrice());
+        priceSlider.setMinorTickSpacing(filterSettings.getStep());
+        priceSlider.setValue(filterSettings.getMaxPrice());
+        priceLabel.setText("€" + filterSettings.getPrice());
 
     }
 
@@ -370,92 +380,103 @@ public class FilterBar extends javax.swing.JPanel {
                                 .addContainerGap(249, Short.MAX_VALUE)));
     }// </editor-fold>//GEN-END:initComponents
 
+    // when any of the checkboxes are clicked run the setter function to add this to
+    // the filter settings list of selected options
     private void sportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_sportActionPerformed
         // TODO add your handling code here:
 
-        currentFilter.setCarSize("Sport");
+        filterSettings.setCarType("Sport");
         filter.run();
     }// GEN-LAST:event_sportActionPerformed
 
     private void compactActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_compactActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("Compact");
+        filterSettings.setCarType("Compact");
 
         filter.run();
     }// GEN-LAST:event_compactActionPerformed
 
     private void budgetActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_budgetActionPerformed
         // TODO add your handling code here:
-        currentFilter.setTypes("Budget");
+        filterSettings.setRarity("Budget");
         filter.run();
     }// GEN-LAST:event_budgetActionPerformed
 
     private void premiumActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_premiumActionPerformed
         // TODO add your handling code here:
-        currentFilter.setTypes("Premium");
+        filterSettings.setRarity("Premium");
         filter.run();
     }// GEN-LAST:event_premiumActionPerformed
 
     private void standardActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_standardActionPerformed
         // TODO add your handling code here:
-        currentFilter.setTypes("Standard");
+        filterSettings.setRarity("Standard");
         filter.run();
     }// GEN-LAST:event_standardActionPerformed
 
+    // reset button
     private void formResetActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_formResetActionPerformed
         // TODO add your handling code here:
-        currentFilter.reset();
-        priceSlider.setValue(currentFilter.getPrice());
-        priceLabel.setText("€" + currentFilter.getPrice());
+
+        // run the fields in the filter settings
+        filterSettings.reset();
+        // reset the price of the slider
+        priceSlider.setValue(filterSettings.getPrice());
+        // and reset the label that goes with the slider
+        priceLabel.setText("€" + filterSettings.getPrice());
+
+        // run the filter to update the list
         filter.run();
     }// GEN-LAST:event_formResetActionPerformed
 
     private void supercheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_supercheckActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("Super");
+        filterSettings.setCarType("Super");
+
+        // run the filter to ensuer that the list of vehicles to the user is updated
         filter.run();
     }// GEN-LAST:event_supercheckActionPerformed
 
     private void sedanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_sedanActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("Sedan");
+        filterSettings.setCarType("Sedan");
         filter.run();
     }// GEN-LAST:event_sedanActionPerformed
 
     private void priceSliderStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_priceSliderStateChanged
         // TODO add your handling code here:
-        currentFilter.setPrice(priceSlider.getValue());
-        priceLabel.setText("€" + currentFilter.getPrice());
+        filterSettings.setPrice(priceSlider.getValue());
+        priceLabel.setText("€" + filterSettings.getPrice());
         filter.run();
     }// GEN-LAST:event_priceSliderStateChanged
 
     private void UltraActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_UltraActionPerformed
         // TODO add your handling code here:
-        currentFilter.setTypes("Ultra");
+        filterSettings.setRarity("Ultra");
         filter.run();
     }// GEN-LAST:event_UltraActionPerformed
 
     private void electricActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_electricActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("Electric");
+        filterSettings.setCarType("Electric");
         filter.run();
     }// GEN-LAST:event_electricActionPerformed
 
     private void hyperActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hyperActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("Hyper");
+        filterSettings.setCarType("Hyper");
         filter.run();
     }// GEN-LAST:event_hyperActionPerformed
 
     private void suvActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_suvActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("SUV");
+        filterSettings.setCarType("SUV");
         filter.run();
     }// GEN-LAST:event_suvActionPerformed
 
     private void hybridActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hybridActionPerformed
         // TODO add your handling code here:
-        currentFilter.setCarSize("Hybrid");
+        filterSettings.setCarType("Hybrid");
         filter.run();
     }// GEN-LAST:event_hybridActionPerformed
 

@@ -39,6 +39,7 @@ public class AccountHistoryView extends javax.swing.JPanel implements UpdateInte
 
         }
 
+        // populate the table with the data that was fetched from the database
         public void populateTable() {
                 ArrayList<Object[]> purchaseData = dealershipDao.getPurchases(appState.getCurrentUser().getUserId());
                 ArrayList<Object[]> rentalData = dealershipDao.getRentals(appState.getCurrentUser().getUserId());

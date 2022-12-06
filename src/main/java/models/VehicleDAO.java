@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author twene
  */
+
+// Vehicle Data Access Object - used for interacting with the db on everything
+// vehicles
 public class VehicleDAO {
 
     Database db;
@@ -26,6 +26,7 @@ public class VehicleDAO {
         db = new Database();
     }
 
+    // get all the vheicles in the database
     public ArrayList<VehicleModel> getAll() {
         String query = ("SELECT * from Vehicle");
         ArrayList<VehicleModel> vehicleList = new ArrayList<>();
@@ -55,7 +56,6 @@ public class VehicleDAO {
                 int vehiclePassengers = results.getInt("VehiclePassengers");
                 String vehicleRarity = results.getString("VehicleRarity");
 
-                // and add it to the list
                 vehicleList.add(new VehicleModel(vehicleId, vehicleMake, vehicleModel, vehicleYear, vehicleColor,
                         vehicleAvailability, vehiclePrice, forSale, vehicleType, vehicleImage, vehiclePassengers,
                         vehicleRarity));

@@ -7,16 +7,27 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+// Dealership Data Access Object
+
+// one of the core DAOs
+
+// holds methods for running queries to do with rentals, purchases and profle
 public class DealershipDAO {
 
     Database db;
 
+    // create a database instance to interact with
     public DealershipDAO() {
 
         db = new Database();
 
     }
 
+    // the methods will execute a certain query and return the as an array of
+    // Objects that are models for the different parts of the application
+    // or nothing if its just for inserting or updating
+
+    // getting the users rental history
     public ArrayList<Object[]> getRentals(int userId) {
         String query = "Select Rent.RentStartDate, Rent.RentReturnDate, Rent.RentNoOfDays, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehicleType from Vehicle LEFT JOIN Rent on Rent.VehicleID = Vehicle.VehicleID where Rent.RentReturnDate > NOW() and UserID ="
                 + userId;
@@ -46,6 +57,7 @@ public class DealershipDAO {
 
     }
 
+    // getting the users current rental if any
     public CurrentRentalModel getCurrentRental(int userId) {
         String query = String.format(
                 "Select Rent.RentID, Rent.RentStartDate, Rent.RentReturnDate, Rent.RentNoOfDays, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehicleImage Vehicle.VehicleType, Vehicle.VehicleRarity, Vehicle.VehiclePassengers, Vehicle.VehicleAvailability FROM Vehicle LEFT JOIN Rent on Rent.VehicleID = Vehicle.VehicleID where Rent.RentReturnDate > NOW() and Rent.UserID = %s",
@@ -80,6 +92,7 @@ public class DealershipDAO {
         return currentRent;
     }
 
+    // getting the users purchase history
     public ArrayList<Object[]> getPurchases(int userId) {
 
         String query = "SELECT Purchase.PurchaseID, Vehicle.VehicleMake, Vehicle.VehicleModel, Vehicle.VehiclePrice FROM Purchase LEFT JOIN Vehicle ON Purchase.VehicleID = Vehicle.VehicleID WHERE Purchase.UserID "
@@ -112,6 +125,7 @@ public class DealershipDAO {
 
     }
 
+    // adding purchase data to the db when a user purchases a car
     public void addPurchase(PurchaseModel purchase) {
 
         String query = String.format(
@@ -133,6 +147,7 @@ public class DealershipDAO {
 
     }
 
+    // adding rental to the database can be later retrived by getCurrentRental()
     public void addRental(RentModel rental) {
 
         String query = String.format(
@@ -148,6 +163,7 @@ public class DealershipDAO {
 
     }
 
+    // for updating the user profile
     public void updateProfile(UserModel user) {
 
         String query = String.format(
@@ -162,6 +178,7 @@ public class DealershipDAO {
 
     }
 
+    // update rental record ideally for when a user returns a car
     public void updateRental(RentModel rental) {
         String query = String.format(
                 "update Rent SET RentReturnDate = '%s', RentNoOfDays = %s WHERE UserID = %s AND Vehicle = %s",

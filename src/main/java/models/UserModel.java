@@ -1,14 +1,15 @@
 package models;
 
+// user model that is used to keep track of the current user that is logged into the application
 public class UserModel {
 
-    private int userId;
-    private String username;
+    private int userId; // id of the user
+    private String username; // username, first name last name fields
     private String firstname;
     private String lastname;
-    private String gender;
-    private String Role;
-    private int rentId;
+    private String gender; // gender
+    private String Role; // role
+    private int rentId; // rentId
 
     public UserModel(int userId, String username, String firstname, String lastname, String gender, String Role,
             int rentId2) {
@@ -21,6 +22,7 @@ public class UserModel {
         this.rentId = rentId2;
     }
 
+    // getter and setter methods
     public int getUserId() {
         return userId;
     }

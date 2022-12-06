@@ -6,14 +6,6 @@ package Components;
 
 import Controller.RouterController;
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import models.AppModel;
 import models.VehicleModel;
 
@@ -23,29 +15,34 @@ import models.VehicleModel;
  */
 public class VehicleItem extends javax.swing.JPanel {
 
-    RouterController controller;
+    // instance variables to hold the app's navigation system and App model
+    RouterController navigator;
     AppModel appState;
+    private VehicleModel carData;
 
     /**
      * Creates new form VheicleItem
      */
-    public VehicleItem(AppModel appState, RouterController controller) {
-        this.controller = controller;
+    public VehicleItem(AppModel appState, RouterController navigator) {
+        this.navigator = navigator;
         this.appState = appState;
         initComponents();
     }
 
-    private VehicleModel data;
+    // mehtod for setting component with data from Vheicle objects
+    public void setCarData(VehicleModel data) {
 
-    public void fillData(VehicleModel data) {
-
-        this.data = data;
+        this.carData = data;
 
         // adding the items from the model to the object itself
+
+        // setting the image text name etc...
         pictureBox1.setImage(data.getVehicleImage());
         rentalClass.setText(data.getVehicleRarity());
         rentalClass.setForeground(Color.decode(data.getRarityColor()));
         price.setText("€" + data.getVehiclePrice());
+
+        // change the text of the button based on if the car is for sale or not
         jButton1.setText(data.isForRent() ? "Rent" : "Buy");
         name.setText(String.format("%s %s (%s)", data.getVehicleMake(), data.getVehicleModel(), data.getVehicleYear()));
 
@@ -58,7 +55,8 @@ public class VehicleItem extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         VheicleInfo = new javax.swing.JPanel();
@@ -80,19 +78,17 @@ public class VehicleItem extends javax.swing.JPanel {
         javax.swing.GroupLayout VheicleInfoLayout = new javax.swing.GroupLayout(VheicleInfo);
         VheicleInfo.setLayout(VheicleInfoLayout);
         VheicleInfoLayout.setHorizontalGroup(
-            VheicleInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(VheicleInfoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rentalClass)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                VheicleInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(VheicleInfoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(rentalClass)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         VheicleInfoLayout.setVerticalGroup(
-            VheicleInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VheicleInfoLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(rentalClass)
-                .addContainerGap())
-        );
+                VheicleInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VheicleInfoLayout.createSequentialGroup()
+                                .addContainerGap(34, Short.MAX_VALUE)
+                                .addComponent(rentalClass)
+                                .addContainerGap()));
 
         actionContainer.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -121,61 +117,72 @@ public class VehicleItem extends javax.swing.JPanel {
         javax.swing.GroupLayout actionContainerLayout = new javax.swing.GroupLayout(actionContainer);
         actionContainer.setLayout(actionContainerLayout);
         actionContainerLayout.setHorizontalGroup(
-            actionContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(actionContainerLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(actionContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(actionContainerLayout.createSequentialGroup()
-                        .addComponent(name)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(actionContainerLayout.createSequentialGroup()
-                        .addGroup(actionContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(price))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))))
-        );
+                actionContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(actionContainerLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(actionContainerLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(actionContainerLayout.createSequentialGroup()
+                                                .addComponent(name)
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(actionContainerLayout.createSequentialGroup()
+                                                .addGroup(actionContainerLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel5)
+                                                        .addComponent(price))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90,
+                                                        Short.MAX_VALUE)
+                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(16, 16, 16)))));
         actionContainerLayout.setVerticalGroup(
-            actionContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(actionContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(name)
-                .addGap(18, 18, 18)
-                .addGroup(actionContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(actionContainerLayout.createSequentialGroup()
-                        .addComponent(price)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                actionContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(actionContainerLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(name)
+                                .addGap(18, 18, 18)
+                                .addGroup(actionContainerLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(actionContainerLayout.createSequentialGroup()
+                                                .addComponent(price)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel5)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(VheicleInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(actionContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pictureBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(VheicleInfo, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(actionContainer, javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
+                        .addComponent(pictureBox1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(VheicleInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(actionContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 132,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(VheicleInfo, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(actionContainer, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
     }// </editor-fold>//GEN-END:initComponents
 
+    // set the current selected car to this if the buy/rent button is clicked
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        appState.setSelectedVehicle(this.data);
-        controller.goInfoPage();
+        appState.setSelectedVehicle(this.carData);
+        // navigate to the checkout page
+        navigator.goInfoPage();
     }// GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

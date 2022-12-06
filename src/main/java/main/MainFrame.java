@@ -22,12 +22,13 @@ import models.VehicleDAO;
  *
  * @author twene
  */
+
+// main frame for customer side of the applicatoion
 public class MainFrame extends javax.swing.JFrame {
 
-    // some variables for components
-    private RentalsView rentalPage;
+    // some variables fo
 
-    final RouterController controller;
+    final RouterController navigator;
     public VehicleDAO vehicleDao;
     public DealershipDAO dealershipDao;
     public VehicleModel selectedItem;
@@ -39,57 +40,42 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame(AppModel appState) {
         initComponents();
 
+        // setup naviagtion by using a cardLayout
         CardLayout cardLayout = new CardLayout();
         content.setLayout(cardLayout);
+
+        // init data access objects for interacting with database class
         vehicleDao = new VehicleDAO();
         dealershipDao = new DealershipDAO();
 
-        controller = new RouterController(content, cardLayout);
+        // create router controller with container for the cardLayout and cardLayout API
+        // and pass it to all views
+        navigator = new RouterController(content, cardLayout);
 
         accountButton.setText("Login");
 
-        controller.addView(new HomeView(appState, controller), RouterController.HOME);
-        controller.addView(new RentalsView(appState, controller, vehicleDao), RouterController.RENT);
-        controller.addView(new PurchaseView(appState, controller, vehicleDao), RouterController.PURCHASE);
-        controller.addView(new AccountView(appState, controller, dealershipDao), RouterController.ACCOUNT);
-        controller.addView(new CarInfoView(appState, controller, dealershipDao), RouterController.INFO);
+        navigator.addView(new HomeView(appState, navigator), RouterController.HOME);
+        navigator.addView(new RentalsView(appState, navigator, vehicleDao), RouterController.RENT);
+        navigator.addView(new PurchaseView(appState, navigator, vehicleDao), RouterController.PURCHASE);
+        navigator.addView(new AccountView(appState, navigator, dealershipDao), RouterController.ACCOUNT);
+        navigator.addView(new CarInfoView(appState, navigator, dealershipDao), RouterController.INFO);
 
-        controller.goHome();
-        // addComponents();
+        // let the user start at the home page
+        navigator.goHome();
+
     }
 
     public void setAppState(AppModel appState) {
 
-        this.appState = appState;
+        MainFrame.appState = appState;
     }
 
+    // update button if the user is logged in
     public void updateLogin() {
         accountButton.setText("Hi " + appState.currentUser.getUsername());
-        // header.revalidate();
-        // header.repaint();
-    }
-
-    private void addComponents() {
-
-        content.setLayout(new BorderLayout());
-        content.add(rentalPage);
 
     }
 
-    // private void addTesting() {
-    //
-    // for (int i = 0; i < 5; i++) {
-    // rentalPage.addItems(new VehicleModel("Land Rover Discovery", "Ultra", 120,
-    // new ImageIcon(getClass().getResource("/images/car.png"))));
-    // rentalPage.addItems(new VehicleModel("Kia Picanto", "Standard", 85,
-    // new ImageIcon(getClass().getResource("/images/kia.jpg"))));
-    // rentalPage.addItems(new VehicleModel("Ford Focus", "Premium", 99,
-    // new ImageIcon(getClass().getResource("/images/ford.jpg"))));
-    // rentalPage.addItems(new VehicleModel("Toyota Corrola", "Budget", 60,
-    // new ImageIcon(getClass().getResource("/images/toyota.png"))));
-    // }
-    //
-    // }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -243,31 +229,38 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // top navigation bar button handlers
     private void rentalsButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rentalsButtonActionPerformed
         // TODO add your handling code here:
-        controller.goRentals();
+
+        navigator.goRentals();
     }// GEN-LAST:event_rentalsButtonActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_accountButtonActionPerformed
         // TODO add your handling code here:
+
+        // if the user is not logged then ideally send them to the login frame on the
+        // other side
         if (appState.getCurrentUser() == null) {
             // send them to the login page
             appState.currentUser = new UserModel(1, "JasonLeonard", "Jason", "Leonard", "Male", "Admin", 1);
         } else {
+            // if logged in already (from other side) then update the login button and send
+            // them to the account page
             this.updateLogin();
-            controller.goAccountPage();
+            navigator.goAccountPage();
         }
 
     }// GEN-LAST:event_accountButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
-        controller.goHome();
+        navigator.goHome();
     }// GEN-LAST:event_homeButtonActionPerformed
 
     private void purchaseButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_purchaseButtonActionPerformed
         // TODO add your handling code here:
-        controller.goPurchases();
+        navigator.goPurchases();
     }// GEN-LAST:event_purchaseButtonActionPerformed
 
     /**

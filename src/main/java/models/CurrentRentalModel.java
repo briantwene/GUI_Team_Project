@@ -19,6 +19,9 @@ import javax.swing.ImageIcon;
  *
  * @author twene
  */
+
+// model for getting the current rental on the AccountCurrentView
+// data from the dealershipDAO is put in to the object for this
 public class CurrentRentalModel {
     private Date rentStartDate;
     private Date rentReturnDate;
@@ -33,8 +36,6 @@ public class CurrentRentalModel {
     private Icon vehicleImage;
     private int rentID;
 
-   
-
     public CurrentRentalModel(Date rentStartDate, Date rentReturnDate, int rentNoOfDays, String vehicleMake,
             String vehicleModel, String vehicleType, String vehicleRarity, int vehiclePassengers,
             boolean vehicleAvailability, String image, int rentId) {
@@ -47,7 +48,7 @@ public class CurrentRentalModel {
         this.vehicleRarity = vehicleRarity;
         this.vehiclePassengers = vehiclePassengers;
         this.vehicleAvailability = vehicleAvailability;
-        this.image =  image;
+        this.image = image;
         this.vehicleImage = this.createImage();
     }
 
@@ -58,8 +59,7 @@ public class CurrentRentalModel {
     public void setRentID(int rentID) {
         this.rentID = rentID;
     }
-    
-    
+
     public Icon createImage() {
 
         try {
@@ -77,7 +77,7 @@ public class CurrentRentalModel {
 
     }
 
-     public String getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -92,6 +92,7 @@ public class CurrentRentalModel {
     public void setVehicleImage(Icon vehicleImage) {
         this.vehicleImage = vehicleImage;
     }
+
     public Date getRentStartDate() {
         return rentStartDate;
     }

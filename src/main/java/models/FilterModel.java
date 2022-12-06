@@ -10,27 +10,35 @@ import java.util.ArrayList;
  *
  * @author twene
  */
+
+// the model behind the FitlerBar custom swing component
 public class FilterModel {
 
+    // instance variables init
     public int price;
     public int maxPrice;
     public int minPrice;
     public int step;
-    public ArrayList<String> types;
-    public ArrayList<String> carSize;
+    public ArrayList<String> rarity;
+    public ArrayList<String> carTypes;
     public ArrayList<String> activeFilters;
 
+    // constructor
+    // passing max min and step values for the price slider
+
+    // as there are two instances of FilterBar for the rental and purchase page
     public FilterModel(int maxVal, int minVal, int step) {
         this.price = maxVal;
         this.maxPrice = maxVal;
         this.minPrice = minVal;
         this.step = step;
-        this.types = new ArrayList<String>(4);
-        this.carSize = new ArrayList<String>(3);
+        this.rarity = new ArrayList<String>();
+        this.carTypes = new ArrayList<String>();
         this.activeFilters = new ArrayList<String>(2);
 
     }
 
+    // getter and setter functions
     public int getStep() {
         return step;
     }
@@ -59,10 +67,11 @@ public class FilterModel {
         this.minPrice = minPrice;
     }
 
+    // reset all the fields when user hits the reset button
     public void reset() {
         this.price = maxPrice;
-        this.types.clear();
-        this.carSize.clear();
+        this.carTypes.clear();
+        this.rarity.clear();
         this.activeFilters.clear();
 
     }
@@ -76,77 +85,102 @@ public class FilterModel {
     }
 
     public ArrayList<String> getTypes() {
-        return types;
+        return carTypes;
     }
 
-    public void setTypes(String type) {
-        if (this.types.contains(type)) {
-            // find that index
-            int index = this.types.indexOf(type);
-            this.types.remove(index);
+    public ArrayList<String> getCarRarity() {
+
+        return rarity;
+    }
+
+    // set the current filter setting for car rarity
+    public void setRarity(String type) {
+        // if this type is there already means that the user is turning it off
+        if (this.rarity.contains(type)) {
+            // find the index of that type and remove it
+
+            int index = this.rarity.indexOf(type);
+            this.rarity.remove(index);
 
         } else {
-            this.types.add(type);
+            // otherwise add it to the list of chosen rarities
+            this.rarity.add(type);
         }
 
+        // the run the setter function for the active filters
+        // to ensure that it is updated
         this.setActiveFilters();
 
     }
 
-    public ArrayList<String> getCarSize() {
+    // setter function for cartypes
+    // when a clicks on one of the carType checkboxes on the FilterBar
+    public void setCarType(String carType) {
 
-        return carSize;
+        // if that type is already in the array
+        // means that the user is unchecking so..
+        if (this.carTypes.contains(carType)) {
+            // find the index of that type and remove it
+            int index = this.carTypes.indexOf(carType);
+            this.carTypes.remove(index);
+
+            // otherwise if the type is not there already
+        } else {
+            // it means that they user is checking the checkbox so
+            // add that type in
+            this.carTypes.add(carType);
+        }
+
+        // then run setActiveFilters to keep track of what filters are active
+        this.setActiveFilters();
     }
 
+    // setter function for showing what parts of the fitler is active from user
+    // input
     public void setActiveFilters() {
 
-        // if type array is empty
-        if (types.size() != 0) {
+        // if they user hasnt selected a type
+        if (carTypes.size() != 0) {
 
-            // check if type is not there
-            // then add
+            // and if the active fitler is not showing the types array as activated
             if (!activeFilters.contains("type")) {
+                // then show that it is activated as the user has selected a car type
                 activeFilters.add("type");
             }
 
+            // otherwise if the user hasnt select the type
         } else {
 
-            // if it
+            // and the array says that the "type" part is active
             if (activeFilters.contains("type")) {
+                // then remove it as the user hasnt selected anything from the types section of
+                // the filter
                 activeFilters.remove(activeFilters.indexOf("type"));
             }
         }
 
-        if (carSize.size() != 0) {
-            if (!activeFilters.contains("size")) {
-                activeFilters.add("size");
+        // do the same for the rarity section of the filter
+        // check if that setting is active
+        if (rarity.size() != 0) {
+            if (!activeFilters.contains("rarity")) {
+                activeFilters.add("rarity");
             }
 
         } else {
-            if (activeFilters.contains("size")) {
-                activeFilters.remove(activeFilters.indexOf("size"));
+            if (activeFilters.contains("rarity")) {
+                activeFilters.remove(activeFilters.indexOf("rarity"));
             }
 
         }
     }
 
-    public void setCarSize(String carSizeType) {
-        if (this.carSize.contains(carSizeType)) {
-            // find that index
-            int index = this.carSize.indexOf(carSizeType);
-            this.carSize.remove(index);
-
-        } else {
-            this.carSize.add(carSizeType);
-        }
-
-        this.setActiveFilters();
-    }
-
+    // string representation of the filter
+    // this will be displayed everytime the filter is interacted with to give you a
+    // visual of the filter in action :)
     @Override
     public String toString() {
-        return String.format("FilterStatus\n\n Filters active: %s \n\n Types: %s \n\n Capacity: %s\n\n price: %s",
-                this.activeFilters, this.types, this.carSize, this.price);
+        return String.format("FilterStatus\n\n Filters active: %s \n\n Types: %s \n\n Rarity: %s\n\n price: %s",
+                this.activeFilters, this.carTypes, this.rarity, this.price);
     }
 
 }

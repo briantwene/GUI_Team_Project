@@ -22,6 +22,7 @@ public class entryPoint {
         this.appState = new AppModel();
         this.brianFrame = new MainFrame(appState);
 
+        // runnable function for switching frames
         Runnable switchFrame = () -> switchToBrianFrame();
 
         // start and hide brianFrame so that user can login

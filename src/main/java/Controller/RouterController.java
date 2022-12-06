@@ -27,7 +27,6 @@ public class RouterController {
     public static final String PURCHASE = "purchase";
     public static final String ACCOUNT = "Account";
     public static final String INFO = "info";
-    Runnable updatePage;
 
     // variable for current page
     private UpdateInterface currentPage = null;
@@ -35,6 +34,11 @@ public class RouterController {
     // variable for panel that will hold the container and cardLayout object
     private Container parent;
     private CardLayout cardLayout;
+
+    // since a class implementing an interface is a form of inheritance set this as
+    // the type as all the views have this implemented in case of them needing to
+    // override
+    // the updatePage()
     private ArrayList<UpdateInterface> views;
     private HashMap<String, UpdateInterface> pageNames;
 
@@ -47,44 +51,44 @@ public class RouterController {
 
     }
 
-    public void attachUpdateFunc(Runnable func) {
-        updatePage = func;
-    }
+    // attach update function
 
     // adding a view
     public void addView(UpdateInterface comp, String name) {
-        if (!HOME.equals(name)) {
-            views.add(comp);
-        }
+        // if (!HOME.equals(name)) {
+        // views.add(comp);
+        // }
         pageNames.put(name, comp);
         getParent().add((Component) comp, name);
     }
 
     public void removeView(JPanel comp, String name) {
-        views.remove(comp);
+        // views.remove(comp);
         pageNames.remove(name);
         getParent().remove(comp);
     }
 
+    // method that will navigate to the page and show it using the cardLayout.show()
     // go home
     public void goHome() {
         currentPage = pageNames.get(HOME);
-        // currentPage.revalidate();
+
         getCardLayout().show(getParent(), HOME);
     }
 
     public void goRentals() {
         currentPage = pageNames.get(RENT);
-        // currentPage.revalidate();
         getCardLayout().show(getParent(), RENT);
     }
 
     public void goPurchases() {
         currentPage = pageNames.get(PURCHASE);
-        // currentPage.revalidate();
         getCardLayout().show(getParent(), PURCHASE);
     }
 
+    // some of these pages need to be refreshed because of changes of the models
+    // they rely on so run the update function that the class has overridden from
+    // updateInterface
     public void goAccountPage() {
         currentPage = pageNames.get(ACCOUNT);
         currentPage.updatePage();

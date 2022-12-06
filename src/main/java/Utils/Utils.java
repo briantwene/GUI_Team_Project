@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main;
+package Utils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +16,10 @@ import models.VehicleModel;
  *
  * @author twene
  */
+
+// class for holding functions that were to big or functions that are used in
+// multiple areas
+// aslo for small tedious tasks like manipulating time
 public class Utils {
 
     public static Date convertToDateViaSqlDate(LocalDate dateToConvert) {
@@ -80,7 +84,7 @@ public class Utils {
         System.out.println(currentFilter);
 
         ArrayList<String> type = currentFilter.getTypes();
-        ArrayList<String> sizes = currentFilter.getCarSize();
+        ArrayList<String> sizes = currentFilter.getCarRarity();
 
         // then check the criteria based off this
 
@@ -91,15 +95,18 @@ public class Utils {
 
             int maxPrice = currentFilter.getPrice();
 
-            // check what parts of the filters are active
-            if (currentFilter.activeFilters.contains("type") && currentFilter.activeFilters.contains("size")) {
+            // price will always be filtered regardless of the other two filter types being
+            // inactive or not
+            // check what parts of the filters are active if type and rarity are active
+            if (currentFilter.activeFilters.contains("type") && currentFilter.activeFilters.contains("rarity")) {
 
+                // then check if the any cars match what is inside
                 if (type.contains(vehicle.getVehicleRarity()) && sizes.contains(vehicle.getVehicleType())
                         && vehicle.getVehiclePrice() <= maxPrice) {
 
                     newList.add(vehicle);
                 }
-
+                // do the same for if one of the filters are active
             } else if (currentFilter.activeFilters.contains("type")) {
 
                 if (type.contains(vehicle.getVehicleRarity()) && vehicle.getVehiclePrice() <= maxPrice) {
@@ -107,7 +114,7 @@ public class Utils {
                     newList.add(vehicle);
                 }
 
-            } else if (currentFilter.activeFilters.contains("size")) {
+            } else if (currentFilter.activeFilters.contains("rarity")) {
 
                 if (sizes.contains(vehicle.getVehicleRarity()) && vehicle.getVehiclePrice() <= maxPrice) {
 

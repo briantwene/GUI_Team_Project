@@ -8,8 +8,12 @@ package Controller;
  *
  * @author twene
  */
+
+// interface for adding an abstract method that can be overriden by views in
+// case they need
+// to be updated due to changes in the models
 public interface UpdateInterface {
     // for updating speicific pages
     public void updatePage();
-    
+
 }

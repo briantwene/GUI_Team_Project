@@ -7,16 +7,15 @@ package Components;
 import javax.swing.JPanel;
 import third_party.WrapLayout;
 
-
 /**
  *
  * @author twene
  */
 public class WrapLayoutContainer extends JPanel {
-    
-    
-    public WrapLayoutContainer(){
+
+    // JPanel that sets its layout manager to the custom wrapLayout
+    public WrapLayoutContainer() {
         this.setLayout(new WrapLayout());
     }
-    
+
 }

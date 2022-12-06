@@ -4,7 +4,6 @@
  */
 package Views;
 
-import Components.beforeTodayVetoPolicy;
 import Controller.RouterController;
 import javax.swing.JOptionPane;
 import models.AppModel;
@@ -12,6 +11,9 @@ import models.DealershipDAO;
 import models.PurchaseModel;
 import models.VehicleModel;
 import Controller.UpdateInterface;
+import Utils.Utils;
+import Utils.beforeTodayVetoPolicy;
+
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.github.lgooddatepicker.components.TimePickerSettings;
 import com.github.lgooddatepicker.optionalusertools.DateChangeListener;
@@ -21,7 +23,6 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.time.temporal.ChronoUnit;
 
-import main.Utils;
 import models.RentModel;
 
 /**
@@ -45,34 +46,43 @@ public class CarInfoView extends javax.swing.JPanel implements UpdateInterface, 
                 this.controller = controller;
                 this.appState = appState;
                 this.dealershipDao = dealershipDao;
-                this.controller.attachUpdateFunc(update);
+                // this.controller.attachUpdateFunc(update);
+
+                // create setting objects for the date picker for the veto class to be added
+                // later
                 dateSettings1 = new DatePickerSettings();
 
                 dateSettings2 = new DatePickerSettings();
                 ;
 
                 initComponents();
+                // add the veto policy to the datepickers
                 dateSettings1.setVetoPolicy(new beforeTodayVetoPolicy());
 
                 dateSettings2.setVetoPolicy(new beforeTodayVetoPolicy());
 
+                // add an event listener to them
                 pickupPicker.addDateChangeListener(this);
                 returnPicker.addDateChangeListener(this);
 
         }
 
+        // method for getting total price
         public long calcTotalPrice(long days, int price) {
                 return days * price;
         }
 
+        // function for if a user triggers event on datepickers
         @Override
         public void dateChanged(DateChangeEvent event) {
                 // get the number of days
 
+                // get the number of days from the start and end date
                 LocalDate stDate = pickupPicker.getDate();
 
                 LocalDate endDate = returnPicker.getDate();
 
+                // if its null then set the price to 0
                 if (stDate == null || endDate == null) {
                         // set the number of days to 0
 
@@ -81,10 +91,14 @@ public class CarInfoView extends javax.swing.JPanel implements UpdateInterface, 
                         price.setText("€" + 0);
 
                 } else {
+
+                        // or else multiply the days by the vehicle price per day
                         long days = ChronoUnit.DAYS.between(stDate, endDate);
                         int baseprice = appState.getSelectedVehicle().getVehiclePrice();
 
                         long total = calcTotalPrice(days, baseprice);
+
+                        // set this into the labels etc
                         dailyRateTotal.setText("€" + total);
                         item.setText(String.format("%s Day(s) @ $%s", days, baseprice));
                         price.setText("€" + total);
@@ -93,9 +107,14 @@ public class CarInfoView extends javax.swing.JPanel implements UpdateInterface, 
 
         }
 
+        // override function for updateInterface
         @Override
         public void updatePage() {
+
+                // get the selected vehicle from the apps state
                 VehicleModel selected = appState.getSelectedVehicle();
+
+                // set all the required fields
                 price.setText("€" + selected.getVehiclePrice());
                 name.setText(String.format("%s - %s", selected.getVehicleMake(), selected.getVehicleModel()));
                 carRarity.setText(selected.getVehicleRarity());
@@ -106,6 +125,8 @@ public class CarInfoView extends javax.swing.JPanel implements UpdateInterface, 
                 year.setText(Integer.toString(selected.getVehicleYear()));
                 passengers.setText(Integer.toString(selected.getVehiclePassengers()));
 
+                // if the car is for rent make the date picker visible
+                // along with other fields
                 if (appState.getSelectedVehicle().isForRent()) {
                         pickupPicker.setDate(appState.pickupDate);
                         returnPicker.setDate(appState.returnDate);
@@ -123,6 +144,8 @@ public class CarInfoView extends javax.swing.JPanel implements UpdateInterface, 
                                         selected.getVehiclePrice()));
 
                 } else {
+                        // or else just set them false and only show what is needed for the user when
+                        // their purchasing the car
                         pickupLabel.setVisible(false);
                         returnLabel.setVisible(false);
                         pickupPicker.setVisible(false);
@@ -573,20 +596,31 @@ public class CarInfoView extends javax.swing.JPanel implements UpdateInterface, 
                 // TODO add your handling code here:
 
                 // check if the user is logged in if the user isnt logged in then open the login
-                // prompet
                 if (appState.currentUser == null) {
                         JOptionPane.showMessageDialog(null, "you need to login");
+                        // logged in check if the car if for rental
                 } else if (this.appState.getSelectedVehicle().isForRent()) {
 
+                        // if it is
+
+                        // then get the dates to save in the db
                         LocalDate pickupDate = pickupPicker.getDate();
                         LocalDate returnDate = returnPicker.getDate();
                         // construct a new rental object
                         System.out.println(" this car is avaliable for rent");
 
+                        // if the date fields are empty prompt the user to enter in a date
                         if (pickupDate == null || returnDate == null) {
                                 JOptionPane.showMessageDialog(null, "Please enter the pickup and return date");
 
+                                // adn if there is a date then add it to the db
                         } else {
+                                JOptionPane.showMessageDialog(null,
+                                                String.format("You have rented a %s %s \n enjoy",
+                                                                this.appState.getSelectedVehicle().getVehicleMake(),
+                                                                this.appState.getSelectedVehicle().getVehicleModel()));
+
+                                // get the number of days
                                 System.out.println(" converting and adding to db");
                                 Date pickupDateConverted = utilityClass.convertToDateViaSqlDate(pickupPicker.getDate());
                                 Date returnDateConverted = utilityClass.convertToDateViaSqlDate(returnPicker.getDate());
@@ -596,26 +630,29 @@ public class CarInfoView extends javax.swing.JPanel implements UpdateInterface, 
                                 System.out.println(" The number of days between dates: " + daysBetween);
                                 // get the amount of days between the two dates
 
-                                // convert the days to java Date the call the db command.... for testing
+                                // convert the days to java Date then create a rental object to send to db
                                 RentModel newModel = new RentModel(0, pickupDateConverted, returnDateConverted,
                                                 (int) daysBetween,
                                                 this.appState.getSelectedVehicle().getVehicleId(),
                                                 appState.getCurrentUser().getUserId());
 
+                                // add this object to the db
                                 dealershipDao.addRental(newModel);
+                                controller.goHome();
                         }
 
                 } else {
                         // create a purchase object
                         JOptionPane.showMessageDialog(null,
-                                        String.format("You have bought a %s %s",
+                                        String.format("You have bought a %s %s \n enjoy",
                                                         this.appState.getSelectedVehicle().getVehicleMake(),
                                                         this.appState.getSelectedVehicle().getVehicleModel()));
-
+                        // add to the database
                         dealershipDao.addPurchase(new PurchaseModel(null, appState.getCurrentUser().getUserId(),
                                         this.appState.getSelectedVehicle().getVehicleId(),
                                         this.appState.getSelectedVehicle().getVehiclePrice()));
-                        controller.goHome();
+                        // then send the user home
+
                 }
         }
 

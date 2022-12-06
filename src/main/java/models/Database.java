@@ -16,6 +16,9 @@ import java.util.logging.Logger;
  *
  * @author twene
  */
+
+// database class that executes all the queries from the DAOs (Data Access
+// Objects)
 public class Database {
 
     // variables for connection and for the resutls set
@@ -28,7 +31,7 @@ public class Database {
     public Database() {
 
         try {
-
+            // try and connect to the database catch any errors
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
         } catch (ClassNotFoundException cnfex) {
             System.out.println("Problem in loading or "
@@ -46,7 +49,7 @@ public class Database {
 
     }
 
-    // function for executing the query and returning the
+    // function for executing the select queries returns a JDBC resultSet
     public ResultSet executeQuery(String query) {
 
         Statement statement = null;
@@ -68,7 +71,8 @@ public class Database {
 
     }
 
-    // function for executing the query and returning the
+    // function for executing insert and update queries retuns an int based on the
+    // outcome
     public int executeUpdateQuery(String query) {
 
         Statement statement = null;
@@ -76,10 +80,10 @@ public class Database {
         int result = 0;
         try {
 
-            // Step 2.B: Creating JDBC Statement
+            // Creating JDBC Statement
             statement = connection.createStatement();
 
-            // Step 2.C: Executing SQL &amp; retrieve data into ResultSet
+            // Executing SQL return an int that will determine if the query was successful-
             result = statement.executeUpdate(query);
 
         } catch (SQLException sqlex) {

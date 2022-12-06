@@ -7,8 +7,10 @@ package Views;
 import Components.VehicleItem;
 import Controller.RouterController;
 import Controller.UpdateInterface;
+import Utils.Utils;
+
 import java.util.ArrayList;
-import main.Utils;
+
 import models.AppModel;
 import models.FilterModel;
 import models.VehicleDAO;
@@ -49,21 +51,21 @@ public class PurchaseView extends javax.swing.JPanel implements UpdateInterface 
 
         filterBar1.attachFilterFunc(filterVehicles);
         // attach filter model to the filter form
-        filterBar1.attachFilterModel(currentFilter);
+        filterBar1.attachfilterSettings(currentFilter);
 
     }
 
     public void initFilter() {
         filterBar1.attachFilterFunc(filterVehicles);
         // attach filter model to the filter form
-        filterBar1.attachFilterModel(currentFilter);
+        filterBar1.attachfilterSettings(currentFilter);
     }
 
     public void addItems(VehicleModel data) {
 
         VehicleItem item = new VehicleItem(appState, controller);
 
-        item.fillData(data);
+        item.setCarData(data);
 
         wrapLayoutContainer1.add(item);
         wrapLayoutContainer1.revalidate();

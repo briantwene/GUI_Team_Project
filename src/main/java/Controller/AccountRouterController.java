@@ -25,18 +25,21 @@ import javax.swing.JPanel;
 /**
  *
  * @author twene
- *
+ *         original idea:
  *
  *
  */
+
+// controller for navigating nested pages in the account page
+// very built the same way as the main RouterController
 public class AccountRouterController {
 
-    // string for homepage
+    // string constants for the different pages that are there
     public static final String DETAILS = "details";
     public static final String HISTORY = "history";
     public static final String CURRENT = "current";
 
-    Runnable updatePage;
+    // variable for holding the update page function
 
     // variable for current page
     private UpdateInterface currentPage = null;
@@ -44,7 +47,11 @@ public class AccountRouterController {
     // variable for panel that will hold the container and cardLayout object
     private Container parent;
     private CardLayout cardLayout;
+
+    // variables that would a reference to the nested views on the accounts view
     private ArrayList<UpdateInterface> views;
+
+    // a map for accessing the components by name
     private HashMap<String, UpdateInterface> pageNames;
 
     // constructor
@@ -56,26 +63,23 @@ public class AccountRouterController {
 
     }
 
-    public void attachUpdateFunc(Runnable func) {
-        updatePage = func;
-    }
-
-    // adding a view
+    // adding a view to the navigator
     public void addView(UpdateInterface comp, String name) {
-        if (!DETAILS.equals(name)) {
-            views.add(comp);
-        }
+        // if (!DETAILS.equals(name)) {
+        // views.add(comp);
+        // }
         pageNames.put(name, comp);
         getParent().add((Component) comp, name);
     }
 
+    // for removing the views just in case ??
     public void removeView(JPanel comp, String name) {
-        views.remove(comp);
+        // views.remove(comp);
         pageNames.remove(name);
         getParent().remove(comp);
     }
 
-    // go home
+    // functions for moving between views
     public void goDetail() {
 
         currentPage = pageNames.get(DETAILS);

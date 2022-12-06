@@ -7,9 +7,11 @@ package Views;
 import Components.VehicleItem;
 import Controller.RouterController;
 import Controller.UpdateInterface;
+import Utils.Utils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import main.Utils;
+
 import models.AppModel;
 import models.FilterModel;
 import models.VehicleDAO;
@@ -34,44 +36,47 @@ public class RentalsView extends javax.swing.JPanel implements UpdateInterface {
      * Creates new form Rentals
      */
     public RentalsView(AppModel appState, RouterController controller, VehicleDAO vehicleDao) {
+        // set instance variables from constructor
         this.controller = controller;
         this.appState = appState;
         this.vehicleDao = vehicleDao; // create components
         this.utilityClass = new Utils();
         initComponents();
+
+        // get the data from the db
         getDataFromDB();
 
-        // get vehicles
+        // get vehicles and pass them into the filtered list
+        // keep the main list for future filtering
         filteredVehicleList = vehicleList;
 
+        // functions to create vehicle objects from data and add to the view
         this.add();
 
+        // attach filter function to the filterbar
         filterBar1.attachFilterFunc(filterVehicles);
         // attach filter model to the filter form
-        filterBar1.attachFilterModel(currentFilter);
+        filterBar1.attachfilterSettings(currentFilter);
 
     }
 
-    public void initFilter() {
-        filterBar1.attachFilterFunc(filterVehicles);
-        // attach filter model to the filter form
-        filterBar1.attachFilterModel(currentFilter);
-    }
-
+    // method for filling each vehicle item component with needed data and adding it
+    // to the container
     public void addItems(VehicleModel data) {
 
         VehicleItem item = new VehicleItem(appState, controller);
 
-        item.fillData(data);
+        item.setCarData(data);
 
         wrapLayoutContainer1.add(item);
-        wrapLayoutContainer1.revalidate();
+        wrapLayoutContainer1.revalidate(); // tell layout manager to calculate the layout as items are being added
 
     }
 
+    // function for removing everything when filtering
     public void remove() {
         wrapLayoutContainer1.removeAll();
-        wrapLayoutContainer1.repaint();
+        wrapLayoutContainer1.repaint(); // redraw the container (refresh)
     }
 
     public void add() {
@@ -89,6 +94,7 @@ public class RentalsView extends javax.swing.JPanel implements UpdateInterface {
 
     }
 
+    // actual filter function that is passed as a runnable
     public void filter() {
         filteredVehicleList = Utils.filterVehicleData(currentFilter, vehicleList, "rentals");
 
@@ -167,7 +173,8 @@ public class RentalsView extends javax.swing.JPanel implements UpdateInterface {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
@@ -188,19 +195,20 @@ public class RentalsView extends javax.swing.JPanel implements UpdateInterface {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(filterBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addComponent(filterBar1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1060,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(filterBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(filterBar1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1));
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
