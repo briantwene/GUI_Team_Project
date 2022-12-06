@@ -66,7 +66,7 @@ public class AccountCurrent extends javax.swing.JPanel implements UpdateInterfac
                         daysLeft.setText("" + diff);
 
                         // the amount of days is left is 3 or less give a visual aid to the user
-                        if (diff >= 3) {
+                        if (diff <= 5) {
                                 daysLeft.setForeground(Color.decode("#ff0000"));
                         }
                 }
