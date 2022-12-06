@@ -1,41 +1,56 @@
-package com.sdev.gui_team_project;
+package com.sdev.gui_team_project;  // Incorporates the Java Package Com.SDEV.GUI_Team_Project to the Program.
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;         // Imports the java.sql.Connection Class.
+import java.sql.DriverManager;      // Imports the java.sql.DriverManager Class.
+import java.sql.ResultSet;          // Imports the java.sql.ResultSet Class.
+import java.sql.Statement;          // Imports the java.sql.Statement Class.
+import javax.swing.JOptionPane;     // Imports the javax.swing.JOptionPane Class.
+import javax.swing.JTable;          // Imports the javax.swing.JTable Class.
+import javax.swing.table.DefaultTableModel; // Imports the javax.swing.table.DefaultTableModel Class.
 
+// ManageVehicles extends the JFrame
 public class ManageVehicles extends javax.swing.JFrame {
     
+        // Initializes the vehicles.
     public ManageVehicles() {
         initComponents();
         try{
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            Connection con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
-            Statement st = con.createStatement();
-            String SQL = "SELECT * FROM Vehicle";
-            ResultSet rs = st.executeQuery(SQL);
-            while(rs.next()){
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");  // Creates class for UCanAccess Driver.
+            Connection con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");   // Connects to database file.
+            Statement st = con.createStatement();   // Creates new statement with connection.
+            String SQL = "SELECT * FROM Vehicle";   // SELECT everything from the Vehicle table.
+            ResultSet rs = st.executeQuery(SQL);    // Creates result set execute query statement.
+            while(rs.next()){ // If statement for rs.next.
+                // Returns the vehicle ID as a string.
                 String vid = String.valueOf(rs.getInt("VehicleID"));
+                // VehicleMake = VehicleMake.
                 String vmake = rs.getString("VehicleMake");
+                // Returns a string representation of the VehicleModel.
                 String vmodel = rs.getString("VehicleModel");
+                // Returns a string representation of the Vehicle year.
                 String vyear = rs.getString("VehicleYear");
+                // Get the VehicleColour string.
                 String vcolour = rs.getString("VehicleColour");
+                // Gets the VehicleAvailability field.
                 String vavailability = rs.getString("VehicleAvailability");
+                // Get the VehiclePrice.
                 String vprice = rs.getString("VehiclePrice");
+                // VehicleType.
                 String vtype = rs.getString("VehicleType");
+                // Get the VehicleRarity string.
                 String vrarity = rs.getString("VehicleRarity");
+                // Get the VehiclePassengers string.
                 String vpassengers = rs.getString("VehiclePassengers");
+                // Add a tbData array to the database
                 String tbData[] = {vid, vmake, vmodel, vyear, vcolour, vavailability, vprice, vtype, vrarity, vpassengers};
+                // DefaultTableModel is the default table model.
                     DefaultTableModel tblModel = (DefaultTableModel)vehiclesTable.getModel();
+                    // Adds a row to the model.
                     tblModel.addRow(tbData);
             }
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch(Exception e){         // Catches exception.
+            System.out.println(e);  // Prints exception.
         }
     }
 
@@ -304,7 +319,7 @@ public class ManageVehicles extends javax.swing.JFrame {
         });
         jPanel1.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(972, 13, -1, 20));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles Menu.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles Menu.png")); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -324,94 +339,98 @@ public class ManageVehicles extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        // Sets the connection to null.
         Connection con = null;
+        // Creates set of new strings.
         String vehicleid=null, vehiclemake, vehiclemodel, vehicleyear, vehiclecolour, vehicleprice, vehicletype, vehiclesize, vehiclepassengers;
-        vehicleid = txtRegistration.getText();
-        vehiclemake = txtMake.getText();
-        vehiclemodel = txtModel.getText();
-        vehicleyear = txtYear.getText();
-        vehiclecolour = txtColour.getText();
-        String vehicleavailability = comboAvailability.getSelectedItem().toString();
-        vehicleprice = txtPrice.getText();
-        vehicletype = txtType.getText();
-        vehiclesize = txtRarity.getText();
-        vehiclepassengers = txtPassengers.getText();
+        vehicleid = txtRegistration.getText();  // vehicleid = user input.
+        vehiclemake = txtMake.getText();        // vehiclemake = user input.
+        vehiclemodel = txtModel.getText();      // vehiclemodel = user input.
+        vehicleyear = txtYear.getText();        // vehicleyear = user input.
+        vehiclecolour = txtColour.getText();    // vehiclecolour = user input.
+        String vehicleavailability = comboAvailability.getSelectedItem().toString();    // vehicleavailability = combo box drop down menu user input.
+        vehicleprice = txtPrice.getText();      // vehicleprice = user input.
+        vehicletype = txtType.getText();        // vehicletype = user input.
+        vehiclesize = txtRarity.getText();      // vehiclesize = user input.
+        vehiclepassengers = txtPassengers.getText();    // vehiclepassengers = user input.
         try{
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Vehicle");
-            if(rs.next()){
-                String userInput;
-                userInput = JOptionPane.showInputDialog("Enter the ID of the Vehicle You Want Removed");
-                st.executeUpdate("DELETE FROM Vehicle WHERE VehicleID='"+userInput+"'");
-                JOptionPane.showMessageDialog(null, "Removing Vehicle from the Database!");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); // Creates class for UCANACCESS Driver.
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");  // Connects to database file.
+            Statement st = con.createStatement();   // Creates statement to create a connection statement.
+            ResultSet rs = st.executeQuery("SELECT * FROM Vehicle");    // Crates a result set to execute a query.
+            if(rs.next()){  // If statement for rs.next.
+                String userInput;   // Creates String for user input.
+                userInput = JOptionPane.showInputDialog("Enter the ID of the Vehicle You Want Removed");    // Dialog for deletion of vehicle.
+                st.executeUpdate("DELETE FROM Vehicle WHERE VehicleID='"+userInput+"'");    // Executes update.
+                JOptionPane.showMessageDialog(null, "Removing Vehicle from the Database!"); // Dialog to state a vehicle has been removed.
             }
             else{
-                JOptionPane.showMessageDialog(null, "An Error Occured, Please Try Again!");
+                JOptionPane.showMessageDialog(null, "An Error Occured, Please Try Again!"); // Dialog for error handling.
             }
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch(Exception e){         // Catches exceptions.
+            System.out.println(e);  // Prints exceptions.
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
+        // Sets the connection to null.
         Connection con = null;
+        // Declaring String values for multiple variables.
         String vehicleid=null, vehiclemake, vehiclemodel, vehicleyear, vehiclecolour, vehicleprice, vehicletype, vehiclesize, vehiclepassengers;
-        vehicleid = txtRegistration.getText();
-        vehiclemake = txtMake.getText();
-        vehiclemodel = txtModel.getText();
-        vehicleyear = txtYear.getText();
-        vehiclecolour = txtColour.getText();
-        String vehicleavailability = comboAvailability.getSelectedItem().toString();
-        vehicleprice = txtPrice.getText();
-        vehicletype = txtType.getText();
-        vehiclesize = txtRarity.getText();
-        vehiclepassengers = txtPassengers.getText();
+        vehicleid = txtRegistration.getText();  // vehicleid = user input.
+        vehiclemake = txtMake.getText();        // vehiclemake = user input.
+        vehiclemodel = txtModel.getText();      // vehiclemodel = user input.
+        vehicleyear = txtYear.getText();        // vehicleyear = user input.
+        vehiclecolour = txtColour.getText();    // vehiclecolour = user input.
+        String vehicleavailability = comboAvailability.getSelectedItem().toString();    // vehicleavailability = combo box user input.
+        vehicleprice = txtPrice.getText();  // vehicleprice = user input.
+        vehicletype = txtType.getText();    // vehicletype = user input.
+        vehiclesize = txtRarity.getText();  // vehiclesize = user input.
+        vehiclepassengers = txtPassengers.getText();    // vehiclepassengers = user input.
         try{
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Vehicle");
-            if(rs.next()){
-                st.executeUpdate("UPDATE Vehicle SET VehicleMake='"+vehiclemake+"', VehicleModel='"+vehiclemodel+"', VehicleYear='"+vehicleyear+"', VehicleColour='"+vehiclecolour+"', VehicleAvailability='"+vehicleavailability+"', VehiclePrice='"+vehicleprice+"', VehicleType='"+vehicletype+"', VehicleSize='"+vehiclesize+"', VehiclePassengers='"+vehiclepassengers+"', WHERE VehicleID='"+vehicleid+"'");
-                JOptionPane.showMessageDialog(null, "Updating Vehicle Information to the Database!");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); // Create class for UCANACCESS Driver.
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");  // Conencts to database file.
+            Statement st = con.createStatement();   // Create new statement for connection.
+            ResultSet rs = st.executeQuery("SELECT * FROM Vehicle");    // Executes query.
+            if(rs.next()){  // If statement for rs.next.
+                st.executeUpdate("UPDATE Vehicle SET VehicleMake='"+vehiclemake+"', VehicleModel='"+vehiclemodel+"', VehicleYear='"+vehicleyear+"', VehicleColour='"+vehiclecolour+"', VehicleAvailability='"+vehicleavailability+"', VehiclePrice='"+vehicleprice+"', VehicleType='"+vehicletype+"', VehicleSize='"+vehiclesize+"', VehiclePassengers='"+vehiclepassengers+"', WHERE VehicleID='"+vehicleid+"'"); // Update SQL query.
+                JOptionPane.showMessageDialog(null, "Updating Vehicle Information to the Database!");   // Dialog to state information has been updated.
             }
             else{
-                JOptionPane.showMessageDialog(null, "An Error Occured, Please Try Again!");
+                JOptionPane.showMessageDialog(null, "An Error Occured, Please Try Again!"); // Error handling dialog.
             }
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch(Exception e){         // Catches exceptions.
+            System.out.println(e);  // Prints out exceptions.
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
+        // Sets the connection to null.
         Connection con = null;
-        /*PreparedStatement pst = null;
-        ResultSet rs = null;*/
+        // Creation of multiple String variables.
         String vehicleid=null, vehiclemake, vehiclemodel, vehicleyear, vehiclecolour, vehicleprice, vehicletype, vehiclerarity, vehiclepassengers;
-        vehicleid = txtRegistration.getText();
-        vehiclemake = txtMake.getText();
-        vehiclemodel = txtModel.getText();
-        vehicleyear = txtYear.getText();
-        vehiclecolour = txtColour.getText();
-        String vehicleavailability = comboAvailability.getSelectedItem().toString();
-        vehicleprice = txtPrice.getText();
-        vehicletype = txtType.getText();
-        vehiclerarity = txtRarity.getText();
-        vehiclepassengers = txtPassengers.getText();
+        vehicleid = txtRegistration.getText();  // vehicleid = user input.
+        vehiclemake = txtMake.getText();        // vehiclemake = user input.
+        vehiclemodel = txtModel.getText();      // vehiclemodel = user input.
+        vehicleyear = txtYear.getText();        // vehicleyear = user input.
+        vehiclecolour = txtColour.getText();    // vehiclecolour = user input.
+        String vehicleavailability = comboAvailability.getSelectedItem().toString();    // vehicleavailability = user input.
+        vehicleprice = txtPrice.getText();      // vehicleprice = user input.
+        vehicletype = txtType.getText();        // vehicletype = user input.
+        vehiclerarity = txtRarity.getText();    // vehiclerarity = user input.
+        vehiclepassengers = txtPassengers.getText();    // vehiclepassengers = user input.
         try{
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
-            Statement st = con.createStatement();
-            String SQL = "INSERT INTO Vehicle(VehicleID, VehicleMake, VehicleModel, VehicleYear, VehicleColour, VehicleAvailability, VehiclePrice, VehicleType, VehicleRarity, VehiclePassengers) VALUES('"+vehicleid+"','"+vehiclemake+"', '"+vehiclemodel+"', '"+vehicleyear+"', '"+vehiclecolour+"', '"+vehicleavailability+"', '"+vehicleprice+"', '"+vehicletype+"', '"+vehiclerarity+"', '"+vehiclepassengers+"')";
-            st = con.createStatement();
-            st.executeUpdate(SQL);
-            JOptionPane.showMessageDialog(null, "Vehicle Successfully Added to the Database!");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); // Creates class for UCANACCESS Driver.
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");  // Connects to database file.
+            Statement st = con.createStatement();   // Creates statement for connection to database.
+            String SQL = "INSERT INTO Vehicle(VehicleID, VehicleMake, VehicleModel, VehicleYear, VehicleColour, VehicleAvailability, VehiclePrice, VehicleType, VehicleRarity, VehiclePassengers) VALUES('"+vehicleid+"','"+vehiclemake+"', '"+vehiclemodel+"', '"+vehicleyear+"', '"+vehiclecolour+"', '"+vehicleavailability+"', '"+vehicleprice+"', '"+vehicletype+"', '"+vehiclerarity+"', '"+vehiclepassengers+"')";   // INSERT SQL Statement.
+            st = con.createStatement(); // Creates statement.
+            st.executeUpdate(SQL);  // Executes update.
+            JOptionPane.showMessageDialog(null, "Vehicle Successfully Added to the Database!"); // Dialog for vehicle being added.
             /*pst = con.prepareStatement(SQL);
             rs = pst.executeQuery();
             if(rs.next()){
@@ -424,8 +443,8 @@ public class ManageVehicles extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Registration Failed, Please Try Again!");
             }*/
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch(Exception e){         // Catches exceptions.
+            System.out.println(e);  // Prints exceptions.
         }
     }//GEN-LAST:event_addButtonActionPerformed
 

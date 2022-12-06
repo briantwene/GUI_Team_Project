@@ -1,11 +1,13 @@
-package com.sdev.gui_team_project;
+package com.sdev.gui_team_project;  // Incorporates the Java Package Com.SDEV.GUI_Team_Project to the Program.
 
-import main.MainFrame;
+import main.MainFrame;              // Imports the Java.SQL.Connection Class.
 
-public class MainMenuCustomer extends javax.swing.JFrame {
+public class MainMenuCustomer extends javax.swing.JFrame {  // Creates a Public Class Called Login Which Extends Onto JavaX.Swing.JFrame.
 
+    // Switches to the current frame.
     public static Runnable switchFrame;
 
+    // Initializes the main menu customer with a runnable switch frame.
     public MainMenuCustomer(Runnable switchFrame) {
         MainMenuCustomer.switchFrame = switchFrame;
         initComponents();
@@ -18,7 +20,7 @@ public class MainMenuCustomer extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -77,8 +79,7 @@ public class MainMenuCustomer extends javax.swing.JFrame {
         jLabel1.setText("Click the Car to Rent & Purchase Vehicles");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, -1, -1));
 
-        rentPurchase.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\Rent & Purchase Vehicles with LC500.png")); // NOI18N
+        rentPurchase.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Rent & Purchase Vehicles with LC500.png")); // NOI18N
         rentPurchase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rentPurchaseMouseClicked(evt);
@@ -89,44 +90,41 @@ public class MainMenuCustomer extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
+    // This method is called when the login button is clicked and redirects the user to the Login Page.
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         Login l = null;
         l = new Login(null);
         l.setVisible(true);
         this.setVisible(false);
-    }// GEN-LAST:event_logoutButtonActionPerformed
+    }
 
-    private void rentPurchaseMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_rentPurchaseMouseClicked
-        // TODO add your handling code here:
+    // When the user mouse clicks on the main button it'll switch the frame and go to the Rent / Purchase Vehicles page and keep the current page visible.
+    private void rentPurchaseMouseClicked(java.awt.event.MouseEvent evt) {
         switchFrame.run();
-
         this.setVisible(false);
     }
 
-    // GEN-LAST:event_rentPurchaseMouseClicked
-
-    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitProgramMouseClicked
-        // TODO add your handling code here:
+    // Exits the program when the user clicks the mouse button and exits out of the program.
+    private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
-    }// GEN-LAST:event_exitProgramMouseClicked
+    }
 
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exitButtonActionPerformed
-        // TODO add your handling code here:
+    // Called when the exit button action has been processed and exits out of the program.
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
-    }// GEN-LAST:event_exitButtonActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -141,6 +139,7 @@ public class MainMenuCustomer extends javax.swing.JFrame {
          * For details see
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
+        // Sets the look and feel for the UIManager.
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

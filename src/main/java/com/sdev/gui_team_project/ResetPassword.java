@@ -1,14 +1,16 @@
-package com.sdev.gui_team_project;
+package com.sdev.gui_team_project;  // Incorporates the Java Package Com.SDEV.GUI_Team_Project to the Program.
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+import java.sql.Connection;         // Imports the java.sql.Connection Class.
+import java.sql.DriverManager;      // Imports the java.sql.DriverManager Class.
+import java.sql.PreparedStatement;  // Imports the java.sql.PreparedStatement Class.
+import java.sql.ResultSet;          // Imports the java.sql.ResultSet Class.
+import java.sql.Statement;          // Imports the java.sql.Statement Class.
+import javax.swing.JOptionPane;     // Imports the javax.swing.JOptionPane Class.
 
+// ResetPassword extends the javax. swing. JFrame
 public class ResetPassword extends javax.swing.JFrame {
 
+        // Resets the password of the user.
     public ResetPassword() {
         initComponents();
     }
@@ -20,7 +22,7 @@ public class ResetPassword extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -80,8 +82,7 @@ public class ResetPassword extends javax.swing.JFrame {
         });
         jPanel2.add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 520, 160, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\J&B's Vehicle Rental System.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\J&B's Vehicle Rental System.png")); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -168,84 +169,88 @@ public class ResetPassword extends javax.swing.JFrame {
         });
         jPanel3.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 0, 20, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\twene\\GUI\\GUI_Team_Project\\src\\main\\java\\images\\Reset.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Reset.png")); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setSize(new java.awt.Dimension(1000, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+        // txtOldPasswordActionPerformed is called when the old password action has been processed.
     private void txtOldPasswordActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtOldPasswordActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtOldPasswordActionPerformed
 
+        // txtUsernameActionPerformed event handler
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtUsernameActionPerformed
 
+        // Called when the reset button action has been processed.
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
+        // Sets the connection to null.
         Connection con = null;
+        // Get username from txtUsername
         String username = txtUsername.getText();
+        // Returns the old password.
         String oldpassword = txtOldPassword.getText();
+        // Returns the new password as a string.
         String newpassword = txtNewPassword.getText();
         try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(
-                    "SELECT * FROM Users WHERE Username='" + username + "' and Password='" + oldpassword + "'");
-            if (rs.next()) {
-                st.executeUpdate("UPDATE Users SET Password='" + newpassword + "' WHERE Username='" + username + "'");
-                JOptionPane.showMessageDialog(null, "Username and Password Found, Resetting Password Now!");
-                Login l = null;
-                l = new Login(null);
-                l.setVisible(true);
-                this.setVisible(false);
-            } else {
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");  // Creates class for UCanAccess Driver.
+            con = DriverManager.getConnection("jdbc:ucanaccess://Rent.accdb");  // Connects to database file.
+            Statement st = con.createStatement();   // Creates new statement with connection.
+            ResultSet rs = st.executeQuery(         // Creates result set to execute query.
+                    "SELECT * FROM Users WHERE Username='" + username + "' and Password='" + oldpassword + "'"); // Query is SELECT statment.
+            if (rs.next()) {    // If statement for rs.next.
+                st.executeUpdate("UPDATE Users SET Password='" + newpassword + "' WHERE Username='" + username + "'");  // Executes an update.
+                JOptionPane.showMessageDialog(null, "Username and Password Found, Resetting Password Now!");    // Displays a dialog.
+                Login l = null; // Creates a new variable called l which is connected to the Login JFrame.
+                l = new Login(null);    // Switches to the Login JFrame.
+                l.setVisible(true);     // Sets the Login JFrame to visible.
+                this.setVisible(false); // Sets the current JFrame to invisible.
+            } else { // Else statement.
+                // Shows the Wrong Credentials and Try Again dialog
                 JOptionPane.showMessageDialog(null, "Wrong Credentials, Please Try Again!");
             }
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (Exception e) {     // Catches the exception.
+            System.out.println(e);  // Prints out the exception.
         }
     }// GEN-LAST:event_resetButtonActionPerformed
 
+        // Called when the signup button action has been processed.
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_signupButtonActionPerformed
         // TODO add your handling code here:
         RegisterCustomer rc = null;
@@ -254,6 +259,7 @@ public class ResetPassword extends javax.swing.JFrame {
         this.setVisible(false);
     }// GEN-LAST:event_signupButtonActionPerformed
 
+        // Called when the login button action has been processed.
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
         Login l = null;
@@ -262,25 +268,30 @@ public class ResetPassword extends javax.swing.JFrame {
         this.setVisible(false);
     }// GEN-LAST:event_loginButtonActionPerformed
 
+        // Focus on the username gained.
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtUsernameFocusGained
         // TODO add your handling code here:
         txtUsername.setText("");
     }// GEN-LAST:event_txtUsernameFocusGained
 
+        // txtOldPasswordFocusGained.
     private void txtOldPasswordFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtOldPasswordFocusGained
         // TODO add your handling code here:
         txtOldPassword.setText("");
     }// GEN-LAST:event_txtOldPasswordFocusGained
 
+        // txt new password focus gained.
     private void txtNewPasswordFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtNewPasswordFocusGained
         // TODO add your handling code here:
         txtNewPassword.setText("");
     }// GEN-LAST:event_txtNewPasswordFocusGained
 
+        // txtNewPasswordActionPerformed is called when the new password action has been processed.
     private void txtNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtNewPasswordActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtNewPasswordActionPerformed
 
+        // Exit the program when the user clicks the mouse.
     private void exitProgramMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitProgramMouseClicked
         // TODO add your handling code here:
         System.exit(0);
