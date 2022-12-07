@@ -82,7 +82,7 @@ public class ResetPassword extends javax.swing.JFrame {
         });
         jPanel2.add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 520, 160, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\J&B's Vehicle Rental System.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sdev/gui_team_project/J&B's Vehicle Rental System.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -169,7 +169,7 @@ public class ResetPassword extends javax.swing.JFrame {
         });
         jPanel3.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 0, 20, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Reset.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sdev/gui_team_project/Reset.png"))); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

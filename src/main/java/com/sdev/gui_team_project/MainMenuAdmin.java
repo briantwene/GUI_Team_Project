@@ -76,7 +76,7 @@ public class MainMenuAdmin extends javax.swing.JFrame { // Creates a Public Clas
         });
         jPanel1.add(exitProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 30, 30));
 
-        manageVehicles.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Vehicles.png")); // NOI18N
+        manageVehicles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sdev/gui_team_project/Manage Vehicles.png"))); // NOI18N
         manageVehicles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 manageVehiclesMouseClicked(evt);
@@ -87,7 +87,7 @@ public class MainMenuAdmin extends javax.swing.JFrame { // Creates a Public Clas
         });
         jPanel1.add(manageVehicles, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 490, 600));
 
-        manageUsers.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Manage Customers.png")); // NOI18N
+        manageUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sdev/gui_team_project/Manage Customers.png"))); // NOI18N
         manageUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 manageUsersMouseClicked(evt);

@@ -79,7 +79,7 @@ public class MainMenuCustomer extends javax.swing.JFrame {  // Creates a Public 
         jLabel1.setText("Click the Car to Rent & Purchase Vehicles");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, -1, -1));
 
-        rentPurchase.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jason\\Documents\\College Year 4\\COMP4604\\GUI_Team_Project\\src\\main\\java\\images\\Rent & Purchase Vehicles with LC500.png")); // NOI18N
+        rentPurchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sdev/gui_team_project/Rent & Purchase Vehicles with LC500.png"))); // NOI18N
         rentPurchase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rentPurchaseMouseClicked(evt);
