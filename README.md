@@ -26,47 +26,47 @@ Submission Date: 04/12/2022
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/23b87513-5362-4043-bc45-93e62f3288a2)
 
-Home Page (Customer)
+# Home Page (Customer)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/aa8d4fc0-99b9-4028-a8fa-74006ebb5433)
 
-Rentals Page (Customer)
+# Rentals Page (Customer)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/4aa9cc44-737c-4ca6-9aa6-8cf827aad82e)
 
-Purchase Page (Customer)
+# Purchase Page (Customer)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/441b3464-b3db-4a07-bb17-8e28cdec5570)
 
-Rental / Purchase Checkout Page
+# Rental / Purchase Checkout Page
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/c556d1b8-1685-44a5-8c70-2de5a57dfa7a)
 
-Current Rentals (Customer)
+# Current Rentals (Customer)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/43b3be14-1e54-4920-81b5-440062425b1a)
 
-Account Details (Customer)
+# Account Details (Customer)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/0b66e456-7993-433a-b75c-d8c1fade5f3f)
 
-History Rental and Purchases (Customer)
+# History Rental and Purchases (Customer)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/76292e14-b4e9-4973-ab42-289ced03aaf8)
 
-Login Page (Admin)
+# Login Page (Admin)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/b46aa865-7d98-44c6-b352-519546843a48)
 
-Main Menu (Admin)
+# Main Menu (Admin)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/d6972e79-67ad-4878-b90b-e3c4675f5a11)
 
-Manage Customers Page (Admin)
+# Manage Customers Page (Admin)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/d3d82520-9015-46f4-9544-69f56a8c6809)
 
-Manage Vehicles Page (Admin)
+# Manage Vehicles Page (Admin)
 
 ![image](https://github.com/bt521/GUI_Team_Project/assets/48300764/08fdd3de-71e5-403d-b49c-24285fef2a13)
 
